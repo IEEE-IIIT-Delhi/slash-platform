@@ -24,9 +24,9 @@ export default async (req, res) => {
 
   question.question = questionText
   question.answer = answer
-  question.save()
+  await question.save()
 
-  AdminLogs.create({
+  await AdminLogs.create({
     admin: req.user.username,
     action: 'update-question',
     message: `Level ${level}: ${b64(questionText)}:${b64(answer)}`

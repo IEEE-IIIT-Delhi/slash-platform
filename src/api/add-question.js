@@ -22,9 +22,9 @@ export default async (req, res) => {
     })
   }
 
-  Question.create({ level, question, answer })
+  await Question.create({ level, question, answer })
 
-  AdminLogs.create({
+  await AdminLogs.create({
     admin: req.user.username,
     action: 'add-question',
     message: `Level ${level}: ${b64(question)}:${b64(answer)}`

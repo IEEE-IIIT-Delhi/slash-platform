@@ -22,9 +22,9 @@ export default async (req, res) => {
 
   player.level = newLevel
   player.lastLevelOn = new Date()
-  player.save()
+  await player.save()
 
-  AdminLogs.create({
+  await AdminLogs.create({
     admin: req.user.username,
     action: 'update-player-level',
     message: `${username}'s level changed: ${level} --> ${newLevel}`

@@ -20,9 +20,9 @@ export default async (req, res) => {
     })
   }
 
-  player.remove()
+  await player.remove()
 
-  AdminLogs.create({
+  await AdminLogs.create({
     admin: req.user.username,
     action: 'disqualify-player',
     message: `${req.body.username} disqualified`

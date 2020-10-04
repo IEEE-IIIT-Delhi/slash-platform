@@ -21,9 +21,9 @@ export default async (req, res) => {
   }
 
   player.admin = true
-  player.save()
+  await player.save()
 
-  AdminLogs.create({
+  await AdminLogs.create({
     admin: req.user.username,
     action: 'add-admin',
     message: `${req.body.username} promoted to admin`

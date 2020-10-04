@@ -16,7 +16,7 @@ export default async (req, res) => {
   const invalid = !constants.ANSWER_REGEX.test(answer)
 
   // Create attempt log
-  AnswerLogs.create({ username, level, answer, invalid })
+  await AnswerLogs.create({ username, level, answer, invalid })
 
   if (invalid) {
     return res.json({
@@ -47,7 +47,7 @@ export default async (req, res) => {
 
   player.level += 1
   player.lastLevelOn = new Date()
-  player.save()
+  await player.save()
 
   return res.json({
     success: true,
