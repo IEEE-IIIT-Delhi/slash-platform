@@ -71,8 +71,17 @@ app.use('/api', api)
 app.use(sapper.middleware({
   session: (req, res) => {
     res.setHeader('cache-control', 'no-cache, no-store')
+    let user
+    if (req.user) {
+      const { username, admin, level } = req.user
+      user = { username, admin, level }
+    }
     const { error, message } = req.session
-    return { error, message }
+
+    req.session.error = false
+    req.session.message = undefined
+
+    return { error, message, user }
   }
 }))
 

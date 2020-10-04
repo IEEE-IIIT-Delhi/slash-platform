@@ -22,20 +22,18 @@ router.post('/login', (req, res) => {
   passport.authenticate('local', (err, player) => {
     if (err) {
       req.session.message = err.message
-      return res.redirect('/')
+      return res.redirect('/login')
     }
 
     if (!player) {
-      req.session.error = true
       req.session.message = constants.ERR_INVALID_CREDS
-      return res.redirect('/')
+      return res.redirect('/login')
     }
 
     req.logIn(player, _err => {
       if (_err) {
-        req.session.error = true
         req.session.message = constants.ERR_MISC
-        return res.redirect('/')
+        return res.redirect('/login')
       }
 
       req.session.error = false
@@ -58,7 +56,7 @@ router.post(
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       req.session.message = constants.ERR_INVALID_EMAIL_USERNAME
-      return res.redirect('/')
+      return res.redirect('/register')
     }
 
     const { username, password, email, name } = req.body
@@ -66,13 +64,13 @@ router.post(
     let existingUser = await Player.findOne({ username })
     if (existingUser) {
       req.session.message = constants.ERR_USERNAME_EXISTS
-      return res.redirect('/')
+      return res.redirect('/register')
     }
 
     existingUser = await Player.findOne({ email })
     if (existingUser) {
       req.session.message = constants.ERR_EMAIL_EXISTS
-      return res.redirect('/')
+      return res.redirect('/register')
     }
 
     // Collect user location info
@@ -83,13 +81,12 @@ router.post(
     const geo = await fetch(`http://ip-api.com/json/${ip}?fields=17`)
       .then(res => res.json())
 
-    const registration = { username, email, name, geo }
-    await Player.register(registration, password)
-    await RegistrationLogs.create(registration)
+    await Player.register({ username, email, name, geo }, password)
+    await RegistrationLogs.create({ username })
 
     req.session.error = false
     req.session.message = constants.SUCCESSFUL_REGISTRATION
-    res.redirect('/')
+    res.redirect('/login')
   }
 )
 

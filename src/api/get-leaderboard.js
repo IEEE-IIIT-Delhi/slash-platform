@@ -2,11 +2,16 @@ import * as constants from '../constants'
 import Player from '../models/player'
 
 export default async (req, res) => {
-  const leaderboard = await Player
+  const rawLeaderboard = await Player
     .find({ admin: false })
     .sort('-level')
     .sort('lastLevelOn')
     .exec()
+
+  const leaderboard = rawLeaderboard.map(player => ({
+    username: player.username,
+    level: player.level
+  }))
 
   return res.json({
     success: true,

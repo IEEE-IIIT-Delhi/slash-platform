@@ -9,10 +9,15 @@ body,
   font-weight: 400;
   font-family: $font-default;
   color: $color-text;
-  letter-spacing: 1px;
+  background: $color-bg;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-overflow-scrolling: touch;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 * {

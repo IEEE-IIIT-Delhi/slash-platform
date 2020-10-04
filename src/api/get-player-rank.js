@@ -15,7 +15,7 @@ export default async (req, res) => {
     .sort('-level')
     .sort('lastLevelOn')
     .exec()
-  const rank = leaderboard.indexOf(player.username) + 1
+  const rank = leaderboard.findIndex(p => p.username === player.username) + 1
 
   if (rank === 0) {
     return res.json({

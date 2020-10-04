@@ -1,6 +1,4 @@
-<main>
-  <slot />
-</main>
+<slot />
 
 <style lang="scss" global>
   @import "../../styles/global.scss";
