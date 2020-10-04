@@ -8,8 +8,8 @@ import mongoose from 'mongoose'
 import connectMongo from 'connect-mongo'
 
 import Player from './models/player'
-import api from './api'
-import auth from './auth'
+import api from './routers/api'
+import auth from './routers/auth'
 
 envConfig()
 

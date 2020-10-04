@@ -11,4 +11,4 @@ const LogsSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Answer Logs', LogsSchema)
+export default mongoose.model('Answer Logs', LogsSchema)

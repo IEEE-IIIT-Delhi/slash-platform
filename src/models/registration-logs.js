@@ -10,4 +10,4 @@ const LogsSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Registration Logs', LogsSchema)
+export default mongoose.model('Registration Logs', LogsSchema)

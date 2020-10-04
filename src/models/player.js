@@ -19,11 +19,10 @@ const PlayerSchema = new mongoose.Schema({
   },
   geo: {
     country: String,
-    city: String,
-    org: String
+    city: String
   }
 })
 
 PlayerSchema.plugin(passportLocalMongoose)
 
-module.exports = mongoose.model('Player', PlayerSchema)
+export default mongoose.model('Player', PlayerSchema)
