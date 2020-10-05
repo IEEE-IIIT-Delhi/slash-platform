@@ -6,7 +6,7 @@ const LogsSchema = new mongoose.Schema({
   message: String,
   time: {
     type: Date,
-    default: new Date()
+    default: Date.now
   }
 })
 

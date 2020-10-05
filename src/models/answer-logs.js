@@ -7,7 +7,7 @@ const LogsSchema = new mongoose.Schema({
   invalid: Boolean,
   time: {
     type: Date,
-    default: new Date()
+    default: Date.now
   }
 })
 
