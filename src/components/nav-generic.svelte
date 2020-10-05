@@ -18,7 +18,7 @@
       {#if $session.user} <li><a href="/">Play</a></li> {/if}
 
       <li><a href="/leaderboard">Leaderboard</a></li>
-      <li><a href="/discord" target="_blank" rel="noopener">Discord</a></li>
+      <li><a href="https://discord.gg/5wqhZu" target="_blank" rel="noopener">Discord</a></li>
       <li><a href="https://slash.win" target="_blank" rel="noopener">Home</a></li>
 
       {#if $session.user} <li><a href="/auth/logout">Logout</a></li>
@@ -40,7 +40,7 @@
         {#if $session.user} <li><a href="/">Play</a></li> {/if}
 
         <li><a href="/leaderboard">Leaderboard</a></li>
-        <li><a href="/discord" target="_blank" rel="noopener">Discord</a></li>
+        <li><a href="https://discord.gg/5wqhZu" target="_blank" rel="noopener">Discord</a></li>
         <li><a href="https://slash.win" target="_blank" rel="noopener">Home</a></li>
 
         {#if $session.user} <li><a href="/auth/logout">Logout</a></li>
