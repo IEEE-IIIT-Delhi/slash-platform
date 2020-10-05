@@ -30,7 +30,7 @@
       <p class='general'>Slash will begin in</p>
       <Countdown date={config.startDate} />
       <p class='general'>Till then, join our
-        <a href="discord.com">Discord server</a>
+        <a href="https://discord.gg/5wqhZu">Discord server</a>
         or visit <a href="https://elysium.iiitd.edu.in">Elysium '20</a>.
       </p>
 
