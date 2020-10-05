@@ -11,6 +11,7 @@
 
   async function checkAnswer (event) {
     event.preventDefault()
+
     const res = await fetch('/api/check-answer', {
       method: 'POST',
       body: JSON.stringify({ answer }),
@@ -19,7 +20,10 @@
       }
     })
     const { success } = await res.json()
-    console.log(success)
+
+    if (success) {
+      window.location.reload()
+    }
   }
 </script>
 

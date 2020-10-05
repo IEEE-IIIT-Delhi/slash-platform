@@ -37,6 +37,12 @@
 
 <svelte:window bind:innerWidth />
 
+<svelte:head>
+  {#if config.started}
+    <title>Level {level} // Slash</title>
+  {/if}
+</svelte:head>
+
 <main>
   {#if innerWidth > 800}
     <PlaySide {username} {level} {rank}/>

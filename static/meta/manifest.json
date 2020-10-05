@@ -3,7 +3,7 @@
 	"theme_color": "#333333",
 	"name": "Slash",
 	"short_name": "Slash",
-	"display": "minimal-ui",
+	"display": "standalone",
 	"start_url": "/",
 	"icons": [
 		{
