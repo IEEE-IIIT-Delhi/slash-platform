@@ -26,7 +26,7 @@ export default async (req, res) => {
   }
 
   // Check attempt
-  const { answer: correctAnswer } = Question.findOne({ level }).exec()
+  const { answer: correctAnswer } = await Question.findOne({ level })
 
   if (answer !== correctAnswer) {
     return res.json({

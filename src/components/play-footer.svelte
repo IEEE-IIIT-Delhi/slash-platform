@@ -1,0 +1,46 @@
+<script>
+  export let username
+  export let level
+  export let rank
+</script>
+
+<footer>
+  <h2 class='level'>Level <span>{level}</span></h2>
+  <h3>Player: <span>{username}</span></h3>
+  <h3>Rank: <span>{rank}</span></h3>
+</footer>
+
+<style lang='scss'>
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -5px 10px rgba(0,0,0,0.12);
+    background: #111;
+    padding: 10px 20px;
+
+    h2.level {
+      font-size: 24px;
+      font-weight: 100;
+
+      span {
+        font-weight: 900;
+      }
+    }
+
+    h3 {
+      margin: 20px 0;
+      font-size: 14px;
+      font-weight: 100;
+
+      span {
+        font-size: 18px;
+        font-weight: 600;
+        word-break: break-all;
+      }
+    }
+  }
+</style>

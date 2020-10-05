@@ -3,7 +3,7 @@
 section {
   width: 85%;
   max-width: 600px;
-  margin: 100px auto 50px;
+  margin: 15vh auto 50px;
 
   h1 {
     margin-bottom: 2vh;
@@ -72,7 +72,7 @@ form {
       padding: 10px;
       font-family: Inter, sans-serif;
       font-size: 18px;
-      color: #989898;
+      color: #bbb;
       transition: all .1s linear;
 
       &[type='submit'] {

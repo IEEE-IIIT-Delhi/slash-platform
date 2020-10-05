@@ -49,11 +49,6 @@ passport.use(Player.createStrategy())
 passport.serializeUser(Player.serializeUser())
 passport.deserializeUser(Player.deserializeUser())
 
-app.use((req, res, next) => {
-  res.locals.currentUser = req.user
-  next()
-})
-
 app.set('trust proxy', true)
 
 // Setting up body-parser

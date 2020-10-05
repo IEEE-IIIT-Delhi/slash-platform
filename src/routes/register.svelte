@@ -8,7 +8,7 @@
 </script>
 
 <script>
-  import Nav from '../components/navigation.svelte'
+  import Nav from '../components/nav-generic.svelte'
   import { stores } from '@sapper/app'
   const { session } = stores()
 </script>
@@ -28,11 +28,11 @@
         <input type='text' name='username' placeholder='Username' required>
       </div>
       <div class='input-grp'>
-        <label for='username'>Full name</label>
+        <label for='name'>Full name</label>
         <input type='text' name='name' placeholder='Full name' required>
       </div>
       <div class='input-grp'>
-        <label for='username'>Email</label>
+        <label for='email'>Email</label>
         <input type='email' name='email' placeholder='Email' required>
       </div>
       <div class='input-grp'>

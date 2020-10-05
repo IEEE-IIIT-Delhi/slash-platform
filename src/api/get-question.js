@@ -10,13 +10,22 @@ export default async (req, res) => {
   }
 
   const { level } = req.user
-  const question = await Question
-    .findOne({ level })
-    .exec()
+  const question = await Question.findOne({ level })
+
+  if (!question) {
+    return res.json({
+      success: true,
+      message: constants.GENERIC_SUCC,
+      data: { win: true }
+    })
+  }
 
   return res.json({
-    success: false,
+    success: true,
     message: constants.GENERIC_SUCC,
-    data: { question }
+    data: {
+      win: false,
+      question: question.question
+    }
   })
 }

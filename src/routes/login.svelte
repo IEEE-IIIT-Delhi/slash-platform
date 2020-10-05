@@ -8,7 +8,7 @@
 </script>
 
 <script>
-  import Nav from '../components/navigation.svelte'
+  import Nav from '../components/nav-generic.svelte'
   import { stores } from '@sapper/app'
   const { session } = stores()
 </script>
