@@ -42,7 +42,7 @@
     </table>
 
   {:else}
-    <p class='general'>The leaderboard will activate once Slash begin.</p>
+    <p class='general'>The leaderboard will activate once Slash begins.</p>
     <p class='general'>Till then, join our
       <a href="https://discord.gg/5wqhZu">Discord server</a>
       or visit <a href="https://elysium.iiitd.edu.in">Elysium '20</a>.

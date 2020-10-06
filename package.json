@@ -16,7 +16,6 @@
     "email-validator": "^2.0.4",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "express-validator": "^6.4.0",
     "mongoose": "^5.9.10",
     "mongoose-cache": "^0.1.5",
     "node-fetch": "^2.6.1",
