@@ -15,10 +15,10 @@ export default async (req, res) => {
   const playerCount = await Player.countDocuments()
   const adminCount = await Player.countDocuments({ admin: true })
   const answerAttempts = await AnswerLogs.countDocuments()
-  const lastTwentyRegistrants = await RegistrationLogs
+  const lastTenRegistrants = await RegistrationLogs
     .find({})
     .sort('-time')
-    .limit(20)
+    .limit(10)
     .exec()
 
   const playersPerLevel = []
@@ -34,7 +34,7 @@ export default async (req, res) => {
       playerCount,
       adminCount,
       answerAttempts,
-      lastTwentyRegistrants,
+      lastTenRegistrants,
       playersPerLevel
     }
   })

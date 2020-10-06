@@ -35,9 +35,9 @@
         <p class='label'>Number of admins</p>
       </div>
       <div class="card">
-        <p class='label'>Last 20 registrants</p>
+        <p class='label'>Last 10 registrants</p>
         <table>
-          {#each data.lastTwentyRegistrants as entry}
+          {#each data.lastTenRegistrants as entry}
             <tr>
               <td>{entry.username}</td>
               <td>{format(entry.time)}</td>
