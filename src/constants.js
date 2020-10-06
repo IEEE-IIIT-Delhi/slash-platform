@@ -1,4 +1,5 @@
 export const ANSWER_REGEX = /^[a-zA-Z0-9_]*$/
+export const USERNAME_LENGTH_REGEX = /^.{2,15}$/
 
 // Response success
 export const CORRECT_ANS = 'Correct answer'

@@ -7,7 +7,7 @@
   export let config
 
   let answer = ''
-  $: answer = answer.replace(/[\W_]+/g, '').toLowerCase()
+  $: answer = answer.replace(/[\W]+/g, '').toLowerCase()
 
   async function checkAnswer (event) {
     event.preventDefault()

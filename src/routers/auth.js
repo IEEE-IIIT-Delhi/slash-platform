@@ -2,7 +2,7 @@ import * as constants from '../constants'
 import express from 'express'
 import passport from 'passport'
 import fetch from 'node-fetch'
-import { body as check, validationResult } from 'express-validator'
+import { validate } from 'email-validator'
 
 import Player from '../models/player'
 import RegistrationLogs from '../models/registration-logs'
@@ -48,52 +48,47 @@ router.post('/login', (req, res) => {
 })
 
 // User register at /auth/register
-router.post(
-  '/register',
-  [
-    check('email').isEmail().normalizeEmail(),
-    check('username').isAlphanumeric()
-  ],
-  async (req, res) => {
-    req.session.error = true
+router.post('/register', async (req, res) => {
+  req.session.error = true
+  const { username, password, email, name } = req.body
 
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-      req.session.message = constants.ERR_INVALID_EMAIL_USERNAME
-      return res.redirect('/register')
-    }
-
-    const { username, password, email, name } = req.body
-
-    let existingUser = await Player.findOne({ username })
-    if (existingUser) {
-      req.session.message = constants.ERR_USERNAME_EXISTS
-      return res.redirect('/register')
-    }
-
-    existingUser = await Player.findOne({ email })
-    if (existingUser) {
-      req.session.message = constants.ERR_EMAIL_EXISTS
-      return res.redirect('/register')
-    }
-
-    // Collect user location info
-    const ip =
-      req.headers['x-real-ip'] ||
-      req.headers['x-forwarded-for'] ||
-      req.connection.remoteAddress
-    const geo = await fetch(`http://ip-api.com/json/${ip}?fields=17`)
-      .then(res => res.json())
-
-    await Player.register({ username, email, name, geo }, password)
-    await RegistrationLogs.create({ username })
-
-    console.log(`${Date.now()}: Registered: ${username}`)
-
-    req.session.error = false
-    req.session.message = constants.SUCCESSFUL_REGISTRATION
-    res.redirect('/login')
+  if (
+    !validate(email) ||
+    !constants.ANSWER_REGEX.test(username) ||
+    !constants.USERNAME_LENGTH_REGEX.test(username)
+  ) {
+    req.session.message = constants.ERR_INVALID_EMAIL_USERNAME
+    return res.redirect('/register')
   }
-)
+
+  let existingUser = await Player.findOne({ username })
+  if (existingUser) {
+    req.session.message = constants.ERR_USERNAME_EXISTS
+    return res.redirect('/register')
+  }
+
+  existingUser = await Player.findOne({ email })
+  if (existingUser) {
+    req.session.message = constants.ERR_EMAIL_EXISTS
+    return res.redirect('/register')
+  }
+
+  // Collect user location info
+  const ip =
+    req.headers['x-real-ip'] ||
+    req.headers['x-forwarded-for'] ||
+    req.connection.remoteAddress
+  const geo = await fetch(`http://ip-api.com/json/${ip}?fields=17`)
+    .then(res => res.json())
+
+  await Player.register({ username, email, name, geo }, password)
+  await RegistrationLogs.create({ username })
+
+  console.log(`${Date.now()}: Registered: ${username}`)
+
+  req.session.error = false
+  req.session.message = constants.SUCCESSFUL_REGISTRATION
+  res.redirect('/login')
+})
 
 export default router

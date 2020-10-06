@@ -11,6 +11,9 @@
   import Nav from '../components/nav-generic.svelte'
   import { stores } from '@sapper/app'
   const { session } = stores()
+
+  let username = ''
+  $: username = username.replace(/[\W]+/g, '').slice(0, 15)
 </script>
 
 <Nav />
@@ -24,8 +27,8 @@
         <p class="message error">{$session.message}</p>
       {/if}
       <div class='input-grp'>
-        <label for='username'>Username</label>
-        <input type='text' name='username' placeholder='Username (alphanumeric/underscore)' required>
+        <label for='username'>Username (2 to 15 characters, alphanumeric/underscore)</label>
+        <input bind:value={username} type='text' name='username' placeholder='Username' required>
       </div>
       <div class='input-grp'>
         <label for='name'>Full name</label>
