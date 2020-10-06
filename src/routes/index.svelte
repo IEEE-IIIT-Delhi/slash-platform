@@ -5,6 +5,11 @@
       return
     }
 
+    if (session.user.admin) {
+      this.redirect(302, '/admin')
+      return
+    }
+
     const { username, level } = session.user
     const { data: { config }} = await this.fetch('/api/get-config').then(res => res.json())
 

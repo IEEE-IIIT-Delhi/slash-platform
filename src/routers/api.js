@@ -8,6 +8,7 @@ import getConfig from '../api/get-config'
 import getLeaderboard from '../api/get-leaderboard'
 import getPlayerRank from '../api/get-player-rank'
 import getQuestion from '../api/get-question'
+import getStats from '../api/get-stats'
 import updatePlayerLevel from '../api/update-player-level'
 import updateQuestion from '../api/update-question'
 
@@ -17,6 +18,7 @@ router.get('/get-config', getConfig)
 router.get('/get-leaderboard', getLeaderboard)
 router.get('/get-player-rank', getPlayerRank)
 router.get('/get-question', getQuestion)
+router.get('/get-stats', getStats)
 router.post('/add-admin', addAdmin)
 router.post('/add-question', addQuestion)
 router.post('/check-answer', checkAnswer)

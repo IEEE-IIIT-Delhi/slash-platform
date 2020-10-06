@@ -21,7 +21,8 @@
     "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^6.0.1"
+    "passport-local-mongoose": "^6.0.1",
+    "timeago.js": "^4.0.2"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
