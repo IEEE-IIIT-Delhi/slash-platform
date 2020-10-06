@@ -11,6 +11,8 @@ const router = express.Router()
 
 // User logout at /auth/logout
 router.get('/logout', (req, res) => {
+  console.log(`${Date.now()}: Logged out: ${req.user.username}`)
+
   req.logout()
   res.redirect('/')
 })
@@ -35,6 +37,8 @@ router.post('/login', (req, res) => {
         req.session.message = constants.ERR_MISC
         return res.redirect('/login')
       }
+
+      console.log(`${Date.now()}: Logged in: ${player.username}`)
 
       req.session.error = false
       req.session.message = undefined
@@ -83,6 +87,8 @@ router.post(
 
     await Player.register({ username, email, name, geo }, password)
     await RegistrationLogs.create({ username })
+
+    console.log(`${Date.now()}: Registered: ${username}`)
 
     req.session.error = false
     req.session.message = constants.SUCCESSFUL_REGISTRATION

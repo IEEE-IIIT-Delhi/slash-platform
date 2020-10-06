@@ -25,7 +25,7 @@
       {/if}
       <div class='input-grp'>
         <label for='username'>Username</label>
-        <input type='text' name='username' placeholder='Username' required>
+        <input type='text' name='username' placeholder='Username (alphanumeric/underscore)' required>
       </div>
       <div class='input-grp'>
         <label for='name'>Full name</label>

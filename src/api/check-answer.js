@@ -18,6 +18,8 @@ export default async (req, res) => {
   // Create attempt log
   await AnswerLogs.create({ username, level, answer, invalid })
 
+  console.log(`${Date.now()}: Attempt: ${username} @ L${level} :: ${answer}`)
+
   if (invalid) {
     return res.json({
       success: false,
@@ -48,6 +50,8 @@ export default async (req, res) => {
   player.level += 1
   player.lastLevelOn = new Date()
   await player.save()
+
+  console.log(`${Date.now()}: Correct: ${username} @ L${level} :: ${answer}`)
 
   return res.json({
     success: true,
