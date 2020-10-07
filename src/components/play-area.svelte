@@ -48,9 +48,6 @@
       buttonText = 'Check'
     }
   }
-
-  config.started = true
-  win = false
 </script>
 
 <section id='play-area'>
