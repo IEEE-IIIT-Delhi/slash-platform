@@ -39,7 +39,9 @@
 
     {#if showMenu}
       <ul class='hidden-list' transition:slide={{ duration: 200 }}>
-        {#if $session.user} <li><a href="/">Play</a></li> {/if}
+        {#if $session.user}
+          <li><a href="/">{$session.user.admin ? 'Admin' : 'Play'}</a></li>
+        {/if}
 
         <li><a href="/leaderboard">Leaderboard</a></li>
         <li><a href="https://discord.gg/ZfU5xE3" target="_blank" rel="noopener">Discord</a></li>
