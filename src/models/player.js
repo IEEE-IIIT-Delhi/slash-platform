@@ -2,9 +2,19 @@ import mongoose from 'mongoose'
 import passportLocalMongoose from 'passport-local-mongoose'
 
 const PlayerSchema = new mongoose.Schema({
-  username: String,
-  email: String,
+  username: {
+    type: String,
+    unique: true
+  },
+  email: {
+    type: String,
+    unique: true
+  },
   name: String,
+  disqualified: {
+    type: Boolean,
+    default: false
+  },
   level: {
     type: Number,
     default: 0
