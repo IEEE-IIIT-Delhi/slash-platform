@@ -3,6 +3,8 @@
   import Chevron from './chevron.svelte'
 
   let showMenu = false
+
+  const toggleMenu = () => showMenu = !showMenu
 </script>
 
 <header>
@@ -24,14 +26,14 @@
       class="menu-btn"
       role="button"
       aria-label="Toggle menu"
-      on:click={() => showMenu = !showMenu}
+      on:click={toggleMenu}
     >
       <Chevron strokeColor={'#ff3458d1'} open={showMenu}/>
     </button>
 
     {#if showMenu}
       <ul class='hidden-list' transition:slide={{ duration: 200 }}>
-        <li><a href="/leaderboard">Leaderboard</a></li>
+        <li><a on:click={toggleMenu} href="/leaderboard">Leaderboard</a></li>
         <li><a href="https://discord.gg/ZfU5xE3" target="_blank" rel="noopener">Discord</a></li>
         <li><a href="https://slash.win" target="_blank" rel="noopener">Home</a></li>
         <li><a href="/auth/logout">Logout</a></li>
