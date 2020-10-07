@@ -12,7 +12,7 @@ export default async (req, res) => {
     })
   }
 
-  const playerCount = await Player.countDocuments()
+  const playerCount = await Player.countDocuments({ admin: false })
   const adminCount = await Player.countDocuments({ admin: true })
   const answerAttempts = await AnswerLogs.countDocuments()
   const lastTenRegistrants = await RegistrationLogs
@@ -27,6 +27,9 @@ export default async (req, res) => {
     playersPerLevel.push(await Player.countDocuments({ level }))
   }
 
+  const countries = await Player.find().distinct('geo.country')
+  const cities = await Player.find().distinct('geo.city')
+
   return res.json({
     success: true,
     message: constants.GENERIC_SUCC,
@@ -35,7 +38,8 @@ export default async (req, res) => {
       adminCount,
       answerAttempts,
       lastTenRegistrants,
-      playersPerLevel
+      playersPerLevel,
+      geo: { countries, cities }
     }
   })
 }

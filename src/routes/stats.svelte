@@ -23,28 +23,10 @@
     <h1>Stats</h1>
     <div class="gallery">
       <div class="card">
-        <span class="number">{data.playerCount}</span>
-        <p class='label'>Number of players</p>
-      </div>
-      <div class="card">
         <span class="number">{data.answerAttempts}</span>
         <p class='label'>Answer attempts</p>
       </div>
-      <div class="card">
-        <span class="number">{data.adminCount}</span>
-        <p class='label'>Number of admins</p>
-      </div>
-      <div class="card">
-        <p class='label'>Last 10 registrants</p>
-        <table>
-          {#each data.lastTenRegistrants as entry}
-            <tr>
-              <td>{entry.username}</td>
-              <td>{format(entry.time)}</td>
-            </tr>
-          {/each}
-        </table>
-      </div>
+
       <div class="card">
         <p class='label'>Players per level</p>
         <table>
@@ -58,6 +40,51 @@
             <tr>
               <td>{level}</td>
               <td>{count}</td>
+            </tr>
+          {/each}
+        </table>
+      </div>
+
+      <div class="card">
+        <span class="number">{data.playerCount}</span>
+        <p class='label'>Number of players</p>
+      </div>
+
+      <div class="card">
+        <span class="number">{data.adminCount}</span>
+        <p class='label'>Number of admins</p>
+      </div>
+
+      <div class="card">
+        <span class="number">{data.geo.countries.length}</span>
+        <p class='label'>Coutries</p>
+        <div class="tags">
+          {#each data.geo.countries as tag}
+            <span class='tag'>{tag}</span>
+          {/each}
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="number">{data.geo.cities.length}</span>
+        <p class='label'>Cities</p>
+        <div class="tags">
+          {#each data.geo.cities as tag}
+            <span class='tag'>{tag}</span>
+          {/each}
+          {#each data.geo.cities.reverse() as tag}
+            <span class='tag'>{tag}</span>
+          {/each}
+        </div>
+      </div>
+
+      <div class="card">
+        <p class='label'>Last 10 registrants</p>
+        <table>
+          {#each data.lastTenRegistrants as entry}
+            <tr>
+              <td>{entry.username}</td>
+              <td>{format(entry.time)}</td>
             </tr>
           {/each}
         </table>
@@ -125,6 +152,22 @@
 
         td {
           padding: 5px 0;
+        }
+      }
+
+      .tags {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        flex: 1;
+        align-items: flex-start;
+
+        .tag {
+          margin: 5px;
+          background: #461f26;
+          padding: 5px;
+          border-radius: 5px;
+          font-size: 12px;
         }
       }
     }
