@@ -12,11 +12,8 @@
 </script>
 
 <script>
-  import Nav from '../components/nav-generic.svelte'
   export let leaderboard
 </script>
-
-<Nav />
 
 <section>
   <h1>Leaderboard</h1>

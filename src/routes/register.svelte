@@ -8,15 +8,12 @@
 </script>
 
 <script>
-  import Nav from '../components/nav-generic.svelte'
   import { stores } from '@sapper/app'
   const { session } = stores()
 
   let username = ''
   $: username = username.replace(/[\W]+/g, '').slice(0, 15)
 </script>
-
-<Nav />
 
 <main>
   <section>

@@ -47,12 +47,12 @@
 
       <div class="card">
         <span class="number">{data.playerCount}</span>
-        <p class='label'>Number of players</p>
+        <p class='label'>Players</p>
       </div>
 
       <div class="card">
         <span class="number">{data.adminCount}</span>
-        <p class='label'>Number of admins</p>
+        <p class='label'>Admins</p>
       </div>
 
       <div class="card">

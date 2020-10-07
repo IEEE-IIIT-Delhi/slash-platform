@@ -14,7 +14,7 @@ export default async (req, res) => {
   const player = await Player.findOne({ username })
 
   if (!player) {
-    res.json({
+    return res.json({
       success: false,
       message: constants.ERR_NO_PLAYER
     })
