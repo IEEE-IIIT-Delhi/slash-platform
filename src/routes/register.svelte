@@ -28,8 +28,8 @@
         <input bind:value={username} type='text' name='username' placeholder='Username' required>
       </div>
       <div class='input-grp'>
-        <label for='name'>Full name</label>
-        <input type='text' name='name' placeholder='Full name' required>
+        <label for='name'>Name</label>
+        <input type='text' name='name' placeholder='Name' required>
       </div>
       <div class='input-grp'>
         <label for='email'>Email</label>
