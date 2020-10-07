@@ -6,7 +6,7 @@
 
 <footer>
   <h2 class='level'>Level <span>{level}</span></h2>
-  <h3>Player: <span>{username}</span></h3>
+  <h3><span>{username}</span></h3>
   <h3>Rank: <span>{rank}</span></h3>
 </footer>
 
@@ -23,7 +23,7 @@
     padding: 10px 20px;
 
     h2.level {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 100;
 
       span {
@@ -37,8 +37,8 @@
       font-weight: 100;
 
       span {
-        font-size: 18px;
-        font-weight: 600;
+        font-size: 16px;
+        font-weight: 400;
         word-break: break-all;
       }
     }

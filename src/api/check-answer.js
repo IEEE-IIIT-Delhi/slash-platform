@@ -47,7 +47,7 @@ export default async (req, res) => {
     })
   }
 
-  player.level += 1
+  player.level = level + 1
   player.lastLevelOn = new Date()
   await player.save()
 
