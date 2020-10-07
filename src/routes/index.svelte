@@ -1,7 +1,7 @@
 <script context="module">
   export async function preload (page, session) {
     if (!session.user) {
-      this.redirect(302, '/login')
+      this.redirect(302, '/register')
       return
     }
 
