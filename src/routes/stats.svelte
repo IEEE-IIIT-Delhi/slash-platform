@@ -72,9 +72,6 @@
           {#each data.geo.cities as tag}
             <span class='tag'>{tag}</span>
           {/each}
-          {#each data.geo.cities.reverse() as tag}
-            <span class='tag'>{tag}</span>
-          {/each}
         </div>
       </div>
 
