@@ -32,7 +32,7 @@
   }
 </script>
 
-<form bind:this={formElement} on:submit={handleForm} method="POST">
+<form class='admin' bind:this={formElement} on:submit={handleForm} method="POST">
   <h2>{heading}</h2>
 
   {#if response}

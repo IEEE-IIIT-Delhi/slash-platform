@@ -54,21 +54,25 @@
 
       <div class="card">
         <span class="number">{data.geo.countries.length}</span>
-        <p class='label'>Coutries</p>
-        <div class="tags">
-          {#each data.geo.countries as tag}
-            <span class='tag'>{tag}</span>
-          {/each}
+        <p class='label'>Countries</p>
+        <div class="tags-container">
+          <div class="tags">
+            {#each data.geo.countries as tag}
+              <span class='tag'>{tag}</span>
+            {/each}
+          </div>
         </div>
       </div>
 
       <div class="card">
         <span class="number">{data.geo.cities.length}</span>
         <p class='label'>Cities</p>
-        <div class="tags">
-          {#each data.geo.cities as tag}
-            <span class='tag'>{tag}</span>
-          {/each}
+        <div class="tags-container">
+          <div class="tags">
+            {#each data.geo.cities as tag}
+              <span class='tag'>{tag}</span>
+            {/each}
+          </div>
         </div>
       </div>
 
@@ -149,11 +153,14 @@
         }
       }
 
+      .tags-container {
+        flex: 1;
+      }
+
       .tags {
         margin-top: 10px;
         display: flex;
         flex-wrap: wrap;
-        flex: 1;
         align-items: flex-start;
 
         .tag {

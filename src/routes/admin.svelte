@@ -4,11 +4,17 @@
       this.redirect(302, '/')
       return
     }
+
+    const { data: { config }} = await this.fetch('/api/get-config')
+      .then(res => res.json())
+
+    return { config }
   }
 </script>
 
 <script>
   import AdminForm from '../components/AdminForm.svelte'
+  export let config
 </script>
 
 <main>
@@ -16,6 +22,17 @@
     <h1>Admin Panel</h1>
 
     <a href="/stats">View statistics</a>
+
+    <form class='danger' action="/api/edit-config" method="POST">
+      {#if !config.started}
+        <input name='action' type="hidden" value='begin'>
+        <button class='begin'>Begin Hunt</button>
+      {/if}
+      {#if config.started && !config.ended}
+        <input name='action' type="hidden" value='end'>
+        <button class='end'>End Hunt</button>
+      {/if}
+    </form>
 
     <div class="forms">
       <AdminForm
@@ -167,11 +184,37 @@
       color: #fff;
       background: #1f2122;
       padding: 10px 20px;
-      border-radius: 10px;
+      border-radius: 5px;
       text-decoration: none;
       display: inline-block;
       margin: 1vh 0;
       box-shadow: 0 5px 10px rgba(0,0,0,.12);
+    }
+
+    .danger {
+      margin: 2vh 0;
+
+      button {
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 10px;
+        box-shadow: 0 5px 10px rgba(0,0,0,.12);
+        font-family: Inter;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+
+        &.begin {
+          background: #304f30;
+        }
+
+        &.end {
+          background: #6d3434;
+        }
+      }
     }
 
     .forms {
