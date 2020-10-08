@@ -21,10 +21,10 @@
 </script>
 
 <script>
-  import Nav from '../components/nav-play.svelte'
-  import PlaySide from '../components/play-side.svelte'
-  import PlayFooter from '../components/play-footer.svelte'
-  import PlayArea from '../components/play-area.svelte'
+  import Nav from '../components/play/Navigation.svelte'
+  import SidePanel from '../components/play/SidePanel.svelte'
+  import Footer from '../components/play/Footer.svelte'
+  import GameArea from '../components/play/GameArea.svelte'
 
   export let username
   export let level
@@ -50,16 +50,16 @@
 
 <main>
   {#if innerWidth > 800}
-    <PlaySide {username} {level} {rank}/>
+    <SidePanel {username} {level} {rank}/>
   {/if}
 
   <section id='content'>
     <Nav />
 
-    <PlayArea {win} {question} {rank} {config} />
+    <GameArea {win} {question} {rank} {config} />
 
     {#if innerWidth <= 800}
-      <PlayFooter {username} {level} {rank}/>
+      <Footer {username} {level} {rank}/>
     {/if}
   </section>
 </main>

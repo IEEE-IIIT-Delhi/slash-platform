@@ -6,7 +6,7 @@ export default async (req, res) => {
     .find({ admin: false })
     .sort('-level')
     .sort('lastLevelOn')
-    .exec()
+    .lean()
 
   const leaderboard = rawLeaderboard.map(player => ({
     username: player.username,

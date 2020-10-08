@@ -1,32 +1,33 @@
 import * as constants from '../constants'
 import Player from '../models/player'
+import RegistrationLogs from '../models/registration-logs'
 
 export default async (req, res) => {
-  const { user: player } = req
-  if (!player) {
+  if (!req.user || !req.user.admin) {
     return res.json({
       success: false,
       message: constants.ERR_NOAUTH
     })
   }
 
-  const leaderboard = await Player
-    .find({ admin: false })
-    .sort('-level')
-    .sort('lastLevelOn')
-    .lean()
-  const rank = leaderboard.findIndex(p => p.username === player.username) + 1
+  const { username } = req.body
+  const player = await Player.findOne({ username }).lean()
 
-  if (rank === 0) {
+  if (!player) {
     return res.json({
       success: false,
       message: constants.ERR_NO_PLAYER
     })
   }
 
+  delete player._id
+  delete player.__v
+
+  const { time } = await RegistrationLogs.findOne({ username })
+  player.registrationDate = new Date(time)
   return res.json({
     success: true,
     message: constants.GENERIC_SUCC,
-    data: { rank }
+    data: { player }
   })
 }

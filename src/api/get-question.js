@@ -9,8 +9,15 @@ export default async (req, res) => {
     })
   }
 
-  const { level } = req.user
-  const question = await Question.findOne({ level })
+  const level = req.user.admin ? req.body.level : req.user.level
+  const question = await Question.findOne({ level }).lean()
+
+  if (!question && req.user.admin) {
+    return res.json({
+      success: false,
+      message: constants.ERR_NO_QUESTION
+    })
+  }
 
   if (!question) {
     return res.json({
@@ -25,7 +32,7 @@ export default async (req, res) => {
     message: constants.GENERIC_SUCC,
     data: {
       win: false,
-      question: question.question
+      question: req.user.admin ? question : question.question
     }
   })
 }

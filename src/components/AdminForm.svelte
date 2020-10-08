@@ -4,15 +4,21 @@
   export let action
   export let buttonValue
   export let heading
+  export let displayResponse = false
+  export let displayResponseFormatter
 
-  let formElement;
-  let response;
+  let buttonText = buttonValue
+
+  let formElement
+  let response
 
   async function handleForm(event) {
     event.preventDefault()
 
     const formData = new FormData(formElement)
     const formDataJson = JSON.stringify(Object.fromEntries(formData))
+
+    buttonText = 'Loading...'
 
     response = await fetch(action, {
       method: 'POST',
@@ -21,6 +27,8 @@
         'Content-Type': 'application/json'
       }
     }).then(res => res.json())
+
+    buttonText = buttonValue
   }
 </script>
 
@@ -39,8 +47,19 @@
 
   <slot />
 
+  {#if response?.success && displayResponse}
+    <table transition:fade={{ duration: 200 }}>
+      {#each displayResponseFormatter(response.data) as [key, value]}
+        <tr>
+          <td class='label'>{key}</td>
+          <td>{value}</td>
+        </tr>
+      {/each}
+    </table>
+  {/if}
+
   <div class="input-grp">
-    <input type='submit' value={buttonValue}>
+    <input type='submit' value={buttonText}>
   </div>
 </form>
 
@@ -58,6 +77,17 @@
 
     &.error {
       color: #cf6f6f;
+    }
+  }
+
+  table {
+    td {
+      padding: 5px 0;
+
+      &.label {
+        padding-right: 20px;
+        font-weight: bold;
+      }
     }
   }
 </style>

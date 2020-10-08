@@ -12,11 +12,8 @@
 
 <script>
   import { format } from 'timeago.js'
-  import Nav from '../components/nav-generic.svelte'
   export let data
 </script>
-
-<Nav />
 
 <main>
   <section>

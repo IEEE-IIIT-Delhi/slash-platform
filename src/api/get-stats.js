@@ -19,7 +19,7 @@ export default async (req, res) => {
     .find({})
     .sort('-time')
     .limit(10)
-    .exec()
+    .lean()
 
   const playersPerLevel = []
   const numberOfLevels = await Question.countDocuments()

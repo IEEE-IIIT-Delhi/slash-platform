@@ -8,7 +8,7 @@
 </script>
 
 <script>
-  import AdminForm from '../components/admin-form.svelte'
+  import AdminForm from '../components/AdminForm.svelte'
 </script>
 
 <main>
@@ -55,6 +55,46 @@
       <div class='input-grp'>
         <label for='username'>Player username</label>
         <input type='text' name='username' placeholder='Username' required>
+      </div>
+    </AdminForm>
+
+    <AdminForm
+      heading="Get player details"
+      action="/api/get-player-details"
+      buttonValue="Get"
+      displayResponse={true}
+      displayResponseFormatter={({ player }) => [
+        ["Username", player.username],
+        ["Name", player.name],
+        ["Email", player.email],
+        ["Level", player.level],
+        ["Admin", player.admin ? "Yes" : "No"],
+        ["Disqualified", player.disqualified ? "Yes" : "No"],
+        ["Location", `${player.geo.city}, ${player.geo.country}`],
+        ["Last level on", new Date(player.lastLevelOn).toLocaleString()],
+        ["Registered on", new Date(player.registrationDate).toLocaleString()]
+      ]}
+    >
+      <div class='input-grp'>
+        <label for='username'>Player username</label>
+        <input type='text' name='username' placeholder='Username' required>
+      </div>
+    </AdminForm>
+
+    <AdminForm
+      heading="Get question"
+      action="/api/get-question"
+      buttonValue="Get"
+      displayResponse={true}
+      displayResponseFormatter={({ question }) => [
+        ["Level", question.level],
+        ["Question", question.question],
+        ["Answer", question.answer]
+      ]}
+    >
+      <div class='input-grp'>
+        <label for='level'>Level</label>
+        <input type='number' name='level' placeholder='Level' required>
       </div>
     </AdminForm>
 

@@ -1,6 +1,6 @@
 <script>
-  import Countdown from '../components/countdown.svelte'
   import { fade } from 'svelte/transition'
+  import Countdown from '../../components/Countdown.svelte'
 
   export let win
   export let question
