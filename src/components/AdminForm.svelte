@@ -47,7 +47,7 @@
 
   <slot />
 
-  {#if response?.success && displayResponse}
+  {#if response && response.success && displayResponse}
     <table transition:fade={{ duration: 200 }}>
       {#each displayResponseFormatter(response.data) as [key, value]}
         <tr>
