@@ -32,6 +32,11 @@ router.post('/login', (req, res) => {
       return res.redirect('/login')
     }
 
+    // if (player.disqualified) {
+    //   req.session.message = constants.ERR_PLAYER_DQ
+    //   return res.redirect('/login')
+    // }
+
     req.logIn(player, _err => {
       if (_err) {
         req.session.message = constants.ERR_MISC

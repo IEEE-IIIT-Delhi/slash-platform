@@ -2,8 +2,9 @@ form {
   padding: 5px 20px;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, .12);
-  width: 100%;
-  margin: 4vh auto;
+  min-width: 300px;
+  margin: 20px;
+  flex: 1;
   background: #1f2122;
 
   h2 {

@@ -5,6 +5,11 @@
       return
     }
 
+    if (session.user.disqualified) {
+      this.redirect(302, '/auth/logout')
+      return
+    }
+
     if (session.user.admin) {
       this.redirect(302, '/admin')
       return
