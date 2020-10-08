@@ -23,17 +23,6 @@
 
     <a href="/stats">View statistics</a>
 
-    <form class='danger' action="/api/edit-config" method="POST">
-      {#if !config.started}
-        <input name='action' type="hidden" value='begin'>
-        <button class='begin'>Begin Hunt</button>
-      {/if}
-      {#if config.started && !config.ended}
-        <input name='action' type="hidden" value='end'>
-        <button class='end'>End Hunt</button>
-      {/if}
-    </form>
-
     <div class="forms">
       <AdminForm
         heading="Add question"
@@ -150,6 +139,17 @@
         </div>
       </AdminForm>
     </div>
+
+    <form class='danger' action="/api/edit-config" method="POST">
+      {#if !config.started}
+        <input name='action' type="hidden" value='begin'>
+        <button class='begin'>Begin Hunt</button>
+      {/if}
+      {#if config.started && !config.ended}
+        <input name='action' type="hidden" value='end'>
+        <button class='end'>End Hunt</button>
+      {/if}
+    </form>
   </section>
 </main>
 
