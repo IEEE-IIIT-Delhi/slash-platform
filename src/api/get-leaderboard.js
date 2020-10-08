@@ -3,7 +3,7 @@ import Player from '../models/player'
 
 export default async (req, res) => {
   const rawLeaderboard = await Player
-    .find({ admin: false })
+    .find({ admin: false, disqualified: false })
     .sort('-level')
     .sort('lastLevelOn')
     .lean()

@@ -11,7 +11,7 @@ export default async (req, res) => {
   }
 
   const leaderboard = await Player
-    .find({ admin: false })
+    .find({ admin: false, disqualified: false })
     .sort('-level')
     .sort('lastLevelOn')
     .lean()
