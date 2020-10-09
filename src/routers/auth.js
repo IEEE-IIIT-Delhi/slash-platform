@@ -79,21 +79,28 @@ router.post('/register', async (req, res) => {
   }
 
   // Collect user location info
-  const ip =
-    req.headers['x-real-ip'] ||
-    req.headers['x-forwarded-for'] ||
-    req.connection.remoteAddress
+  const ip = req.headers['x-real-ip']
   const geo = await fetch(`http://ip-api.com/json/${ip}?fields=17`)
     .then(res => res.json())
 
-  await Player.register({ username, email, name, geo }, password)
+  const player = await Player.register({ username, email, name, geo }, password)
   await RegistrationLogs.create({ username })
 
   console.log(`${Date.now()}: Registered: ${username}`)
 
-  req.session.error = false
-  req.session.message = constants.SUCCESSFUL_REGISTRATION
-  res.redirect('/login')
+  // log the player in
+  req.logIn(player, err => {
+    if (err) {
+      req.session.message = constants.ERR_MISC
+      return res.redirect('/login')
+    }
+
+    console.log(`${Date.now()}: Logged in: ${player.username}`)
+
+    req.session.error = false
+    req.session.message = undefined
+    return res.redirect('/')
+  })
 })
 
 export default router
