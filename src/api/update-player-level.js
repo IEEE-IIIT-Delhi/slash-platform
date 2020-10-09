@@ -11,8 +11,9 @@ export default async (req, res) => {
     })
   }
 
-  const { username, level, newLevel } = req.body
+  const { username, newLevel } = req.body
   const player = await Player.findOne({ username })
+  const { level } = player
 
   if (!player) {
     return res.json({

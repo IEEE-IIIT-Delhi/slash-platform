@@ -124,7 +124,7 @@
         </div>
         <div class='input-grp'>
           <label for='level'>Level</label>
-          <input type='number' name='level' placeholder='Level' required>
+          <input type='number' name='newLevel' placeholder='Level' required>
         </div>
       </AdminForm>
 
