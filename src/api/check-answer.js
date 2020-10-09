@@ -2,6 +2,7 @@ import * as constants from '../constants'
 import AnswerLogs from '../models/answer-logs'
 import Question from '../models/question'
 import Player from '../models/player'
+import Config from '../models/config'
 
 export default async (req, res) => {
   if (!req.user) {
@@ -11,7 +12,17 @@ export default async (req, res) => {
     })
   }
 
-  const { username, level, _id } = req.user
+  // check whether game has ended
+  const config = await Config.findOne()
+  if (config.ended) {
+    return res.json({
+      success: false,
+      ended: true,
+      message: constants.HUNT_END
+    })
+  }
+
+  const { username, level } = req.user
   const { answer } = req.body
   const invalid = !constants.ANSWER_REGEX.test(answer)
 
@@ -38,12 +49,20 @@ export default async (req, res) => {
   }
 
   // It's correct
-  const player = await Player.findOne({ _id })
+  const player = await Player.findOne({ username })
 
   if (!player) {
     return res.json({
       success: false,
       message: constants.ERR_NO_PLAYER
+    })
+  }
+
+  if (player.disqualified) {
+    return res.json({
+      success: false,
+      disqualified: true,
+      message: constants.ERR_PLAYER_DQ
     })
   }
 

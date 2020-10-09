@@ -28,8 +28,13 @@
         'Content-Type': 'application/json'
       }
     })
-    const { success } = await res.json()
+
+    const { success, ended, disqualified } = await res.json()
     loading = false
+
+    if (ended || disqualified) {
+      return window.location.reload()
+    }
 
     if (success) {
       rightAnswer = true
