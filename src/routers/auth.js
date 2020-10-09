@@ -4,6 +4,7 @@ import passport from 'passport'
 import fetch from 'node-fetch'
 import { validate } from 'email-validator'
 
+import { clearKey } from '../cache'
 import Player from '../models/player'
 import RegistrationLogs from '../models/registration-logs'
 
@@ -87,6 +88,9 @@ router.post('/register', async (req, res) => {
   await RegistrationLogs.create({ username })
 
   console.log(`${Date.now()}: Registered: ${username}`)
+
+  clearKey('leaderboard_main')
+  clearKey('leaderboard_rank')
 
   // log the player in
   req.logIn(player, err => {

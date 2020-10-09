@@ -1,4 +1,5 @@
 import * as constants from '../constants'
+import { clearKey } from '../cache'
 import Player from '../models/player'
 import AdminLogs from '../models/admin-logs'
 
@@ -22,6 +23,9 @@ export default async (req, res) => {
 
   player.disqualified = true
   await player.save()
+
+  clearKey('leaderboard_main')
+  clearKey('leaderboard_rank')
 
   await AdminLogs.create({
     admin: req.user.username,

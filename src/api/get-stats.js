@@ -16,10 +16,9 @@ export default async (req, res) => {
   const adminCount = await Player.countDocuments({ admin: true })
   const answerAttempts = await AnswerLogs.countDocuments()
   const lastTenRegistrants = await RegistrationLogs
-    .find({})
+    .find()
     .sort('-time')
     .limit(10)
-    .lean()
 
   const playersPerLevel = []
   const numberOfLevels = await Question.countDocuments()

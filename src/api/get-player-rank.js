@@ -11,11 +11,21 @@ export default async (req, res) => {
 
   const { username } = req.user
 
-  const leaderboard = await Player
-    .find({ admin: false, disqualified: false })
-    .sort('-level')
-    .sort('lastLevelOn')
-    .lean()
+  const leaderboard = await Player.find(
+    {
+      admin: false,
+      disqualified: false
+    }, {
+      _id: 0,
+      username: 1
+    }, {
+      sort: {
+        level: -1,
+        lastLevelOn: 1
+      }
+    }
+  ).cache({ key: 'leaderboard_rank' })
+
   const rank = leaderboard.findIndex(p => p.username === username) + 1
 
   if (rank === 0) {

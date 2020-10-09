@@ -161,7 +161,7 @@
   }
 
   section {
-    width: 85%;
+    width: 90%;
     max-width: 800px;
     margin: 15vh auto 50px;
 

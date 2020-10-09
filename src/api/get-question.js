@@ -10,7 +10,7 @@ export default async (req, res) => {
   }
 
   const level = req.user.admin ? req.body.level : req.user.level
-  const question = await Question.findOne({ level }).lean()
+  const question = await Question.findOne({ level }).cache({ key: `question_${level}` })
 
   if (!question && req.user.admin) {
     return res.json({

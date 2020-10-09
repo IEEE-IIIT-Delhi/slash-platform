@@ -1,4 +1,4 @@
-import { config as envConfig } from 'dotenv'
+import dotenv from 'dotenv'
 import * as sapper from '@sapper/server'
 import bodyParser from 'body-parser'
 import express from 'express'
@@ -7,11 +7,12 @@ import passport from 'passport'
 import mongoose from 'mongoose'
 import connectMongo from 'connect-mongo'
 
+import './cache'
 import Player from './models/player'
 import api from './routers/api'
 import auth from './routers/auth'
 
-envConfig()
+dotenv.config()
 
 // get those vars
 const {

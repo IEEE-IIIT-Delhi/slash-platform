@@ -1,4 +1,5 @@
 import Config from '../models/config'
+import { clearKey } from '../cache'
 
 export default async (req, res) => {
   if (!req.user || !req.user.admin) {
@@ -15,5 +16,7 @@ export default async (req, res) => {
   }
 
   await config.save()
+  clearKey('config')
+
   res.redirect('/')
 }

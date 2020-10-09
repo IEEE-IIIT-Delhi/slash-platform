@@ -11,7 +11,7 @@ export default async (req, res) => {
   }
 
   const { username } = req.body
-  const player = await Player.findOne({ username }).lean()
+  const player = await Player.findOne({ username })
 
   if (!player) {
     return res.json({
@@ -20,11 +20,9 @@ export default async (req, res) => {
     })
   }
 
-  delete player._id
-  delete player.__v
-
   const { time } = await RegistrationLogs.findOne({ username })
   player.registrationDate = new Date(time)
+
   return res.json({
     success: true,
     message: constants.GENERIC_SUCC,

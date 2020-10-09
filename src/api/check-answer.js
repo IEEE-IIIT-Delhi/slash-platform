@@ -1,4 +1,6 @@
 import * as constants from '../constants'
+import { clearKey } from '../cache'
+
 import AnswerLogs from '../models/answer-logs'
 import Question from '../models/question'
 import Player from '../models/player'
@@ -69,6 +71,9 @@ export default async (req, res) => {
   player.level = level + 1
   player.lastLevelOn = new Date()
   await player.save()
+
+  clearKey('leaderboard_main')
+  clearKey('leaderboard_rank')
 
   console.log(`${Date.now()}: Correct: ${username} @ L${level} :: ${answer}`)
 

@@ -1,4 +1,5 @@
 import * as constants from '../constants'
+import { clearKey } from '../cache'
 import Question from '../models/question'
 import AdminLogs from '../models/admin-logs'
 
@@ -25,6 +26,7 @@ export default async (req, res) => {
   question.question = questionText
   question.answer = answer
   await question.save()
+  clearKey(`question_${level}`)
 
   await AdminLogs.create({
     admin: req.user.username,

@@ -2,16 +2,21 @@ import * as constants from '../constants'
 import Player from '../models/player'
 
 export default async (req, res) => {
-  const rawLeaderboard = await Player
-    .find({ admin: false, disqualified: false })
-    .sort('-level')
-    .sort('lastLevelOn')
-    .lean()
-
-  const leaderboard = rawLeaderboard.map(player => ({
-    username: player.username,
-    level: player.level
-  }))
+  const leaderboard = await Player.find(
+    {
+      admin: false,
+      disqualified: false
+    }, {
+      _id: 0,
+      username: 1,
+      level: 1
+    }, {
+      sort: {
+        level: -1,
+        lastLevelOn: 1
+      }
+    }
+  ).cache({ key: 'leaderboard_main' })
 
   return res.json({
     success: true,
