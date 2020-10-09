@@ -11,7 +11,7 @@ export default async (req, res) => {
   }
 
   const { username } = req.body
-  const player = await Player.findOne({ username })
+  const player = await Player.findOne({ username }).lean()
 
   if (!player) {
     return res.json({
@@ -21,7 +21,7 @@ export default async (req, res) => {
   }
 
   const { time } = await RegistrationLogs.findOne({ username })
-  player.registrationDate = new Date(time)
+  player.registrationDate = time
 
   return res.json({
     success: true,
