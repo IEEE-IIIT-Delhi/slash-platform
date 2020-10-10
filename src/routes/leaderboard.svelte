@@ -1,7 +1,7 @@
 <script context='module'>
   export async function preload (page, session) {
     const { data: { config }} = await this.fetch('/api/get-config').then(res => res.json())
-    if (!config.started) {
+    if (!config.started && !(session.user && session.user.admin)) {
       return { leaderboard: null }
     }
 
