@@ -1,5 +1,6 @@
 export const ANSWER_REGEX = /^[a-zA-Z0-9_]*$/
 export const USERNAME_LENGTH_REGEX = /^.{2,15}$/
+export const COOKIE_MAX_AGE = 2592000000
 
 // Response success
 export const CORRECT_ANS = 'Correct answer'

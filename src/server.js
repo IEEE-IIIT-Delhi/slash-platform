@@ -8,6 +8,7 @@ import mongoose from 'mongoose'
 import connectMongo from 'connect-mongo'
 
 import './cache'
+import * as constants from './constants'
 import Player from './models/player'
 import api from './routers/api'
 import auth from './routers/auth'
@@ -38,6 +39,9 @@ app.use(session({
   secret: SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
+  cookie: {
+    maxAge: constants.COOKIE_MAX_AGE
+  },
   store: new MongoStore({
     mongooseConnection: mongoose.connection
   })
