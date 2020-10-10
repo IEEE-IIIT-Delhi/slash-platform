@@ -8,7 +8,6 @@ export default async (req, res) => {
       message: constants.ERR_NOAUTH
     })
   }
-
   const { username } = req.user
 
   const leaderboard = await Player.find(
@@ -17,14 +16,15 @@ export default async (req, res) => {
       disqualified: false
     }, {
       _id: 0,
-      username: 1
+      username: 1,
+      level: 1
     }, {
       sort: {
         level: -1,
         lastLevelOn: 1
       }
     }
-  ).cache({ key: 'leaderboard_rank' })
+  ).cache({ key: 'leaderboard' })
 
   const rank = leaderboard.findIndex(p => p.username === username) + 1
 

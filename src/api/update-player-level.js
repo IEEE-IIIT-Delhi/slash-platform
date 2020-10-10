@@ -26,8 +26,7 @@ export default async (req, res) => {
   player.lastLevelOn = new Date()
   await player.save()
 
-  clearKey('leaderboard_main')
-  clearKey('leaderboard_rank')
+  clearKey('leaderboard')
 
   await AdminLogs.create({
     admin: req.user.username,

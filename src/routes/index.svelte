@@ -18,10 +18,14 @@
     const { username, level } = session.user
     const { data: { config }} = await this.fetch('/api/get-config').then(res => res.json())
 
+    if (!config.started) {
+      return { config, username }
+    }
+
     const { data: { win, question }} = await this.fetch('/api/get-question').then(res => res.json())
     const { data: { rank }} = await this.fetch('/api/get-player-rank').then(res => res.json())
 
-    return { username, level, config, win, question, rank }
+    return { config, username, level, win, question, rank }
   }
 </script>
 
@@ -31,12 +35,12 @@
   import Footer from '../components/play/Footer.svelte'
   import GameArea from '../components/play/GameArea.svelte'
 
-  export let username
-  export let level
-  export let win
-  export let question
-  export let rank
   export let config
+  export let username
+  export let level = 0
+  export let win = false
+  export let rank = 0
+  export let question
 
   let innerWidth
 

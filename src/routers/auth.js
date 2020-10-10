@@ -89,8 +89,7 @@ router.post('/register', async (req, res) => {
 
   console.log(`${Date.now()}: Registered: ${username}`)
 
-  clearKey('leaderboard_main')
-  clearKey('leaderboard_rank')
+  clearKey('leaderboard')
 
   // log the player in
   req.logIn(player, err => {

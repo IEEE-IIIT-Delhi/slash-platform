@@ -16,7 +16,7 @@ export default async (req, res) => {
         lastLevelOn: 1
       }
     }
-  ).cache({ key: 'leaderboard_main' })
+  ).cache({ key: 'leaderboard' })
 
   return res.json({
     success: true,
