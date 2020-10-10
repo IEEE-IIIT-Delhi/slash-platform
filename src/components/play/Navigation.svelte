@@ -50,6 +50,7 @@
     position: absolute;
     top: 0;
     background: #1f2122;
+    z-index: 1;
   }
 
   nav {

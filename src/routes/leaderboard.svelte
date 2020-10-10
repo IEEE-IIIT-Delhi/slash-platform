@@ -99,14 +99,14 @@
       th {
         border-radius: 5px;
         padding: 8px 15px;
-        background: #162530;
-        border: 1px solid #bdbdbd1a;
+        background: #111;
+        border: 1px solid #000;
       }
     }
 
     tbody {
       tr:nth-child(2n) {
-        background: #162530;
+        background: #111;
       }
 
       td {
