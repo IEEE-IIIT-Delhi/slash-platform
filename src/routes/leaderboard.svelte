@@ -2,23 +2,31 @@
   export async function preload (page, session) {
     const { data: { config }} = await this.fetch('/api/get-config').then(res => res.json())
     if (!config.started && !(session.user && session.user.admin)) {
-      return { leaderboard: null }
+      return { leaderboard: null, config }
     }
 
     const res = await this.fetch('/api/get-leaderboard')
     const { data: { leaderboard } } = await res.json()
-    return { leaderboard }
+    return {
+      leaderboard: config.ended ? leaderboard : leaderboard.slice(0, 100),
+      config
+    }
   }
 </script>
 
 <script>
   export let leaderboard
+  export let config
 </script>
 
 <section>
   <h1>Leaderboard</h1>
 
   {#if leaderboard}
+    {#if !config.ended}
+      <p class='general'>The leaderboard is displaying only the top 100 players.</p>
+    {/if}
+
     <table>
       <thead>
         <tr>
@@ -30,9 +38,9 @@
       <tbody>
         {#each leaderboard as entry, i}
         <tr>
-          <td class='center'>{i + 1}</td>
+          <td>{i + 1}</td>
           <td>{entry.username}</td>
-          <td class='center'>{entry.level}</td>
+          <td>{entry.level}</td>
         </tr>
         {/each}
       </tbody>
@@ -113,10 +121,7 @@
         border-radius: 5px;
         font-size: 15px;
         padding: 10px;
-
-        &.center {
-          text-align: center;
-        }
+        text-align: center;
       }
 
       th, td {
