@@ -162,6 +162,18 @@
         display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
+        max-height: 200px;
+        overflow: auto;
+
+        &::-webkit-scrollbar {
+          background: #0000;
+          width: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: #181a1b;
+          border-radius: 10px;
+        }
 
         .tag {
           margin: 5px;
