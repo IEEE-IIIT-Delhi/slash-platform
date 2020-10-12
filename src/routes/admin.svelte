@@ -140,14 +140,27 @@
       </AdminForm>
     </div>
 
-    <form class='danger' action="/api/edit-config" method="POST">
+    <form class='danger' action="/api/update-config" method="POST">
       {#if !config.started}
         <input name='action' type="hidden" value='begin'>
-        <button class='begin'>Begin Hunt</button>
+        <button class='green'>Begin Hunt</button>
       {/if}
+
       {#if config.started && !config.ended}
         <input name='action' type="hidden" value='end'>
-        <button class='end'>End Hunt</button>
+        <button class='red'>End Hunt</button>
+      {/if}
+    </form>
+
+    <form class='danger' action="/api/update-config" method="POST">
+      {#if config.showLeaderboard}
+        <input name='action' type="hidden" value='hide-leaderboard'>
+        <button class='red'>Hide leaderboard</button>
+
+      {:else}
+        <input name='action' type="hidden" value='show-leaderboard'>
+        <button class='green'>Show leaderboard</button>
+
       {/if}
     </form>
   </section>
@@ -193,6 +206,7 @@
 
     .danger {
       margin: 2vh 0;
+      display: inline-block;
 
       button {
         color: #fff;
@@ -204,14 +218,14 @@
         box-shadow: 0 5px 10px rgba(0,0,0,.12);
         font-family: Inter;
         border: none;
-        font-size: 20px;
+        font-size: 16px;
         cursor: pointer;
 
-        &.begin {
+        &.green {
           background: #304f30;
         }
 
-        &.end {
+        &.red {
           background: #6d3434;
         }
       }

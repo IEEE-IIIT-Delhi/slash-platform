@@ -3,7 +3,16 @@ import Player from '../models/player'
 import Config from '../models/config'
 
 export default async (req, res) => {
+  const isAdmin = req.user && req.user.admin
+
   const config = await Config.findOne().cache({ key: 'config' })
+  if (!config.showLeaderboard && !isAdmin) {
+    return res.json({
+      success: true,
+      message: constants.GENERIC_SUCC,
+      data: { leaderboard: [] }
+    })
+  }
 
   let leaderboard = await Player.find(
     {
@@ -21,7 +30,7 @@ export default async (req, res) => {
     }
   ).cache({ key: 'leaderboard' })
 
-  if (!config.ended && (!req.user || !req.user.admin)) {
+  if (!config.ended && !isAdmin) {
     leaderboard = leaderboard.slice(0, constants.MAX_LEADERBOARD_PLAYERS)
   }
 

@@ -9,10 +9,19 @@ export default async (req, res) => {
   const config = await Config.findOne()
   const { action } = req.body
 
-  if (action === 'begin') {
-    config.started = true
-  } else if (action === 'end') {
-    config.ended = true
+  switch (action) {
+    case 'begin':
+      config.started = true
+      break
+    case 'end':
+      config.ended = true
+      break
+    case 'show-leaderboard':
+      config.showLeaderboard = true
+      break
+    case 'hide-leaderboard':
+      config.showLeaderboard = false
+      break
   }
 
   await config.save()

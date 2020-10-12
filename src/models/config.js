@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 
 const ConfigSchema = new mongoose.Schema({
   started: Boolean,
+  showLeaderboard: Boolean,
   ended: Boolean,
   startDate: Date
 })

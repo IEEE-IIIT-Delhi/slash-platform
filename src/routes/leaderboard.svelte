@@ -1,8 +1,8 @@
 <script context='module'>
   export async function preload (page, session) {
     const { data: { config }} = await this.fetch('/api/get-config').then(res => res.json())
-    if (!config.started && !(session.user && session.user.admin)) {
-      return { leaderboard: null, config }
+    if (!config.showLeaderboard && !(session.user && session.user.admin)) {
+      return { leaderboard: [], config }
     }
 
     const res = await this.fetch('/api/get-leaderboard')
@@ -20,13 +20,14 @@
 
   const { session } = stores()
   const { user } = $session
+  const isAdmin = user && user.admin
 </script>
 
 <section>
   <h1>Leaderboard</h1>
 
-  {#if leaderboard}
-    {#if !config.ended && (!user || !user.admin)}
+  {#if config.showLeaderboard || isAdmin}
+    {#if !config.ended && !isAdmin}
       <p class='general'>The leaderboard is displaying only the top {MAX_LEADERBOARD_PLAYERS} players.</p>
     {/if}
 
@@ -50,7 +51,7 @@
     </table>
 
   {:else}
-    <p class='general'>The leaderboard will activate once Slash begins.</p>
+    <p class='general'>The leaderboard will activate {config.started ? 'soon' : 'once Slash begins'}.</p>
     <p class='general'>Till then, join our
       <a href="https://discord.gg/ZfU5xE3">Discord server</a>
       or visit <a href="https://elysium.iiitd.edu.in">Elysium '20</a>.
