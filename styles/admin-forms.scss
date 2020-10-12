@@ -25,6 +25,7 @@ form.admin {
     }
 
     input,
+    button,
     textarea {
       background: none;
       border-radius: 5px;
@@ -47,7 +48,7 @@ form.admin {
       }
     }
 
-    input[type='submit'] {
+    button {
       box-shadow: 0 10px 20px rgba(0, 0, 0, .12);
       border: none;
       width: fit-content;

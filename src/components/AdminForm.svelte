@@ -59,7 +59,7 @@
   {/if}
 
   <div class="input-grp">
-    <input type='submit' value={buttonText}>
+    <button>{buttonText}</button>
   </div>
 </form>
 

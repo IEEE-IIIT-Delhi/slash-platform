@@ -15,6 +15,11 @@
     const nowTime = Date.now()
     let duration = (endTime - nowTime) / 1000
 
+    if (duration < 0) {
+      window.location.reload()
+      return
+    }
+
     days = Math.floor(duration / daySeconds)
     duration -= days * daySeconds
 

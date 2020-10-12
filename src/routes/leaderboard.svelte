@@ -7,24 +7,27 @@
 
     const res = await this.fetch('/api/get-leaderboard')
     const { data: { leaderboard } } = await res.json()
-    return {
-      leaderboard: config.ended ? leaderboard : leaderboard.slice(0, 100),
-      config
-    }
+    return { leaderboard, config }
   }
 </script>
 
 <script>
+  import { MAX_LEADERBOARD_PLAYERS } from '../constants'
+  import { stores } from '@sapper/app'
+
   export let leaderboard
   export let config
+
+  const { session } = stores()
+  const { user } = $session
 </script>
 
 <section>
   <h1>Leaderboard</h1>
 
   {#if leaderboard}
-    {#if !config.ended}
-      <p class='general'>The leaderboard is displaying only the top 100 players.</p>
+    {#if !config.ended && (!user || !user.admin)}
+      <p class='general'>The leaderboard is displaying only the top {MAX_LEADERBOARD_PLAYERS} players.</p>
     {/if}
 
     <table>

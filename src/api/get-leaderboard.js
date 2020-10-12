@@ -1,8 +1,11 @@
 import * as constants from '../constants'
 import Player from '../models/player'
+import Config from '../models/config'
 
 export default async (req, res) => {
-  const leaderboard = await Player.find(
+  const config = await Config.findOne().cache({ key: 'config' })
+
+  let leaderboard = await Player.find(
     {
       admin: false,
       disqualified: false
@@ -17,6 +20,10 @@ export default async (req, res) => {
       }
     }
   ).cache({ key: 'leaderboard' })
+
+  if (!config.ended && (!req.user || !req.user.admin)) {
+    leaderboard = leaderboard.slice(0, constants.MAX_LEADERBOARD_PLAYERS)
+  }
 
   return res.json({
     success: true,

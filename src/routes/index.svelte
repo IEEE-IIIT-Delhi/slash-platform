@@ -59,7 +59,7 @@
 
 <main>
   {#if innerWidth > 800}
-    <SidePanel {username} {level} {rank}/>
+    <SidePanel {username} {level} {rank} />
   {/if}
 
   <section id='content'>
@@ -68,7 +68,7 @@
     <GameArea {win} {question} {rank} {config} />
 
     {#if innerWidth <= 800}
-      <Footer {username} {level} {rank}/>
+      <Footer {username} {level} {rank} />
     {/if}
   </section>
 </main>
