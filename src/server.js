@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 import * as sapper from '@sapper/server'
 import bodyParser from 'body-parser'
 import express from 'express'
+import rateLimit from 'express-rate-limit'
 import session from 'express-session'
 import passport from 'passport'
 import mongoose from 'mongoose'
@@ -63,6 +64,12 @@ app.use(bodyParser.json())
 // the static content from /static
 app.use(express.static('static'))
 
+// Rate limiter for auth requests
+app.use('/auth', rateLimit({
+  windowMs: 60 * 1000,
+  max: 10
+}))
+
 // Routes
 app.use('/auth', auth)
 app.use('/api', api)
@@ -71,17 +78,17 @@ app.use('/api', api)
 app.use(sapper.middleware({
   session: (req, res) => {
     res.setHeader('cache-control', 'no-cache, no-store')
-    let user
     if (req.user) {
       const { username, admin, level, disqualified } = req.user
-      user = { username, admin, level, disqualified }
+      return {
+        user: {
+          username,
+          admin,
+          level,
+          disqualified
+        }
+      }
     }
-    const { error, message } = req.session
-
-    req.session.error = false
-    req.session.message = undefined
-
-    return { error, message, user }
   }
 }))
 

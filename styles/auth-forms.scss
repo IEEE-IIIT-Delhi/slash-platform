@@ -59,14 +59,20 @@ form {
     display: flex;
     flex-direction: column;
 
+    &:focus-within label {
+      color: #aaa;
+    }
+
     label {
       font-size: 14px;
       color: #666;
       padding-bottom: 10px;
       line-height: 1.5;
+      transition: 0.1s all ease-in-out;
     }
 
-    input {
+    input,
+    button {
       background: none;
       border-radius: 5px;
       border: 1px solid #ffffff0f;
@@ -75,14 +81,6 @@ form {
       font-size: 18px;
       color: #bbb;
       transition: all .1s linear;
-
-      &[type='submit'] {
-        width: fit-content;
-        cursor: pointer;
-        background: linear-gradient(90deg, #1c5fa2, #3e55a9);
-        color: #fff;
-        align-self: center;
-      }
 
       &:focus,
       &:active {
@@ -94,6 +92,22 @@ form {
       &:hover {
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
       }
+    }
+  }
+
+  button {
+    width: fit-content;
+    cursor: pointer;
+    background: $color-accent !important;
+    color: #fff !important;
+    align-self: center;
+
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    img {
+      height: 7px;
     }
   }
 }

@@ -6,7 +6,7 @@ export const MAX_LEADERBOARD_PLAYERS = 100
 // Response success
 export const CORRECT_ANS = 'Correct answer'
 export const GENERIC_SUCC = 'Successful request'
-export const SUCCESSFUL_REGISTRATION = 'Account created. You may login now.'
+export const LOGIN_SUCCESS = 'Successful, redirecting...'
 
 // Response failure
 export const ERR_NOAUTH = 'Request unauthenticated'

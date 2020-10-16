@@ -8,17 +8,51 @@
 </script>
 
 <script>
+  import { slide } from 'svelte/transition'
   import { stores } from '@sapper/app'
   const { session } = stores()
+
+  let response
+  let loading
+
+  async function login (event) {
+    event.preventDefault()
+
+    const formData = new FormData(event.target)
+    const formDataJson = JSON.stringify(Object.fromEntries(formData))
+
+    loading = true
+
+    response = await fetch('/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: formDataJson
+    }).then(res => res.json())
+
+    loading = false
+
+    if (response.success) {
+      await new Promise(r => setTimeout(r, 500))
+      window.location.reload()
+    }
+  }
 </script>
 
 <main>
   <section>
     <h1>Login</h1>
     <p>Login or <a href="/register">Register</a> to start playing.</p>
-    <form action='/auth/login' method='POST'>
-      {#if $session.message}
-        <p class='message' class:error={$session.error}>{$session.message}</p>
+    <form on:submit={login} method='POST'>
+      {#if response}
+        <p
+          transition:slide={{ duration: 200 }}
+          class='message'
+          class:error={!response.success}
+        >
+          {response.message}
+        </p>
       {/if}
       <div class='input-grp'>
         <label for='username'>Username</label>
@@ -29,7 +63,13 @@
         <input type='password' name='password' placeholder='Password' required>
       </div>
       <div class="input-grp">
-        <input type='submit' value='Enter'>
+        <button>
+          {#if loading}
+            <img src="/loading.svg" alt="">
+          {:else}
+            Enter
+          {/if}
+        </button>
       </div>
     </form>
   </section>

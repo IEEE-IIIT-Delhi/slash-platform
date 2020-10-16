@@ -41,11 +41,11 @@
       </thead>
       <tbody>
         {#each leaderboard as entry, i}
-        <tr>
-          <td>{i + 1}</td>
-          <td>{entry.username}</td>
-          <td>{entry.level}</td>
-        </tr>
+          <tr>
+            <td>{i + 1}</td>
+            <td>{entry.username}</td>
+            <td>{entry.level}</td>
+          </tr>
         {/each}
       </tbody>
     </table>
