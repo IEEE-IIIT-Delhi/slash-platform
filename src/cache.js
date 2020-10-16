@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 import { promisify } from 'util'
 import redis from 'redis'
 import mongoose from 'mongoose'
+import { log } from './utils'
 
 dotenv.config()
 
@@ -60,5 +61,6 @@ mongoose.Query.prototype.exec = async function () {
 }
 
 export function clearKey (key) {
+  log(`Cache cleared: ${key}`)
   redisClient.del(key)
 }

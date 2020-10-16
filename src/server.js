@@ -89,6 +89,7 @@ app.use(sapper.middleware({
         }
       }
     }
+    return {}
   }
 }))
 

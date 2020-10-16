@@ -7,6 +7,7 @@ import { validate } from 'email-validator'
 import { clearKey } from '../cache'
 import Player from '../models/player'
 import RegistrationLogs from '../models/registration-logs'
+import { log } from '../utils'
 
 const router = express.Router()
 
@@ -20,7 +21,7 @@ function login (player, req) {
       return
     }
 
-    console.log(`${Date.now()}: Logged in: ${player.username}`)
+    log('Logged in', player.username)
 
     response.success = true
     response.message = constants.LOGIN_SUCCESS
@@ -31,7 +32,7 @@ function login (player, req) {
 
 // User logout at /auth/logout
 router.get('/logout', (req, res) => {
-  console.log(`${Date.now()}: Logged out: ${req.user.username}`)
+  log('Logged out', req.user.username)
 
   req.logout()
   res.redirect('/')
@@ -103,7 +104,7 @@ router.post('/register', async (req, res) => {
   const player = await Player.register({ username, email, name, geo }, password)
   await RegistrationLogs.create({ username })
 
-  console.log(`${Date.now()}: Registered: ${username}`)
+  log('Registered', username)
 
   clearKey('leaderboard')
 

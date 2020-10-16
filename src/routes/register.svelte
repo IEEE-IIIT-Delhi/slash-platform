@@ -10,6 +10,8 @@
 <script>
   import { slide } from 'svelte/transition'
   import { stores } from '@sapper/app'
+  import { wait } from '../utils'
+
   const { session } = stores()
 
   let response
@@ -36,7 +38,7 @@
     loading = false
 
     if (response.success) {
-      await new Promise(r => setTimeout(r, 500))
+      await wait(500)
       window.location.reload()
     }
   }

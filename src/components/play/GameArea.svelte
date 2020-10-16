@@ -1,5 +1,6 @@
 <script>
   import { fade } from 'svelte/transition'
+  import { wait } from '../../utils'
   import Countdown from '../../components/Countdown.svelte'
 
   export let win
@@ -14,8 +15,6 @@
   let rightAnswer = false
 
   $: answer = answer.replace(/[\W]+/g, '').toLowerCase()
-
-  const wait = async (ms) => new Promise(r => setTimeout(r, ms))
 
   async function checkAnswer (event) {
     event.preventDefault()

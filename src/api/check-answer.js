@@ -5,6 +5,7 @@ import AnswerLogs from '../models/answer-logs'
 import Question from '../models/question'
 import Player from '../models/player'
 import Config from '../models/config'
+import { log } from '../utils'
 
 export default async (req, res) => {
   if (!req.user) {
@@ -31,7 +32,7 @@ export default async (req, res) => {
   // Create attempt log
   await AnswerLogs.create({ username, level, answer, invalid })
 
-  console.log(`${Date.now()}: Attempt: ${username} @ L${level} :: ${answer}`)
+  log('Attempt', `${username} @ L${level} :: ${answer}`)
 
   if (invalid) {
     return res.json({
@@ -72,9 +73,8 @@ export default async (req, res) => {
   player.lastLevelOn = new Date()
   await player.save()
 
+  log('Correct', `${username} @ L${level} :: ${answer}`)
   clearKey('leaderboard')
-
-  console.log(`${Date.now()}: Correct: ${username} @ L${level} :: ${answer}`)
 
   return res.json({
     success: true,
