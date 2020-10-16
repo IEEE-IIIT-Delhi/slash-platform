@@ -9,10 +9,7 @@
 
 <script>
   import { slide } from 'svelte/transition'
-  import { stores } from '@sapper/app'
   import { wait } from '../utils'
-
-  const { session } = stores()
 
   let response
   let loading

@@ -1,5 +1,6 @@
 import * as constants from '../constants'
 import { clearKey } from '../cache'
+import { log } from '../utils'
 import Player from '../models/player'
 import AdminLogs from '../models/admin-logs'
 
@@ -27,6 +28,7 @@ export default async (req, res) => {
   await player.save()
 
   clearKey('leaderboard')
+  log('Admin: player level updated', username)
 
   await AdminLogs.create({
     admin: req.user.username,

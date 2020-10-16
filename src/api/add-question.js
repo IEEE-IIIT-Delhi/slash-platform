@@ -1,4 +1,5 @@
 import * as constants from '../constants'
+import { log } from '../utils'
 import Question from '../models/question'
 import AdminLogs from '../models/admin-logs'
 
@@ -21,6 +22,8 @@ export default async (req, res) => {
       message: constants.ERR_LEVEL_EXISTS
     })
   }
+
+  log('Admin: question added', `L${level}`)
 
   await Question.create({ level, question, answer })
 

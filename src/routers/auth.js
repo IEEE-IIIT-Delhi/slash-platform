@@ -1,13 +1,12 @@
 import * as constants from '../constants'
 import express from 'express'
 import passport from 'passport'
-import fetch from 'node-fetch'
 import { validate } from 'email-validator'
 
-import { clearKey } from '../cache'
 import Player from '../models/player'
 import RegistrationLogs from '../models/registration-logs'
-import { log } from '../utils'
+import { clearKey } from '../cache'
+import { log, getGeoInfo } from '../utils'
 
 const router = express.Router()
 
@@ -96,16 +95,11 @@ router.post('/register', async (req, res) => {
     return res.json(response)
   }
 
-  // Collect user location info
-  const ip = req.headers['x-real-ip']
-  const geo = await fetch(`http://ip-api.com/json/${ip}?fields=17`)
-    .then(_res => _res.json())
-
+  const geo = await getGeoInfo(req)
   const player = await Player.register({ username, email, name, geo }, password)
   await RegistrationLogs.create({ username })
 
   log('Registered', username)
-
   clearKey('leaderboard')
 
   response = login(player, req)

@@ -1,5 +1,6 @@
 import * as constants from '../constants'
 import { clearKey } from '../cache'
+import { log } from '../utils'
 import Player from '../models/player'
 import AdminLogs from '../models/admin-logs'
 
@@ -25,11 +26,12 @@ export default async (req, res) => {
   await player.save()
 
   clearKey('leaderboard')
+  log('Admin: promoted to admin', username)
 
   await AdminLogs.create({
     admin: req.user.username,
     action: 'add-admin',
-    message: `${req.body.username} promoted to admin`
+    message: `${username} promoted to admin`
   })
 
   return res.json({

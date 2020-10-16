@@ -1,5 +1,6 @@
 import * as constants from '../constants'
 import { clearKey } from '../cache'
+import { log } from '../utils'
 import Question from '../models/question'
 import AdminLogs from '../models/admin-logs'
 
@@ -26,7 +27,9 @@ export default async (req, res) => {
   question.question = questionText
   question.answer = answer
   await question.save()
+
   clearKey(`question_${level}`)
+  log('Admin: question updated', `:${level}`)
 
   await AdminLogs.create({
     admin: req.user.username,

@@ -65,6 +65,9 @@ app.use(bodyParser.json())
 app.use(express.static('static'))
 
 // Rate limiter for auth requests
+// defaulting to memory store because window
+// of limit is low and data will be expired
+// and chucked quickly
 app.use('/auth', rateLimit({
   windowMs: 60 * 1000,
   max: 10
