@@ -55,8 +55,8 @@
   }
 
   section {
-    width: 85%;
-    max-width: 600px;
+    width: 90%;
+    max-width: 800px;
     margin: 15vh auto 50px;
 
     h1 {
