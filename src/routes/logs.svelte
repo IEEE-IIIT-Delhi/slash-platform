@@ -13,21 +13,21 @@
 <script>
   import { onMount } from 'svelte'
   export let data
-  let checked = false
+  let checked = true
 
   async function refresh () {
-    data = (await fetch('/api/get-logs').then(res => res.json())).data
+    ({ data } = await fetch('/api/get-logs').then(res => res.json()))
   }
 
   onMount(() => {
-    window.setInterval(refresh, 5000)
+    window.setInterval(refresh, 3000)
   })
 </script>
 
 <main>
   <section>
     <h1>Logs</h1>
-    <p class='general'>Showing 100 latest log entries. Refreshes every five seconds.</p>
+    <p class='general'>Showing 100 latest log entries. Refreshes every three seconds.</p>
 
     <label>
       <input type='checkbox' bind:checked>
@@ -36,7 +36,12 @@
 
     <div class='logger'>
       {#each data.logs as log}
-        <p>{checked ? new Date(log.time).getTime() + ': ' : ''}[{log.type}] {log.key}: {log.value}</p>
+        <code>
+          <span class='time'>{checked ? new Date(log.time).getTime() : ''}</span>
+          <span class='type'>[{log.type}]</span>
+          {log.key}:
+          {log.value}
+        </code>
       {/each}
     </div>
   </section>
@@ -86,14 +91,22 @@
       margin-top: 2.5vh;
       padding: 5px 10px;
       border-radius: 5px;
-      font-family: monospace;
-      max-height: 500px;
+      max-height: 700px;
       overflow: auto;
 
-      p {
+      code {
         margin: 5px 0;
-        font-size: 14px;
+        font-size: 12px;
         white-space: nowrap;
+        display: block;
+
+        .time {
+          color: #666;
+        }
+
+        .type {
+          font-weight: bold;
+        }
       }
     }
   }
