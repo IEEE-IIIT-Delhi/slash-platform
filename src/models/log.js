@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const LogsSchema = new mongoose.Schema({
+const LogSchema = new mongoose.Schema({
   type: String,
   key: String,
   value: String,
@@ -10,4 +10,4 @@ const LogsSchema = new mongoose.Schema({
   }
 })
 
-export default mongoose.model('Logs', LogsSchema)
+export default mongoose.model('Log', LogSchema)
