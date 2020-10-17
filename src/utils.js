@@ -8,7 +8,7 @@ export async function wait (ms) {
 
 export function log (type, key, value) {
   Log.create({ type, key, value })
-  console.log(`${Date.now()}:`, `[${type}]`, `${key}:`, value)
+  console.log('%d: [%s] %s: %s', Date.now(), type, key, value)
 }
 
 export async function getGeoInfo (req) {

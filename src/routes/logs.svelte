@@ -91,7 +91,7 @@
       margin-top: 2.5vh;
       padding: 5px 10px;
       border-radius: 5px;
-      max-height: 700px;
+      max-height: 600px;
       overflow: auto;
 
       code {
