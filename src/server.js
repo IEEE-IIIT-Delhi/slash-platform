@@ -16,7 +16,6 @@ import auth from './routers/auth'
 
 import RegistrationLogs from './models/registration-logs'
 import Log from './models/log'
-import registrationLogs from './models/registration-logs'
 
 dotenv.config()
 
@@ -83,7 +82,7 @@ app.use('/api', api)
 
 app.use('/migrate', async (req, res) => {
   for (const log of await registrationLogs.find()) {
-    if (!(await Log.find({ value: log.username }))) {
+    if (!(await Log.findOne({ key: 'Registered', value: log.username }))) {
       await Log.create({
         type: 'AUTH',
         key: 'Registered',
