@@ -8,13 +8,14 @@
     const { data: { config }} = await this.fetch('/api/get-config')
       .then(res => res.json())
 
-    return { config }
+    return { config, superadmin: session.user.superadmin }
   }
 </script>
 
 <script>
   import AdminForm from '../components/AdminForm.svelte'
   export let config
+  export let superadmin
 </script>
 
 <main>
@@ -22,6 +23,7 @@
     <h1>Admin Panel</h1>
 
     <a href="/stats">View statistics</a>
+    {#if superadmin} <a href="/logs">View logs</a> {/if}
 
     <div class="forms">
       <AdminForm
@@ -140,29 +142,31 @@
       </AdminForm>
     </div>
 
-    <form class='danger' action="/api/update-config" method="POST">
-      {#if !config.started}
-        <input name='action' type="hidden" value='begin'>
-        <button class='green'>Begin Hunt</button>
-      {/if}
+    {#if superadmin}
+      <form class='danger' action="/api/update-config" method="POST">
+        {#if !config.started}
+          <input name='action' type="hidden" value='begin'>
+          <button class='green'>Begin Hunt</button>
+        {/if}
 
-      {#if config.started && !config.ended}
-        <input name='action' type="hidden" value='end'>
-        <button class='red'>End Hunt</button>
-      {/if}
-    </form>
+        {#if config.started && !config.ended}
+          <input name='action' type="hidden" value='end'>
+          <button class='red'>End Hunt</button>
+        {/if}
+      </form>
 
-    <form class='danger' action="/api/update-config" method="POST">
-      {#if config.showLeaderboard}
-        <input name='action' type="hidden" value='hide-leaderboard'>
-        <button class='red'>Hide leaderboard</button>
+      <form class='danger' action="/api/update-config" method="POST">
+        {#if config.showLeaderboard}
+          <input name='action' type="hidden" value='hide-leaderboard'>
+          <button class='red'>Hide leaderboard</button>
 
-      {:else}
-        <input name='action' type="hidden" value='show-leaderboard'>
-        <button class='green'>Show leaderboard</button>
+        {:else}
+          <input name='action' type="hidden" value='show-leaderboard'>
+          <button class='green'>Show leaderboard</button>
 
-      {/if}
-    </form>
+        {/if}
+      </form>
+    {/if}
   </section>
 </main>
 
@@ -200,7 +204,7 @@
       border-radius: 5px;
       text-decoration: none;
       display: inline-block;
-      margin: 1vh 0;
+      margin: 1vh 10px 1vh 0;
       box-shadow: 0 5px 10px rgba(0,0,0,.12);
     }
 

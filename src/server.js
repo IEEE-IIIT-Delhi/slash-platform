@@ -82,11 +82,12 @@ app.use(sapper.middleware({
   session: (req, res) => {
     res.setHeader('cache-control', 'no-cache, no-store')
     if (req.user) {
-      const { username, admin, level, disqualified } = req.user
+      const { username, admin, superadmin, level, disqualified } = req.user
       return {
         user: {
           username,
           admin,
+          superadmin,
           level,
           disqualified
         }

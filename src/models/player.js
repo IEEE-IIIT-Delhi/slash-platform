@@ -27,6 +27,10 @@ const PlayerSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  superadmin: {
+    type: Boolean,
+    default: false
+  },
   geo: {
     country: String,
     city: String

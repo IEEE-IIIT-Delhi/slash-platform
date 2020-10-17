@@ -27,7 +27,7 @@
 <main>
   <section>
     <h1>Logs</h1>
-    <p class='general'>Showing 100 latest log entries</p>
+    <p class='general'>Showing 100 latest log entries. Refreshes every five seconds.</p>
 
     <label>
       <input type='checkbox' bind:checked>
@@ -93,6 +93,7 @@
       p {
         margin: 5px 0;
         font-size: 14px;
+        white-space: nowrap;
       }
     }
   }
