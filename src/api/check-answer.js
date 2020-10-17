@@ -1,7 +1,6 @@
 import * as constants from '../constants'
-import { clearKey } from '../cache'
+import { clearCache } from '../cache'
 import { log, hash } from '../utils'
-import AnswerLogs from '../models/answer-logs'
 import Question from '../models/question'
 import Player from '../models/player'
 import Config from '../models/config'
@@ -45,10 +44,7 @@ export default async (req, res) => {
     })
   }
 
-  // Create attempt log
-  await AnswerLogs.create({ username, level, answer, invalid })
-
-  log('Attempt', `${username} @ L${level} — ${answer}`)
+  log('ANSWER', 'Attempt', `${username} @ L${level}: ${answer}`)
 
   if (invalid) {
     return res.json({
@@ -73,8 +69,8 @@ export default async (req, res) => {
   player.lastLevelOn = new Date()
   await player.save()
 
-  log('Correct', `${username} @ L${level} — ${answer}`)
-  clearKey('leaderboard')
+  log('ANSWER', 'Correct', `${username} @ L${level}: ${answer}`)
+  clearCache('leaderboard')
 
   return res.json({
     success: true,

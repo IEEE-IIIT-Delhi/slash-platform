@@ -1,8 +1,7 @@
 import * as constants from '../constants'
-import { clearKey } from '../cache'
+import { clearCache } from '../cache'
 import { log } from '../utils'
 import Player from '../models/player'
-import AdminLogs from '../models/admin-logs'
 
 export default async (req, res) => {
   if (!req.user || !req.user.admin) {
@@ -27,14 +26,8 @@ export default async (req, res) => {
   player.lastLevelOn = new Date()
   await player.save()
 
-  clearKey('leaderboard')
-  log('Admin: player level updated', username)
-
-  await AdminLogs.create({
-    admin: req.user.username,
-    action: 'update-player-level',
-    message: `${username}'s level changed: ${level} --> ${newLevel}`
-  })
+  clearCache('leaderboard')
+  log('ADMIN', `[${req.user.username}] Player level updated`, `${username}: ${level} --> ${newLevel}`)
 
   return res.json({
     success: true,

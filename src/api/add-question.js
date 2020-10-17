@@ -27,7 +27,7 @@ export default async (req, res) => {
     answer: hashedAnswer
   })
 
-  log('Admin: question added', `L${level}`)
+  log('ADMIN', `[${req.user.username}] Question added`, `Level ${level}`)
 
   return res.json({
     success: true,

@@ -1,10 +1,7 @@
 import * as constants from '../constants'
-import { clearKey } from '../cache'
+import { clearCache } from '../cache'
 import { log, hash } from '../utils'
 import Question from '../models/question'
-import AdminLogs from '../models/admin-logs'
-
-const b64 = str => Buffer.from(str).toString('base64')
 
 export default async (req, res) => {
   if (!req.user || !req.user.admin) {
@@ -28,14 +25,8 @@ export default async (req, res) => {
   question.answer = hash(answer)
   await question.save()
 
-  clearKey(`question_${level}`)
-  log('Admin: question updated', `:${level}`)
-
-  await AdminLogs.create({
-    admin: req.user.username,
-    action: 'update-question',
-    message: `Level ${level}: ${b64(questionText)}:${b64(answer)}`
-  })
+  clearCache(`question_${level}`)
+  log('ADMIN', `[${req.user.username}] Question updated`, `Level ${level}`)
 
   return res.json({
     success: true,

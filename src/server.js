@@ -14,6 +14,10 @@ import Player from './models/player'
 import api from './routers/api'
 import auth from './routers/auth'
 
+import RegistrationLogs from './models/registration-logs'
+import Log from './models/log'
+import registrationLogs from './models/registration-logs'
+
 dotenv.config()
 
 // get those vars
@@ -76,6 +80,20 @@ app.use('/auth', rateLimit({
 // Routes
 app.use('/auth', auth)
 app.use('/api', api)
+
+app.use('/migrate', async (req, res) => {
+  for (const log of await registrationLogs.find()) {
+    if (!(await Log.find({ value: log.username }))) {
+      await Log.create({
+        type: 'AUTH',
+        key: 'Registered',
+        value: log.username,
+        time: new Date(log.time)
+      })
+    }
+  }
+  res.send('done')
+})
 
 // the sapper stuff
 app.use(sapper.middleware({

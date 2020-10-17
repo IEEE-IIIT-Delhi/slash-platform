@@ -1,12 +1,14 @@
 import { createHash } from 'crypto'
 import fetch from 'node-fetch'
+import Log from './models/log'
 
 export async function wait (ms) {
   await new Promise((resolve, reject) => setTimeout(resolve, ms))
 }
 
-export function log (key, value) {
-  console.log(`${Date.now()}:`, `${key}:`, value)
+export function log (type, key, value) {
+  Log.create({ type, key, value })
+  console.log(`${Date.now()}:`, `[${type}]`, `${key}:`, value)
 }
 
 export async function getGeoInfo (req) {

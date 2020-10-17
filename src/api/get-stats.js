@@ -1,8 +1,7 @@
 import * as constants from '../constants'
 import Player from '../models/player'
 import Question from '../models/question'
-import AnswerLogs from '../models/answer-logs'
-import RegistrationLogs from '../models/registration-logs'
+import Log from '../models/log'
 
 export default async (req, res) => {
   if (!req.user || !req.user.admin) {
@@ -14,9 +13,9 @@ export default async (req, res) => {
 
   const playerCount = await Player.countDocuments({ admin: false })
   const adminCount = await Player.countDocuments({ admin: true })
-  const answerAttempts = await AnswerLogs.countDocuments()
-  const lastTenRegistrants = await RegistrationLogs
-    .find()
+  const answerAttempts = await Log.countDocuments({ type: 'ANSWER', key: 'Attempt' })
+  const lastTenRegistrants = await Log
+    .find({ type: 'AUTH', key: 'Registered' })
     .sort('-time')
     .limit(10)
 

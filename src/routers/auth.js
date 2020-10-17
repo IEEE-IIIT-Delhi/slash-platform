@@ -4,8 +4,7 @@ import passport from 'passport'
 import { validate } from 'email-validator'
 
 import Player from '../models/player'
-import RegistrationLogs from '../models/registration-logs'
-import { clearKey } from '../cache'
+import { clearCache } from '../cache'
 import { log, getGeoInfo } from '../utils'
 
 function login (player, req) {
@@ -18,7 +17,7 @@ function login (player, req) {
       return
     }
 
-    log('Logged in', player.username)
+    log('AUTH', 'Logged in', player.username)
 
     response.success = true
     response.message = constants.LOGIN_SUCCESS
@@ -31,7 +30,7 @@ const router = express.Router()
 
 // User logout at /auth/logout
 router.get('/logout', (req, res) => {
-  log('Logged out', req.user.username)
+  log('AUTH', 'Logged out', req.user.username)
 
   req.logout()
   res.redirect('/')
@@ -97,10 +96,9 @@ router.post('/register', async (req, res) => {
 
   const geo = await getGeoInfo(req)
   const player = await Player.register({ username, email, name, geo }, password)
-  await RegistrationLogs.create({ username })
 
-  log('Registered', username)
-  clearKey('leaderboard')
+  log('AUTH', 'Registered', username)
+  clearCache('leaderboard')
 
   response = login(player, req)
   return res.json(response)

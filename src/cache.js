@@ -53,7 +53,7 @@ mongoose.Query.prototype.exec = async function () {
   const result = await mongoExec.apply(this, arguments)
 
   redisClient.set(key, JSON.stringify(result))
-  log('Cache set', key)
+  log('CACHE', 'Set', key)
 
   if (this.time) {
     redisClient.expire(key, this.time, () => {})
@@ -62,7 +62,7 @@ mongoose.Query.prototype.exec = async function () {
   return result
 }
 
-export function clearKey (key) {
+export function clearCache (key) {
   redisClient.del(key)
-  log('Cache cleared', key)
+  log('CACHE', 'Cleared', key)
 }

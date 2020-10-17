@@ -1,6 +1,6 @@
 import * as constants from '../constants'
 import Player from '../models/player'
-import RegistrationLogs from '../models/registration-logs'
+import Log from '../models/log'
 
 export default async (req, res) => {
   if (!req.user || !req.user.admin) {
@@ -20,7 +20,7 @@ export default async (req, res) => {
     })
   }
 
-  const { time } = await RegistrationLogs.findOne({ username })
+  const { time } = await Log.findOne({ key: 'Registered', value: username })
   player.registrationDate = time
 
   return res.json({

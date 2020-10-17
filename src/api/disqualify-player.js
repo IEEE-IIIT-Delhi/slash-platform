@@ -1,8 +1,7 @@
 import * as constants from '../constants'
-import { clearKey } from '../cache'
+import { clearCache } from '../cache'
 import { log } from '../utils'
 import Player from '../models/player'
-import AdminLogs from '../models/admin-logs'
 
 export default async (req, res) => {
   if (!req.user || !req.user.admin) {
@@ -25,14 +24,8 @@ export default async (req, res) => {
   player.disqualified = true
   await player.save()
 
-  clearKey('leaderboard')
-  log('Admin: player disqualified', username)
-
-  await AdminLogs.create({
-    admin: req.user.username,
-    action: 'disqualify-player',
-    message: `${req.body.username} disqualified`
-  })
+  clearCache('leaderboard')
+  log('Admin', `[${req.user.username}] Player disqualified`, username)
 
   return res.json({
     success: true,

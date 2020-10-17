@@ -1,13 +1,13 @@
 import mongoose from 'mongoose'
 
 const LogsSchema = new mongoose.Schema({
-  admin: String,
-  action: String,
-  message: String,
+  type: String,
+  key: String,
+  value: String,
   time: {
     type: Date,
     default: Date.now
   }
 })
 
-export default mongoose.model('Admin Logs', LogsSchema)
+export default mongoose.model('Logs', LogsSchema)

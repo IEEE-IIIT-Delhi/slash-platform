@@ -1,5 +1,5 @@
 import Config from '../models/config'
-import { clearKey } from '../cache'
+import { clearCache } from '../cache'
 import { log } from '../utils'
 
 export default async (req, res) => {
@@ -26,8 +26,9 @@ export default async (req, res) => {
   }
 
   await config.save()
-  clearKey('config')
-  log('Admin: danger action', action)
+
+  clearCache('config')
+  log('ADMIN', `[${req.user.username}] Danger action`, action)
 
   res.redirect('/')
 }
