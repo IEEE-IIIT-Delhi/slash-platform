@@ -1,6 +1,6 @@
 import * as constants from '../constants'
 import { clearKey } from '../cache'
-import { log } from '../utils'
+import { log, hash } from '../utils'
 import Question from '../models/question'
 import AdminLogs from '../models/admin-logs'
 
@@ -25,7 +25,7 @@ export default async (req, res) => {
   }
 
   question.question = questionText
-  question.answer = answer
+  question.answer = hash(answer)
   await question.save()
 
   clearKey(`question_${level}`)

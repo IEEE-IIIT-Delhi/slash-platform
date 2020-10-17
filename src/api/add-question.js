@@ -1,9 +1,6 @@
 import * as constants from '../constants'
-import { log } from '../utils'
+import { log, hash } from '../utils'
 import Question from '../models/question'
-import AdminLogs from '../models/admin-logs'
-
-const b64 = str => Buffer.from(str).toString('base64')
 
 export default async (req, res) => {
   if (!req.user || !req.user.admin) {
@@ -23,15 +20,14 @@ export default async (req, res) => {
     })
   }
 
-  log('Admin: question added', `L${level}`)
-
-  await Question.create({ level, question, answer })
-
-  await AdminLogs.create({
-    admin: req.user.username,
-    action: 'add-question',
-    message: `Level ${level}: ${b64(question)}:${b64(answer)}`
+  const hashedAnswer = hash(answer)
+  await Question.create({
+    level,
+    question,
+    answer: hashedAnswer
   })
+
+  log('Admin: question added', `L${level}`)
 
   return res.json({
     success: true,

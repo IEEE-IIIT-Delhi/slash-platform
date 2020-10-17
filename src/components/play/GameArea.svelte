@@ -1,6 +1,5 @@
 <script>
   import { fade } from 'svelte/transition'
-  import { wait } from '../../utils'
   import Countdown from '../../components/Countdown.svelte'
 
   export let win
@@ -13,6 +12,8 @@
   let answer = ''
   let wrongAnswer = false
   let rightAnswer = false
+
+  const wait = async ms => await new Promise(r => setTimeout(r, ms))
 
   $: answer = answer.replace(/[\W]+/g, '').toLowerCase()
 
@@ -28,10 +29,10 @@
       }
     })
 
-    const { success, ended, disqualified } = await res.json()
+    const { success, reload } = await res.json()
     loading = false
 
-    if (ended || disqualified) {
+    if (reload) {
       return window.location.reload()
     }
 

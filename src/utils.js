@@ -1,3 +1,4 @@
+import { createHash } from 'crypto'
 import fetch from 'node-fetch'
 
 export async function wait (ms) {
@@ -12,4 +13,8 @@ export async function getGeoInfo (req) {
   const ip = req.headers['x-real-ip']
   const res = await fetch(`http://ip-api.com/json/${ip}?fields=17`)
   return await res.json()
+}
+
+export function hash (string) {
+  return createHash('sha1').update(string).digest('hex')
 }

@@ -8,8 +8,6 @@ import RegistrationLogs from '../models/registration-logs'
 import { clearKey } from '../cache'
 import { log, getGeoInfo } from '../utils'
 
-const router = express.Router()
-
 function login (player, req) {
   const response = {}
 
@@ -28,6 +26,8 @@ function login (player, req) {
 
   return response
 }
+
+const router = express.Router()
 
 // User logout at /auth/logout
 router.get('/logout', (req, res) => {

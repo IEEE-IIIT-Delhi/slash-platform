@@ -9,7 +9,6 @@
 
 <script>
   import { slide } from 'svelte/transition'
-  import { wait } from '../utils'
 
   let response
   let loading
@@ -35,7 +34,7 @@
     loading = false
 
     if (response.success) {
-      await wait(500)
+      await new Promise(r => setTimeout(r, 500))
       window.location.reload()
     }
   }
