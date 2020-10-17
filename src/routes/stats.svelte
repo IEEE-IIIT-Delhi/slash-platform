@@ -81,7 +81,7 @@
         <table>
           {#each data.lastTenRegistrants as entry}
             <tr>
-              <td>{entry.username}</td>
+              <td>{entry.value}</td>
               <td>{format(entry.time)}</td>
             </tr>
           {/each}

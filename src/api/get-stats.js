@@ -15,7 +15,7 @@ export default async (req, res) => {
   const adminCount = await Player.countDocuments({ admin: true })
   const answerAttempts = await Log.countDocuments({ type: 'ANSWER', key: 'Attempt' })
   const lastTenRegistrants = await Log
-    .find({ type: 'AUTH', key: 'Registered' })
+    .find({ type: 'AUTH', key: 'Registered' }, { _id: 0, value: 1, time: 1 })
     .sort('-time')
     .limit(10)
 
