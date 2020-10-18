@@ -15,6 +15,10 @@
   export let data
 </script>
 
+<svelte:head>
+  <title>Stats // Slash</title>
+</svelte:head>
+
 <main>
   <section>
     <h1>Stats</h1>

@@ -24,6 +24,10 @@
   })
 </script>
 
+<svelte:head>
+  <title>Logs // Slash</title>
+</svelte:head>
+
 <main>
   <section>
     <h1>Logs</h1>

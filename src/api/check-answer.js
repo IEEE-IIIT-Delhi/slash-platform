@@ -23,11 +23,12 @@ export default async (req, res) => {
     })
   }
 
-  const { username, level } = req.user
+  const { username } = req.user
   const { answer } = req.body
   const invalid = !constants.ANSWER_REGEX.test(answer)
 
   const player = await Player.findOne({ username })
+  const { level } = player
 
   if (!player) {
     return res.json({

@@ -23,6 +23,10 @@
   const isAdmin = user && user.admin
 </script>
 
+<svelte:head>
+  <title>Leaderboard // Slash</title>
+</svelte:head>
+
 <section>
   <h1>Leaderboard</h1>
 

@@ -18,6 +18,10 @@
   export let superadmin
 </script>
 
+<svelte:head>
+  <title>Admin // Slash</title>
+</svelte:head>
+
 <main>
   <section>
     <h1>Admin Panel</h1>

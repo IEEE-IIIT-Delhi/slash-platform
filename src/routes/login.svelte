@@ -38,6 +38,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Login // Slash</title>
+</svelte:head>
+
 <main>
   <section>
     <h1>Login</h1>
