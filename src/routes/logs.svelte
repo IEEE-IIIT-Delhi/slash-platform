@@ -42,7 +42,7 @@
       {#each data.logs as log}
         <code>
           <span class='time'>{checked ? new Date(log.time).getTime() : ''}</span>
-          <span class='type'>[{log.type}]</span>
+          <span class='type {log.type}'>[{log.type}]</span>
           {log.key}:
           {log.value}
         </code>
@@ -110,6 +110,22 @@
 
         .type {
           font-weight: bold;
+
+          &.AUTH {
+            color: #80deea;
+          }
+
+          &.CACHE {
+            color: #ffeb3b;
+          }
+
+          &.ADMIN {
+            color: #f44336;
+          }
+
+          &.ANSWER {
+            color: #8bc34a;
+          }
         }
       }
     }
