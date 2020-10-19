@@ -1,4 +1,4 @@
-export const ANSWER_REGEX = /^[a-zA-Z0-9_]*$/
+export const ANSWER_REGEX = /^\S+$/
 export const USERNAME_LENGTH_REGEX = /^.{2,15}$/
 export const COOKIE_MAX_AGE = 2592000000
 export const MAX_LEADERBOARD_PLAYERS = 100
@@ -10,7 +10,7 @@ export const LOGIN_SUCCESS = 'Successful, redirecting...'
 
 // Response failure
 export const ERR_NOAUTH = 'Request unauthenticated'
-export const ERR_INVALID_ANS = 'Only alphanumeric inputs are allowed. Further invalid attempts will lead to disqualification.'
+export const ERR_INVALID_ANS = 'No whitespace allowed. Further invalid attempts will lead to disqualification.'
 export const ERR_WRONG_ANS = 'Wrong answer'
 export const ERR_MISC = 'An error occured while processing the query'
 export const ERR_NO_PLAYER = 'Player with requested ID not found'
