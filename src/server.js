@@ -38,8 +38,8 @@ const MongoStore = connectMongo(session)
 // use express-session to store sessions
 app.use(session({
   secret: SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
+  resave: false,
+  saveUninitialized: false,
   cookie: {
     maxAge: constants.COOKIE_MAX_AGE
   },
