@@ -1,4 +1,4 @@
-import * as constants from '../constants'
+import * as constants from '../src/constants'
 import Player from '../models/player'
 import Question from '../models/question'
 import Log from '../models/log'

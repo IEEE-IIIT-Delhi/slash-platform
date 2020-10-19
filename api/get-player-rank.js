@@ -1,4 +1,4 @@
-import * as constants from '../constants'
+import * as constants from '../src/constants'
 import Player from '../models/player'
 
 export default async (req, res) => {
@@ -31,7 +31,8 @@ export default async (req, res) => {
   if (rank === 0) {
     return res.json({
       success: false,
-      message: constants.ERR_NO_PLAYER
+      message: constants.ERR_NO_PLAYER,
+      data: { rank: -1 }
     })
   }
 

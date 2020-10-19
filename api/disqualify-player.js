@@ -1,6 +1,6 @@
-import * as constants from '../constants'
-import { clearCache } from '../cache'
-import { log } from '../utils'
+import * as constants from '../src/constants'
+import { clearCache } from '../src/cache'
+import { log } from '../src/utils'
 import Player from '../models/player'
 
 export default async (req, res) => {
@@ -11,9 +11,8 @@ export default async (req, res) => {
     })
   }
 
-  const { username, newLevel } = req.body
+  const { username } = req.body
   const player = await Player.findOne({ username })
-  const { level } = player
 
   if (!player) {
     return res.json({
@@ -22,12 +21,11 @@ export default async (req, res) => {
     })
   }
 
-  player.level = newLevel
-  player.lastLevelOn = new Date()
+  player.disqualified = true
   await player.save()
 
   clearCache('leaderboard')
-  log('ADMIN', `[${req.user.username}] Player level updated`, `${username}: ${level} --> ${newLevel}`)
+  log('Admin', `[${req.user.username}] Player disqualified`, username)
 
   return res.json({
     success: true,

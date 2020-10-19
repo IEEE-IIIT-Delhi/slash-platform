@@ -1,5 +1,5 @@
-import * as constants from '../constants'
-import { log, hash } from '../utils'
+import * as constants from '../src/constants'
+import { log, hash } from '../src/utils'
 import Question from '../models/question'
 
 export default async (req, res) => {

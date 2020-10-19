@@ -1,4 +1,4 @@
-import * as constants from '../constants'
+import * as constants from '../src/constants'
 import Player from '../models/player'
 import Config from '../models/config'
 
@@ -17,6 +17,7 @@ export default async (req, res) => {
   let leaderboard = await Player.find(
     {
       admin: false,
+      phantom: false,
       disqualified: false
     }, {
       _id: 0,

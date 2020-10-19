@@ -3,7 +3,7 @@ import express from 'express'
 import passport from 'passport'
 import { validate } from 'email-validator'
 
-import Player from '../models/player'
+import Player from '../../models/player'
 import { clearCache } from '../cache'
 import { log, getGeoInfo } from '../utils'
 

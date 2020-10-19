@@ -1,6 +1,6 @@
 import { createHash } from 'crypto'
 import fetch from 'node-fetch'
-import Log from './models/log'
+import Log from '../models/log'
 
 export async function wait (ms) {
   await new Promise((resolve, reject) => setTimeout(resolve, ms))

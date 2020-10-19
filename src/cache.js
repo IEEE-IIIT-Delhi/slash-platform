@@ -63,6 +63,11 @@ mongoose.Query.prototype.exec = async function () {
 }
 
 export function clearCache (key) {
-  redisClient.del(key)
-  log('CACHE', 'Cleared', key)
+  if (key) {
+    redisClient.del(key)
+    log('CACHE', 'Cleared', key)
+  } else {
+    const success = redisClient.flushall()
+    log('CACHE', 'Flushed all keys', success)
+  }
 }

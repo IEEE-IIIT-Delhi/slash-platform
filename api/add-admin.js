@@ -1,6 +1,6 @@
-import * as constants from '../constants'
-import { clearCache } from '../cache'
-import { log } from '../utils'
+import * as constants from '../src/constants'
+import { clearCache } from '../src/cache'
+import { log } from '../src/utils'
 import Player from '../models/player'
 
 export default async (req, res) => {

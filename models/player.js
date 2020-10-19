@@ -23,6 +23,10 @@ const PlayerSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  phantom: {
+    type: Boolean,
+    default: false
+  },
   admin: {
     type: Boolean,
     default: false

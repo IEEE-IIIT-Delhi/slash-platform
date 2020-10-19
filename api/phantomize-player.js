@@ -1,6 +1,6 @@
-import * as constants from '../constants'
-import { clearCache } from '../cache'
-import { log } from '../utils'
+import * as constants from '../src/constants'
+import { clearCache } from '../src/cache'
+import { log } from '../src/utils'
 import Player from '../models/player'
 
 export default async (req, res) => {
@@ -21,11 +21,11 @@ export default async (req, res) => {
     })
   }
 
-  player.disqualified = true
+  player.phantom = true
   await player.save()
 
   clearCache('leaderboard')
-  log('Admin', `[${req.user.username}] Player disqualified`, username)
+  log('ADMIN', `[${req.user.username}] Phantomized`, username)
 
   return res.json({
     success: true,

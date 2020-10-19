@@ -1,6 +1,6 @@
-import * as constants from '../constants'
-import { clearCache } from '../cache'
-import { log, hash } from '../utils'
+import * as constants from '../src/constants'
+import { clearCache } from '../src/cache'
+import { log, hash } from '../src/utils'
 import Question from '../models/question'
 
 export default async (req, res) => {

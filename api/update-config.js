@@ -1,6 +1,6 @@
 import Config from '../models/config'
-import { clearCache } from '../cache'
-import { log } from '../utils'
+import { clearCache } from '../src/cache'
+import { log } from '../src/utils'
 
 export default async (req, res) => {
   if (!req.user || !req.user.admin) {

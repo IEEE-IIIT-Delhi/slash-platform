@@ -109,6 +109,17 @@
       </AdminForm>
 
       <AdminForm
+        heading="Phantomize player"
+        action="/api/phantomize-player"
+        buttonValue="Phantomize"
+      >
+        <div class='input-grp'>
+          <label for='username'>Player username</label>
+          <input type='text' name='username' placeholder='Username' required>
+        </div>
+      </AdminForm>
+
+      <AdminForm
         heading="Disqualify player"
         action="/api/disqualify-player"
         buttonValue="Disqualify"
@@ -131,6 +142,18 @@
         <div class='input-grp'>
           <label for='level'>Level</label>
           <input type='number' name='newLevel' placeholder='Level' required>
+        </div>
+      </AdminForm>
+
+      <AdminForm
+        heading="Clear cache"
+        action="/api/clear-cache"
+        buttonValue="Clear"
+      >
+        <p class='general'>Leave key field empty to flush all cache.</p>
+        <div class='input-grp'>
+          <label for='key'>Cache key</label>
+          <input type='text' name='key' placeholder='Cache key'>
         </div>
       </AdminForm>
 
