@@ -3,6 +3,8 @@ import { clearCache } from '../src/cache'
 import { log } from '../src/utils'
 import Player from '../models/player'
 
+const types = ['admin', 'superadmin', 'phantom', 'disqualifed']
+
 export default async (req, res) => {
   if (!req.user || !req.user.admin) {
     return res.json({
@@ -11,7 +13,7 @@ export default async (req, res) => {
     })
   }
 
-  const { username } = req.body
+  const { username, type, value } = req.body
   const player = await Player.findOne({ username })
 
   if (!player) {
@@ -21,11 +23,22 @@ export default async (req, res) => {
     })
   }
 
-  player.disqualified = true
+  if (!types.includes(type)) {
+    return res.json({
+      success: false,
+      message: constants.ERR_MISC
+    })
+  }
+
+  player[type] = Number(value)
   await player.save()
 
   clearCache('leaderboard')
-  log('Admin', `[${req.user.username}] Player disqualified`, username)
+  log(
+    'ADMIN',
+    `[${req.user.username}] Player type changed`,
+    `${username}: ${type} -> ${Boolean(Number(value))}`
+  )
 
   return res.json({
     success: true,

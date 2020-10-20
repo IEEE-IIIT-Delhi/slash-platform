@@ -36,15 +36,15 @@
         buttonValue="Add"
       >
         <div class='input-grp'>
-          <label for='level'>Level</label>
+          <label for=''>Level</label>
           <input type='number' name='level' placeholder='Level' required>
         </div>
         <div class='input-grp'>
-          <label for='question'>Question</label>
+          <label for=''>Question</label>
           <textarea name="question" placeholder='Question text' required></textarea>
         </div>
         <div class='input-grp'>
-          <label for='answer'>Answer</label>
+          <label for=''>Answer</label>
           <input type='text' name='answer' placeholder='Answer' required>
         </div>
       </AdminForm>
@@ -55,15 +55,15 @@
         buttonValue="Update"
       >
         <div class='input-grp'>
-          <label for='level'>Level</label>
+          <label for=''>Level</label>
           <input type='number' name='level' placeholder='Level' required>
         </div>
         <div class='input-grp'>
-          <label for='question'>Question</label>
+          <label for=''>Question</label>
           <textarea name="question" placeholder='Question text' required></textarea>
         </div>
         <div class='input-grp'>
-          <label for='answer'>Answer</label>
+          <label for=''>Answer</label>
           <input type='text' name='answer' placeholder='Answer' required>
         </div>
       </AdminForm>
@@ -80,7 +80,7 @@
         ]}
       >
         <div class='input-grp'>
-          <label for='level'>Level</label>
+          <label for=''>Level</label>
           <input type='number' name='level' placeholder='Level' required>
         </div>
       </AdminForm>
@@ -103,29 +103,7 @@
         ]}
       >
         <div class='input-grp'>
-          <label for='username'>Player username</label>
-          <input type='text' name='username' placeholder='Username' required>
-        </div>
-      </AdminForm>
-
-      <AdminForm
-        heading="Phantomize player"
-        action="/api/phantomize-player"
-        buttonValue="Phantomize"
-      >
-        <div class='input-grp'>
-          <label for='username'>Player username</label>
-          <input type='text' name='username' placeholder='Username' required>
-        </div>
-      </AdminForm>
-
-      <AdminForm
-        heading="Disqualify player"
-        action="/api/disqualify-player"
-        buttonValue="Disqualify"
-      >
-        <div class='input-grp'>
-          <label for='username'>Player username</label>
+          <label for=''>Player username</label>
           <input type='text' name='username' placeholder='Username' required>
         </div>
       </AdminForm>
@@ -136,12 +114,44 @@
         buttonValue="Update"
       >
         <div class='input-grp'>
-          <label for='username'>Player username</label>
+          <label for=''>Player username</label>
           <input type='text' name='username' placeholder='Username' required>
         </div>
         <div class='input-grp'>
-          <label for='level'>Level</label>
+          <label for=''>Level</label>
           <input type='number' name='newLevel' placeholder='Level' required>
+        </div>
+      </AdminForm>
+
+      <AdminForm
+        heading="Update player type"
+        action="/api/update-player-type"
+        buttonValue="Update"
+      >
+        <div class='input-grp'>
+          <label for=''>Username</label>
+          <input type='text' name='username' placeholder='Username' required>
+        </div>
+        <div class='input-grp'>
+          <label for=''>Select type</label>
+          <select name='type' required>
+            <option value='disqualified'>Disqualified</option>
+            <option value='phantom'>Phantom</option>
+            <option value='admin'>Admin</option>
+          </select>
+        </div>
+        <div class='input-grp'>
+          <label for=''>Set value</label>
+          <div class='radio'>
+            <label>
+              <input type='radio' name='value' value='1' required>
+              True
+            </label>
+            <label>
+              <input type='radio' name='value' value='0' required>
+              False
+            </label>
+          </div>
         </div>
       </AdminForm>
 
@@ -152,19 +162,8 @@
       >
         <p class='general'>Leave key field empty to flush all cache.</p>
         <div class='input-grp'>
-          <label for='key'>Cache key</label>
+          <label for=''>Cache key</label>
           <input type='text' name='key' placeholder='Cache key'>
-        </div>
-      </AdminForm>
-
-      <AdminForm
-        heading="Add admin"
-        action="/api/add-admin"
-        buttonValue="Add"
-      >
-        <div class='input-grp'>
-          <label for='username'>Username</label>
-          <input type='text' name='username' placeholder='Username' required>
         </div>
       </AdminForm>
     </div>
