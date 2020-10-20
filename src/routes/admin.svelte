@@ -96,6 +96,7 @@
           ["Email", player.email],
           ["Level", player.level],
           ["Admin", player.admin ? "Yes" : "No"],
+          ["Phantom", player.phantom ? "Yes" : "No"],
           ["Disqualified", player.disqualified ? "Yes" : "No"],
           ["Location", `${player.geo.city}, ${player.geo.country}`],
           ["Last level on", new Date(player.lastLevelOn).toLocaleString()],
