@@ -169,31 +169,29 @@
       </AdminForm>
     </div>
 
-    {#if superadmin}
-      <form class='danger' action="/api/update-config" method="POST">
-        {#if !config.started}
-          <input name='action' type="hidden" value='begin'>
-          <button class='green'>Begin Hunt</button>
-        {/if}
+    <form class='danger' action="/api/update-config" method="POST">
+      {#if !config.started}
+        <input name='action' type="hidden" value='begin'>
+        <button class='green'>Begin Hunt</button>
+      {/if}
 
-        {#if config.started && !config.ended}
-          <input name='action' type="hidden" value='end'>
-          <button class='red'>End Hunt</button>
-        {/if}
-      </form>
+      {#if config.started && !config.ended}
+        <input name='action' type="hidden" value='end'>
+        <button class='red'>End Hunt</button>
+      {/if}
+    </form>
 
-      <form class='danger' action="/api/update-config" method="POST">
-        {#if config.showLeaderboard}
-          <input name='action' type="hidden" value='hide-leaderboard'>
-          <button class='red'>Hide leaderboard</button>
+    <form class='danger' action="/api/update-config" method="POST">
+      {#if config.showLeaderboard}
+        <input name='action' type="hidden" value='hide-leaderboard'>
+        <button class='red'>Hide leaderboard</button>
 
-        {:else}
-          <input name='action' type="hidden" value='show-leaderboard'>
-          <button class='green'>Show leaderboard</button>
+      {:else}
+        <input name='action' type="hidden" value='show-leaderboard'>
+        <button class='green'>Show leaderboard</button>
 
-        {/if}
-      </form>
-    {/if}
+      {/if}
+    </form>
   </section>
 </main>
 
