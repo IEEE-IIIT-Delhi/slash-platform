@@ -56,7 +56,7 @@ export default async (req, res) => {
 
   // Check attempt
   const { answer: correctAnswer } = await Question.findOne({ level })
-  const hashedAttempt = hash(answer)
+  const hashedAttempt = hash(answer.toLowerCase())
 
   if (hashedAttempt !== correctAnswer) {
     return res.json({

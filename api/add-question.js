@@ -20,7 +20,7 @@ export default async (req, res) => {
     })
   }
 
-  const hashedAnswer = hash(answer)
+  const hashedAnswer = hash(answer.replace(/[\s]+/g, '').toLowerCase())
   await Question.create({
     level,
     question,

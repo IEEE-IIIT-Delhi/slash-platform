@@ -22,7 +22,7 @@ export default async (req, res) => {
   }
 
   question.question = questionText
-  question.answer = hash(answer.replace(/[\s]+/g, ''))
+  question.answer = hash(answer.replace(/[\s]+/g, '').toLowerCase())
   await question.save()
 
   clearCache(`question_${level}`)
