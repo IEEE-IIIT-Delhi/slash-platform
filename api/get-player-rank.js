@@ -13,6 +13,7 @@ export default async (req, res) => {
   const leaderboard = await Player.find(
     {
       admin: false,
+      phantom: false,
       disqualified: false
     }, {
       _id: 0,
