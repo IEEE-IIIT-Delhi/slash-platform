@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
   export let date
 
   let days = 0
@@ -32,9 +31,8 @@
     seconds = Math.floor(duration)
   }
 
-  onMount(() => {
-    window.setInterval(updateTimer, 1000)
-  })
+  updateTimer()
+  setInterval(updateTimer, 1000)
 </script>
 
 <div class="countdown">
