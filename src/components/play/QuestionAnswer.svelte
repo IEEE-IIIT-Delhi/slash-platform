@@ -10,7 +10,7 @@
 
   const wait = async ms => await new Promise(r => setTimeout(r, ms))
 
-  $: answer = answer.replace(/[\s]+/g, '').toLowerCase()
+  $: answer = answer.replace(/[\s]+/g, '')
 
   async function checkAnswer (event) {
     event.preventDefault()

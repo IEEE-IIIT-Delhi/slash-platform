@@ -75,8 +75,7 @@
         displayResponse={true}
         displayResponseFormatter={({ question }) => [
           ["Level", question.level],
-          ["Question", question.question],
-          ["Answer", question.answer]
+          ["Question", question.question]
         ]}
       >
         <div class='input-grp'>
