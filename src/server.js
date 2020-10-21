@@ -76,6 +76,7 @@ app.use('/auth', rateLimit({
 // Routes
 app.use('/auth', auth)
 app.use('/api', api)
+app.use('/player/:username', (req, res) => res.end())
 
 // the sapper stuff
 app.use(sapper.middleware({

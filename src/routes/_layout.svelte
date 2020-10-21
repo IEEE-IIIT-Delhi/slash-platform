@@ -1,3 +1,11 @@
+<script context='module'>
+  export function preload (page, session) {
+    if (session.user) {
+      this.fetch('/player/' + session.user.username)
+    }
+  }
+</script>
+
 <script>
   import { stores } from "@sapper/app"
   import PageLoadingBar from "sapper-page-loading-bar/PageLoadingBar.svelte"
