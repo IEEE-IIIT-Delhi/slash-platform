@@ -3,7 +3,7 @@ import { clearCache } from '../src/cache'
 import { log } from '../src/utils'
 import Player from '../models/player'
 
-const types = ['admin', 'superadmin', 'phantom', 'disqualifed']
+const types = ['admin', 'superadmin', 'phantom', 'disqualified']
 
 export default async (req, res) => {
   if (!req.user || !req.user.admin) {
