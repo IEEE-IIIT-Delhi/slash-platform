@@ -27,7 +27,11 @@ export default async (req, res) => {
   await player.save()
 
   clearCache('leaderboard')
-  log('ADMIN', `[${req.user.username}] Player level updated`, `${username}: ${level} --> ${newLevel}`)
+  log(
+    'ADMIN',
+    `[${req.user.username}] Player level updated`,
+    `${username}: ${level} -> ${newLevel}`
+  )
 
   return res.json({
     success: true,

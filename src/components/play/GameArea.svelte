@@ -22,12 +22,12 @@
     {:else if win}
       <h1>Congratulations!</h1>
       <p class='general'>You have successfully completed Slash with a rank of <span class='rank'>{rank}</span>!</p>
-      <p class='general'>Go the <a href="/leaderboard">leaderboard</a> to check the standings.</p>
+      <p class='general'>Go to the <a href="/leaderboard">leaderboard</a> to check the standings.</p>
 
     {:else if config.ended}
       <h1>The End!</h1>
       <p class='general'>Slash has come to an end! You have finished with a rank of <span class='rank'>{rank}</span>.</p>
-      <p class='general'>Go the <a href="/leaderboard">leaderboard</a> to check the standings.</p>
+      <p class='general'>Go to the <a href="/leaderboard">leaderboard</a> to check the standings.</p>
 
     {:else}
       <h1>Question</h1>

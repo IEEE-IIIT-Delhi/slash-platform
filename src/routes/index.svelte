@@ -18,8 +18,6 @@
     const { username, level } = session.user
     const { data: { config }} = await this.fetch('/api/get-config').then(res => res.json())
 
-    config.started = false
-
     if (!config.started) {
       return { config, username }
     }

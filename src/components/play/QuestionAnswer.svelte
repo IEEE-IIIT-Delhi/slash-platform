@@ -2,20 +2,22 @@
   import { fade } from 'svelte/transition'
   export let question
 
-  let loading = false
+  const states = { STEADY: 0, LOADING: 1, WRONG: 2, RIGHT: 3 }
+  let state = states.STEADY
   let buttonText = 'Check'
   let answer = ''
-  let wrongAnswer = false
-  let rightAnswer = false
-
-  const wait = async ms => await new Promise(r => setTimeout(r, ms))
 
   $: answer = answer.replace(/[\s]+/g, '').toLowerCase()
+  $: buttonText =
+    state === states.RIGHT ? 'Correct!' :
+    state === states.WRONG ? 'Nope!' : 'Check'
+
+  const wait = async ms => await new Promise(r => setTimeout(r, ms))
 
   async function checkAnswer (event) {
     event.preventDefault()
 
-    loading = true
+    state = states.LOADING
     const res = await fetch('/api/check-answer', {
       method: 'POST',
       body: JSON.stringify({ answer }),
@@ -25,34 +27,31 @@
     })
 
     const { success, reload } = await res.json()
-    loading = false
+    state = states.STEADY
 
     if (reload) {
       return window.location.reload()
     }
 
     if (success) {
-      rightAnswer = true
-      buttonText = 'Correct!'
-
+      state = states.RIGHT
       await wait(1000)
-
       window.location.reload()
     } else {
-      buttonText = 'Nope!'
-      wrongAnswer = true
-
+      state = states.WRONG
       await wait(1000)
-
-      wrongAnswer = false
-      buttonText = 'Check'
+      state = states.STEADY
     }
   }
 </script>
 
 <p class='question-text'>{question}</p>
 
-<form on:submit={checkAnswer} method='POST' class:wrongAnswer class:rightAnswer>
+<form
+  class="state-{state}"
+  on:submit={checkAnswer}
+  method='POST'
+>
   <div class="input-container">
     <input
       type='text'
@@ -63,7 +62,7 @@
     >
   </div>
   <button>
-    {#if loading}
+    {#if state === states.LOADING}
       <img src="/loading.svg" alt="">
     {:else}
       <span in:fade={{ duration: 200 }}>
@@ -126,23 +125,23 @@
       }
     }
 
-    &.rightAnswer {
-      button {
-        background: linear-gradient(90deg, #1d976c, #679277);
-      }
-
-      input {
-        border-color: #1d976c;
-      }
-    }
-
-    &.wrongAnswer {
+    &.state-2 {
       button {
         background: linear-gradient(90deg, #c64848, #bb4949);
       }
 
       input {
         border-color: #c64848;
+      }
+    }
+
+    &.state-3 {
+      button {
+        background: linear-gradient(90deg, #1d976c, #679277);
+      }
+
+      input {
+        border-color: #1d976c;
       }
     }
 
