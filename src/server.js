@@ -13,6 +13,7 @@ import * as constants from './constants'
 import Player from '../models/player'
 import api from '../routers/api'
 import auth from '../routers/auth'
+import exceptions from '../routers/exceptions'
 
 dotenv.config()
 
@@ -76,6 +77,7 @@ app.use('/auth', rateLimit({
 // Routes
 app.use('/auth', auth)
 app.use('/api', api)
+app.use('/', exceptions)
 app.use('/player/:username', (req, res) => res.end())
 
 // the sapper stuff
