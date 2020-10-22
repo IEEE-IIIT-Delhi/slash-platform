@@ -20,7 +20,10 @@
     state = states.LOADING
     const res = await fetch('/api/check-answer', {
       method: 'POST',
-      body: JSON.stringify({ answer }),
+      body: JSON.stringify({
+        answer,
+        timeString: new Date().toLocaleTimeString()
+      }),
       headers: {
         'Content-Type': 'application/json'
       }

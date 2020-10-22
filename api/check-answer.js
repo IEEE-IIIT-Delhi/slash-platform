@@ -24,7 +24,7 @@ export default async (req, res) => {
   }
 
   const { username } = req.user
-  const { answer } = req.body
+  const { answer, timeString } = req.body
   const invalid = !constants.ANSWER_REGEX.test(answer)
 
   const player = await Player.findOne({ username })
@@ -54,15 +54,25 @@ export default async (req, res) => {
     })
   }
 
-  // Check attempt
-  const { answer: correctAnswer } = await Question.findOne({ level })
-  const hashedAttempt = hash(answer.toLowerCase())
+  // Exceptional level
+  if (level === 2) {
+    if (!timeString.startsWith(answer)) {
+      return res.json({
+        success: false,
+        message: constants.ERR_WRONG_ANS
+      })
+    }
+  } else {
+    // Regular level
+    const { answer: correctAnswer } = await Question.findOne({ level })
+    const hashedAttempt = hash(answer.toLowerCase())
 
-  if (hashedAttempt !== correctAnswer) {
-    return res.json({
-      success: false,
-      message: constants.ERR_WRONG_ANS
-    })
+    if (hashedAttempt !== correctAnswer) {
+      return res.json({
+        success: false,
+        message: constants.ERR_WRONG_ANS
+      })
+    }
   }
 
   // It's correct
