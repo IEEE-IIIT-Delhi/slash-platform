@@ -55,7 +55,7 @@ export default async (req, res) => {
   }
 
   // Exceptional level
-  if (level === 2) {
+  if (level === -1) {
     if (!timeString.startsWith(answer)) {
       return res.json({
         success: false,
