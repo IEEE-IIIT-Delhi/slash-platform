@@ -17,6 +17,10 @@
   async function checkAnswer (event) {
     event.preventDefault()
 
+    if (state === states.LOADING) {
+      return
+    }
+
     state = states.LOADING
     const res = await fetch('/api/check-answer', {
       method: 'POST',
