@@ -48,7 +48,7 @@
   }
 </script>
 
-<p class='question-text'>{question}</p>
+<p class='question-text'>{@html question}</p>
 
 <form
   class="state-{state}"
@@ -81,6 +81,20 @@
     line-height: 1.5;
     font-weight: 300;
     margin: 30px 0;
+  }
+
+  :global(p.question-text a) {
+    color: #008eff;
+  }
+
+  :global(p.question-text img) {
+    max-height: 300px;
+    display: block;
+    margin: 2.5vh auto;
+  }
+
+  :global(p.question-text pre) {
+    overflow-x: auto;
   }
 
   form {
