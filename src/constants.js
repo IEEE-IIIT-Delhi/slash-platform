@@ -1,7 +1,7 @@
 export const ANSWER_REGEX = /^\S+$/
 export const USERNAME_LENGTH_REGEX = /^.{2,15}$/
 export const COOKIE_MAX_AGE = 2592000000
-export const MAX_LEADERBOARD_PLAYERS = 100
+export const MAX_LEADERBOARD_PLAYERS = 50
 
 // Response success
 export const CORRECT_ANS = 'Correct answer'
