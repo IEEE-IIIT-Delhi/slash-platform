@@ -1,0 +1,3 @@
+# Je suis banana man
+User-Agent: *
+Disallow: 
