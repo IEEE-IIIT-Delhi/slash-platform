@@ -13,7 +13,6 @@ import * as constants from './constants'
 import Player from '../models/player'
 import api from '../routers/api'
 import auth from '../routers/auth'
-import exceptions from '../routers/exceptions'
 
 dotenv.config()
 
