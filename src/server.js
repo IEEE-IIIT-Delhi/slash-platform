@@ -75,7 +75,6 @@ app.use('/auth', rateLimit({
 }))
 
 // Routes
-app.use('/', exceptions)
 app.use('/auth', auth)
 app.use('/api', api)
 app.use('/player/:username', (req, res) => res.end())
