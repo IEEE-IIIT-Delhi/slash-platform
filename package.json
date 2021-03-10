@@ -1,6 +1,6 @@
 {
   "name": "slash",
-  "description": "Platform for Slash Hunt @ Elysium '20",
+  "description": "Platform for Slash Hunt",
   "version": "0.0.1",
   "private": true,
   "scripts": {
