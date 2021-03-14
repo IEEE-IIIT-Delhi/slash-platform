@@ -70,7 +70,6 @@
           <option value='orion'>Orion</option>
           <option value='phoenix'>Phoenix</option>
         </select>
-        <input type='password' name='password' placeholder='Password' required>
       </div>
       <div class="input-grp">
         <button>

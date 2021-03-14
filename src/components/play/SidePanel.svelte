@@ -10,7 +10,7 @@
   </a>
   <h1 class='level'>Level <span>{level}</span></h1>
   <div class="bottom">
-    <h2>Player: <span>{username}</span></h2>
+    <h2>Team: <span>{username}</span></h2>
     <h2>Rank: <span>{rank}</span></h2>
   </div>
 </aside>
