@@ -57,8 +57,8 @@
         </p>
       {/if}
       <div class='input-grp'>
-        <label for='username'>Username</label>
-        <input type='text' name='username' placeholder='Username' required>
+        <label for='username'>Team name</label>
+        <input type='text' name='username' placeholder='Team name' required>
       </div>
       <div class='input-grp'>
         <label for='password'>Password</label>

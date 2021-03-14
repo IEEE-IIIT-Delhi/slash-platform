@@ -1,6 +1,5 @@
 import express from 'express'
 import passport from 'passport'
-import { validate } from 'email-validator'
 
 import Player from '../models/player'
 import * as constants from '../src/constants'
@@ -71,10 +70,9 @@ router.post('/register', async (req, res) => {
     message: undefined
   }
 
-  const { username, password, email, name } = req.body
+  const { username, password, house } = req.body
 
   if (
-    !validate(email) ||
     !constants.ANSWER_REGEX.test(username) ||
     !constants.USERNAME_LENGTH_REGEX.test(username)
   ) {
@@ -82,20 +80,14 @@ router.post('/register', async (req, res) => {
     return res.json(response)
   }
 
-  let existingUser = await Player.findOne({ username })
+  const existingUser = await Player.findOne({ username })
   if (existingUser) {
     response.message = constants.ERR_USERNAME_EXISTS
     return res.json(response)
   }
 
-  existingUser = await Player.findOne({ email })
-  if (existingUser) {
-    response.message = constants.ERR_EMAIL_EXISTS
-    return res.json(response)
-  }
-
   const geo = await getGeoInfo(req)
-  const player = await Player.register({ username, email, name, geo }, password)
+  const player = await Player.register({ username, geo, house }, password)
 
   log('AUTH', 'Registered', username)
   clearCache('leaderboard')

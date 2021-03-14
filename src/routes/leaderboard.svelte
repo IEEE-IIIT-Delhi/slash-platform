@@ -32,14 +32,14 @@
 
   {#if config.showLeaderboard || isAdmin}
     {#if !config.ended && !isAdmin}
-      <p class='general'>The leaderboard is displaying only the top {MAX_LEADERBOARD_PLAYERS} players.</p>
+      <p class='general'>The leaderboard is displaying only the top {MAX_LEADERBOARD_PLAYERS} teams.</p>
     {/if}
 
     <table>
       <thead>
         <tr>
           <th>Rank</th>
-          <th>Player</th>
+          <th>Team</th>
           <th>Level</th>
         </tr>
       </thead>

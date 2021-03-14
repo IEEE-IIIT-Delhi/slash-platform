@@ -55,19 +55,21 @@
         </p>
       {/if}
       <div class='input-grp'>
-        <label for='username'>Username (2 to 15 characters, alphanumeric/underscore)</label>
-        <input bind:value={username} type='text' name='username' placeholder='Username' required>
-      </div>
-      <div class='input-grp'>
-        <label for='name'>Name</label>
-        <input type='text' name='name' placeholder='Name' required>
-      </div>
-      <div class='input-grp'>
-        <label for='email'>Email</label>
-        <input type='email' name='email' placeholder='Email' required>
+        <label for='username'>Team name (2 to 15 characters, alphanumeric/underscore)</label>
+        <input bind:value={username} type='text' name='username' placeholder='Team name' required>
       </div>
       <div class='input-grp'>
         <label for='password'>Password</label>
+        <input type='password' name='password' id='password' placeholder='Password' required>
+      </div>
+      <div class='input-grp'>
+        <label for='house'>House</label>
+        <select name='house' id='house'>
+          <option value='cepheus'>Cepheus</option>
+          <option value='draco'>Draco</option>
+          <option value='orion'>Orion</option>
+          <option value='phoenix'>Phoenix</option>
+        </select>
         <input type='password' name='password' placeholder='Password' required>
       </div>
       <div class="input-grp">

@@ -85,12 +85,12 @@
       </AdminForm>
 
       <AdminForm
-        heading="Get player details"
+        heading="Get team details"
         action="/api/get-player-details"
         buttonValue="Get"
         displayResponse={true}
         displayResponseFormatter={({ player }) => [
-          ["Username", player.username],
+          ["Team name", player.username],
           ["Name", player.name],
           ["Email", player.email],
           ["Level", player.level],
@@ -103,18 +103,18 @@
         ]}
       >
         <div class='input-grp'>
-          <label for=''>Player username</label>
+          <label for=''>Team name</label>
           <input type='text' name='username' placeholder='Username' required>
         </div>
       </AdminForm>
 
       <AdminForm
-        heading="Update player level"
+        heading="Update team level"
         action="/api/update-player-level"
         buttonValue="Update"
       >
         <div class='input-grp'>
-          <label for=''>Player username</label>
+          <label for=''>Team name</label>
           <input type='text' name='username' placeholder='Username' required>
         </div>
         <div class='input-grp'>
@@ -124,7 +124,7 @@
       </AdminForm>
 
       <AdminForm
-        heading="Update player type"
+        heading="Update team type"
         action="/api/update-player-type"
         buttonValue="Update"
       >

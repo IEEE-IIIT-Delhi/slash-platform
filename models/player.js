@@ -6,11 +6,6 @@ const PlayerSchema = new mongoose.Schema({
     type: String,
     unique: true
   },
-  email: {
-    type: String,
-    unique: true
-  },
-  name: String,
   disqualified: {
     type: Boolean,
     default: false
@@ -23,6 +18,7 @@ const PlayerSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  house: String,
   phantom: {
     type: Boolean,
     default: false

@@ -29,12 +29,12 @@
       </div>
 
       <div class="card">
-        <p class='label'>Players per level</p>
+        <p class='label'>Teams per level</p>
         <table>
           <thead>
             <tr>
               <th>Level</th>
-              <th>Players</th>
+              <th>Teams</th>
             </tr>
           </thead>
           {#each data.playersPerLevel as count, level}
@@ -48,7 +48,7 @@
 
       <div class="card">
         <span class="number">{data.playerCount}</span>
-        <p class='label'>Players</p>
+        <p class='label'>Teams</p>
       </div>
 
       <div class="card">
