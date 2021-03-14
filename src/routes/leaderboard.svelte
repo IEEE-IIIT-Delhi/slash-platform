@@ -40,6 +40,7 @@
         <tr>
           <th>Rank</th>
           <th>Team</th>
+          <th>House</th>
           <th>Level</th>
         </tr>
       </thead>
@@ -48,6 +49,7 @@
           <tr>
             <td>{i + 1}</td>
             <td>{entry.username}</td>
+            <td>{entry.house}</td>
             <td>{entry.level}</td>
           </tr>
         {/each}

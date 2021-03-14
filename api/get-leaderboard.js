@@ -22,6 +22,7 @@ export default async (req, res) => {
     }, {
       _id: 0,
       username: 1,
+      house: 1,
       level: 1
     }, {
       sort: {
