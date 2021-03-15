@@ -59,7 +59,7 @@
   {:else}
     <p class='general'>The leaderboard will activate {config.started ? 'soon' : 'once Slash begins'}.</p>
     <p class='general'>Till then, join our
-      <a href="https://discord.gg/ZfU5xE3">Discord server</a>.
+      <a href="https://discord.gg/eV9yQ7Na">Discord server</a>.
     </p>
 
   {/if}
