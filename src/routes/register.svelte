@@ -13,7 +13,7 @@
   let response
   let loading
   let username = ''
-  $: username = username.replace(/[\W]+/g, '').slice(0, 15)
+  $: username = username.replace(/[\W]+/g, '').slice(0, 25)
 
   async function register (event) {
     event.preventDefault()
