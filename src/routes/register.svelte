@@ -55,7 +55,7 @@
         </p>
       {/if}
       <div class='input-grp'>
-        <label for='username'>Team name (2 to 15 characters, alphanumeric/underscore)</label>
+        <label for='username'>Team name (2 to 25 characters, alphanumeric/underscore)</label>
         <input bind:value={username} type='text' name='username' placeholder='Team name' required>
       </div>
       <div class='input-grp'>
