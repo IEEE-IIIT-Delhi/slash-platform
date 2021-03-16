@@ -46,11 +46,11 @@
       </thead>
       <tbody>
         {#each leaderboard as entry, i}
-          {#if entry && entry.house}
+          {#if entry}
             <tr>
               <td>{i + 1}</td>
               <td>{entry.username}</td>
-              <td>{entry.house[0].toUpperCase() + entry.house.slice(1)}</td>
+              <!-- <td>{entry.house[0].toUpperCase() + entry.house.slice(1)}</td> -->
               <td>{entry.level}</td>
             </tr>
           {/if}
