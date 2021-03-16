@@ -40,7 +40,7 @@
         <tr>
           <th>Rank</th>
           <th>Team</th>
-          <th>House</th>
+          <!-- <th>House</th> -->
           <th>Level</th>
         </tr>
       </thead>
