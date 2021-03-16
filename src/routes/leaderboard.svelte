@@ -46,7 +46,7 @@
       </thead>
       <tbody>
         {#each leaderboard as entry, i}
-          {#if entry}
+          {#if entry && entry.house}
             <tr>
               <td>{i + 1}</td>
               <td>{entry.username}</td>
