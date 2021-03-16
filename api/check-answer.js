@@ -54,25 +54,15 @@ export default async (req, res) => {
     })
   }
 
-  // Exceptional level
-  if (level === 9) {
-    if (!timeString.startsWith(answer)) {
-      return res.json({
-        success: false,
-        message: constants.ERR_WRONG_ANS
-      })
-    }
-  } else {
-    // Regular level
-    const { answer: correctAnswer } = await Question.findOne({ level })
-    const hashedAttempt = hash(answer.toLowerCase())
+  // Regular level
+  const { answer: correctAnswer } = await Question.findOne({ level })
+  const hashedAttempt = hash(answer.toLowerCase())
 
-    if (hashedAttempt !== correctAnswer) {
-      return res.json({
-        success: false,
-        message: constants.ERR_WRONG_ANS
-      })
-    }
+  if (hashedAttempt !== correctAnswer) {
+    return res.json({
+      success: false,
+      message: constants.ERR_WRONG_ANS
+    })
   }
 
   // It's correct
