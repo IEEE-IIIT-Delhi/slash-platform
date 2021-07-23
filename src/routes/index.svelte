@@ -1,51 +1,57 @@
 <script context="module">
-  export async function preload (page, session) {
+  export async function preload(page, session) {
     if (!session.user) {
-      this.redirect(302, '/register')
-      return
+      this.redirect(302, "/register");
+      return;
     }
 
     if (session.user.disqualified) {
-      this.redirect(302, '/auth/logout')
-      return
+      this.redirect(302, "/auth/logout");
+      return;
     }
 
     if (session.user.admin) {
-      this.redirect(302, '/admin')
-      return
+      this.redirect(302, "/admin");
+      return;
     }
 
-    const { username, level } = session.user
-    const { data: { config }} = await this.fetch('/api/get-config').then(res => res.json())
+    const { username, level } = session.user;
+    const {
+      data: { config },
+    } = await this.fetch("/api/get-config").then((res) => res.json());
 
     if (!config.started) {
-      return { config, username }
+      return { config, username };
     }
 
-    const { data: { win, question }} = await this.fetch('/api/get-question').then(res => res.json())
-    const { data: { rank }} = await this.fetch('/api/get-player-rank').then(res => res.json())
+    const {
+      data: { win, question },
+    } = await this.fetch("/api/get-question").then((res) => res.json());
+    const {
+      data: { rank },
+    } = await this.fetch("/api/get-player-rank").then((res) => res.json());
 
-    return { config, username, level, win, question, rank }
+    return { config, username, level, win, question, rank };
   }
 </script>
 
 <script>
-  import Nav from '../components/play/Navigation.svelte'
-  import SidePanel from '../components/play/SidePanel.svelte'
-  import Footer from '../components/play/Footer.svelte'
-  import GameArea from '../components/play/GameArea.svelte'
+  import Nav from "../components/play/Navigation.svelte";
+  import SidePanel from "../components/play/SidePanel.svelte";
+  import Footer from "../components/play/Footer.svelte";
+  import GameArea from "../components/play/GameArea.svelte";
 
-  export let config
-  export let username
-  export let level = 0
-  export let win = false
-  export let rank = 0
-  export let question
+  export let config;
+  export let username;
+  export let level = 0;
+  export let win = false;
+  export let rank = 0;
+  export let question;
 
-  let innerWidth
+  let innerWidth;
 
   if (!config.started) {
-    level = rank = '--'
+    level = rank = "--";
   }
 </script>
 
@@ -62,7 +68,7 @@
     <SidePanel {username} {level} {rank} />
   {/if}
 
-  <section id='content'>
+  <section id="content">
     <Nav />
 
     <GameArea {win} {question} {rank} {config} />
@@ -73,7 +79,7 @@
   </section>
 </main>
 
-<style lang='scss'>
+<style lang="scss">
   main {
     display: flex;
     flex: 1;

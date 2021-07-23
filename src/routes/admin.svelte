@@ -1,21 +1,22 @@
 <script context="module">
-  export async function preload (page, session) {
+  export async function preload(page, session) {
     if (!session.user || !session.user.admin) {
-      this.redirect(302, '/')
-      return
+      this.redirect(302, "/");
+      return;
     }
 
-    const { data: { config }} = await this.fetch('/api/get-config')
-      .then(res => res.json())
+    const {
+      data: { config },
+    } = await this.fetch("/api/get-config").then((res) => res.json());
 
-    return { config, superadmin: session.user.superadmin }
+    return { config, superadmin: session.user.superadmin };
   }
 </script>
 
 <script>
-  import AdminForm from '../components/AdminForm.svelte'
-  export let config
-  export let superadmin
+  import AdminForm from "../components/AdminForm.svelte";
+  export let config;
+  export let superadmin;
 </script>
 
 <svelte:head>
@@ -35,17 +36,17 @@
         action="/api/add-question"
         buttonValue="Add"
       >
-        <div class='input-grp'>
-          <label for=''>Level</label>
-          <input type='number' name='level' placeholder='Level' required>
+        <div class="input-grp">
+          <label for="">Level</label>
+          <input type="number" name="level" placeholder="Level" required />
         </div>
-        <div class='input-grp'>
-          <label for=''>Question</label>
-          <textarea name="question" placeholder='Question text' required></textarea>
+        <div class="input-grp">
+          <label for="">Question</label>
+          <textarea name="question" placeholder="Question text" required />
         </div>
-        <div class='input-grp'>
-          <label for=''>Answer</label>
-          <input type='text' name='answer' placeholder='Answer' required>
+        <div class="input-grp">
+          <label for="">Answer</label>
+          <input type="text" name="answer" placeholder="Answer" required />
         </div>
       </AdminForm>
 
@@ -54,17 +55,17 @@
         action="/api/update-question"
         buttonValue="Update"
       >
-        <div class='input-grp'>
-          <label for=''>Level</label>
-          <input type='number' name='level' placeholder='Level' required>
+        <div class="input-grp">
+          <label for="">Level</label>
+          <input type="number" name="level" placeholder="Level" required />
         </div>
-        <div class='input-grp'>
-          <label for=''>Question</label>
-          <textarea name="question" placeholder='Question text' required></textarea>
+        <div class="input-grp">
+          <label for="">Question</label>
+          <textarea name="question" placeholder="Question text" required />
         </div>
-        <div class='input-grp'>
-          <label for=''>Answer</label>
-          <input type='text' name='answer' placeholder='Answer' required>
+        <div class="input-grp">
+          <label for="">Answer</label>
+          <input type="text" name="answer" placeholder="Answer" required />
         </div>
       </AdminForm>
 
@@ -75,22 +76,22 @@
         displayResponse={true}
         displayResponseFormatter={({ question }) => [
           ["Level", question.level],
-          ["Question", question.question]
+          ["Question", question.question],
         ]}
       >
-        <div class='input-grp'>
-          <label for=''>Level</label>
-          <input type='number' name='level' placeholder='Level' required>
+        <div class="input-grp">
+          <label for="">Level</label>
+          <input type="number" name="level" placeholder="Level" required />
         </div>
       </AdminForm>
 
       <AdminForm
-        heading="Get team details"
+        heading="Get player details"
         action="/api/get-player-details"
         buttonValue="Get"
         displayResponse={true}
         displayResponseFormatter={({ player }) => [
-          ["Team name", player.username],
+          ["Player", player.username],
           ["Name", player.name],
           ["Email", player.email],
           ["Level", player.level],
@@ -99,56 +100,56 @@
           ["Disqualified", player.disqualified ? "Yes" : "No"],
           ["Location", `${player.geo.city}, ${player.geo.country}`],
           ["Last level on", new Date(player.lastLevelOn).toLocaleString()],
-          ["Registered on", new Date(player.registrationDate).toLocaleString()]
+          ["Registered on", new Date(player.registrationDate).toLocaleString()],
         ]}
       >
-        <div class='input-grp'>
-          <label for=''>Team name</label>
-          <input type='text' name='username' placeholder='Username' required>
+        <div class="input-grp">
+          <label for="">Player username</label>
+          <input type="text" name="username" placeholder="Username" required />
         </div>
       </AdminForm>
 
       <AdminForm
-        heading="Update team level"
+        heading="Update player level"
         action="/api/update-player-level"
         buttonValue="Update"
       >
-        <div class='input-grp'>
-          <label for=''>Team name</label>
-          <input type='text' name='username' placeholder='Username' required>
+        <div class="input-grp">
+          <label for="">Player</label>
+          <input type="text" name="username" placeholder="Username" required />
         </div>
-        <div class='input-grp'>
-          <label for=''>Level</label>
-          <input type='number' name='newLevel' placeholder='Level' required>
+        <div class="input-grp">
+          <label for="">Level</label>
+          <input type="number" name="newLevel" placeholder="Level" required />
         </div>
       </AdminForm>
 
       <AdminForm
-        heading="Update team type"
+        heading="Update player type"
         action="/api/update-player-type"
         buttonValue="Update"
       >
-        <div class='input-grp'>
-          <label for=''>Username</label>
-          <input type='text' name='username' placeholder='Username' required>
+        <div class="input-grp">
+          <label for="">Username</label>
+          <input type="text" name="username" placeholder="Username" required />
         </div>
-        <div class='input-grp'>
-          <label for=''>Select type</label>
-          <select name='type' required>
-            <option value='disqualified'>Disqualified</option>
-            <option value='phantom'>Phantom</option>
-            <option value='admin'>Admin</option>
+        <div class="input-grp">
+          <label for="">Select type</label>
+          <select name="type" required>
+            <option value="disqualified">Disqualified</option>
+            <option value="phantom">Phantom</option>
+            <option value="admin">Admin</option>
           </select>
         </div>
-        <div class='input-grp'>
-          <label for=''>Set value</label>
-          <div class='radio'>
+        <div class="input-grp">
+          <label for="">Set value</label>
+          <div class="radio">
             <label>
-              <input type='radio' name='value' value='1' required>
+              <input type="radio" name="value" value="1" required />
               True
             </label>
             <label>
-              <input type='radio' name='value' value='0' required>
+              <input type="radio" name="value" value="0" required />
               False
             </label>
           </div>
@@ -160,35 +161,33 @@
         action="/api/clear-cache"
         buttonValue="Clear"
       >
-        <p class='general'>Leave key field empty to flush all cache.</p>
-        <div class='input-grp'>
-          <label for=''>Cache key</label>
-          <input type='text' name='key' placeholder='Cache key'>
+        <p class="general">Leave key field empty to flush all cache.</p>
+        <div class="input-grp">
+          <label for="">Cache key</label>
+          <input type="text" name="key" placeholder="Cache key" />
         </div>
       </AdminForm>
     </div>
 
-    <form class='danger' action="/api/update-config" method="POST">
+    <form class="danger" action="/api/update-config" method="POST">
       {#if !config.started}
-        <input name='action' type="hidden" value='begin'>
-        <button class='green'>Begin Hunt</button>
+        <input name="action" type="hidden" value="begin" />
+        <button class="green">Begin Hunt</button>
       {/if}
 
       {#if config.started && !config.ended}
-        <input name='action' type="hidden" value='end'>
-        <button class='red'>End Hunt</button>
+        <input name="action" type="hidden" value="end" />
+        <button class="red">End Hunt</button>
       {/if}
     </form>
 
-    <form class='danger' action="/api/update-config" method="POST">
+    <form class="danger" action="/api/update-config" method="POST">
       {#if config.showLeaderboard}
-        <input name='action' type="hidden" value='hide-leaderboard'>
-        <button class='red'>Hide leaderboard</button>
-
+        <input name="action" type="hidden" value="hide-leaderboard" />
+        <button class="red">Hide leaderboard</button>
       {:else}
-        <input name='action' type="hidden" value='show-leaderboard'>
-        <button class='green'>Show leaderboard</button>
-
+        <input name="action" type="hidden" value="show-leaderboard" />
+        <button class="green">Show leaderboard</button>
       {/if}
     </form>
   </section>
@@ -213,7 +212,7 @@
       align-items: flex-end;
 
       &:after {
-        content: '';
+        content: "";
         flex: 1;
         height: 5px;
         margin: 0 0 10px 20px;
@@ -229,7 +228,7 @@
       text-decoration: none;
       display: inline-block;
       margin: 1vh 10px 1vh 0;
-      box-shadow: 0 5px 10px rgba(0,0,0,.12);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
     }
 
     .danger {
@@ -243,7 +242,7 @@
         text-decoration: none;
         display: inline-block;
         margin-right: 10px;
-        box-shadow: 0 5px 10px rgba(0,0,0,.12);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
         font-family: Inter;
         border: none;
         font-size: 16px;

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const LogSchema = new mongoose.Schema({
   type: String,
@@ -6,8 +6,8 @@ const LogSchema = new mongoose.Schema({
   value: String,
   time: {
     type: Date,
-    default: Date.now
-  }
-})
+    default: Date.now,
+  },
+});
 
-export default mongoose.model('Log', LogSchema)
+export default mongoose.model("Log", LogSchema);

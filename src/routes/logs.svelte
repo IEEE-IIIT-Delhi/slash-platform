@@ -1,27 +1,29 @@
 <script context="module">
-  export async function preload (page, session) {
+  export async function preload(page, session) {
     if (!session.user || !session.user.admin) {
-      this.redirect(302, '/')
-      return
+      this.redirect(302, "/");
+      return;
     }
 
-    const { data } = await this.fetch('/api/get-logs').then(res => res.json())
-    return { data }
+    const { data } = await this.fetch("/api/get-logs").then((res) =>
+      res.json()
+    );
+    return { data };
   }
 </script>
 
 <script>
-  import { onMount } from 'svelte'
-  export let data
-  let checked = true
+  import { onMount } from "svelte";
+  export let data;
+  let checked = true;
 
-  async function refresh () {
-    ({ data } = await fetch('/api/get-logs').then(res => res.json()))
+  async function refresh() {
+    ({ data } = await fetch("/api/get-logs").then((res) => res.json()));
   }
 
   onMount(() => {
-    window.setInterval(refresh, 3000)
-  })
+    window.setInterval(refresh, 3000);
+  });
 </script>
 
 <svelte:head>
@@ -31,18 +33,21 @@
 <main>
   <section>
     <h1>Logs</h1>
-    <p class='general'>Showing 100 latest log entries. Refreshes every three seconds.</p>
+    <p class="general">
+      Showing 100 latest log entries. Refreshes every three seconds.
+    </p>
 
     <label>
-      <input type='checkbox' bind:checked>
+      <input type="checkbox" bind:checked />
       Show timestamp
     </label>
 
-    <div class='logger'>
+    <div class="logger">
       {#each data.logs as log}
         <code>
-          <span class='time'>{checked ? new Date(log.time).getTime() : ''}</span>
-          <span class='type {log.type}'>[{log.type}]</span>
+          <span class="time">{checked ? new Date(log.time).getTime() : ""}</span
+          >
+          <span class="type {log.type}">[{log.type}]</span>
           {log.key}:
           {log.value}
         </code>
@@ -70,7 +75,7 @@
       align-items: flex-end;
 
       &:after {
-        content: '';
+        content: "";
         flex: 1;
         height: 5px;
         margin: 0 0 10px 20px;

@@ -1,21 +1,21 @@
 <script>
-  export let username
-  export let level
-  export let rank
+  export let username;
+  export let level;
+  export let rank;
 </script>
 
 <aside>
   <a href="/">
-    <img src="/logo.svg" alt="Slash logo">
+    <img src="/logo.svg" alt="Slash logo" />
   </a>
-  <h1 class='level'>Level <span>{level}</span></h1>
+  <h1 class="level">Level <span>{level}</span></h1>
   <div class="bottom">
-    <h2>Team: <span>{username}</span></h2>
+    <h2>Player: <span>{username}</span></h2>
     <h2>Rank: <span>{rank}</span></h2>
   </div>
 </aside>
 
-<style lang='scss'>
+<style lang="scss">
   aside {
     background: #111;
     width: 300px;
@@ -25,15 +25,15 @@
     align-items: center;
     justify-content: space-between;
     padding: 7.5vh 0 3vh;
-    box-shadow: 5px 0 10px rgba(0,0,0,0.12);
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.12);
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       height: 100%;
       top: 0;
       width: 100%;
-      background-image: url('/paradoxf.png');
+      background-image: url("/paradoxf.png");
       background-size: cover;
       background-position: center;
       opacity: 0.05;

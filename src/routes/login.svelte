@@ -1,39 +1,39 @@
 <script context="module">
-  export async function preload (page, session) {
+  export async function preload(page, session) {
     if (session.user) {
-      this.redirect(302, '/')
-      return
+      this.redirect(302, "/");
+      return;
     }
   }
 </script>
 
 <script>
-  import { slide } from 'svelte/transition'
+  import { slide } from "svelte/transition";
 
-  let response
-  let loading
+  let response;
+  let loading;
 
-  async function login (event) {
-    event.preventDefault()
+  async function login(event) {
+    event.preventDefault();
 
-    const formData = new FormData(event.target)
-    const formDataJson = JSON.stringify(Object.fromEntries(formData))
+    const formData = new FormData(event.target);
+    const formDataJson = JSON.stringify(Object.fromEntries(formData));
 
-    loading = true
+    loading = true;
 
-    response = await fetch('/auth/login', {
-      method: 'POST',
+    response = await fetch("/auth/login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: formDataJson
-    }).then(res => res.json())
+      body: formDataJson,
+    }).then((res) => res.json());
 
-    loading = false
+    loading = false;
 
     if (response.success) {
-      await new Promise(r => setTimeout(r, 500))
-      window.location.reload()
+      await new Promise((r) => setTimeout(r, 500));
+      window.location.reload();
     }
   }
 </script>
@@ -46,28 +46,33 @@
   <section>
     <h1>Login</h1>
     <p>Login or <a href="/register">Register</a> to start playing.</p>
-    <form on:submit={login} method='POST'>
+    <form on:submit={login} method="POST">
       {#if response}
         <p
           transition:slide={{ duration: 200 }}
-          class='message'
+          class="message"
           class:error={!response.success}
         >
           {response.message}
         </p>
       {/if}
-      <div class='input-grp'>
-        <label for='username'>Team name</label>
-        <input type='text' name='username' placeholder='Team name' required>
+      <div class="input-grp">
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="Username" required />
       </div>
-      <div class='input-grp'>
-        <label for='password'>Password</label>
-        <input type='password' name='password' placeholder='Password' required>
+      <div class="input-grp">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
       </div>
       <div class="input-grp">
         <button>
           {#if loading}
-            <img src="/loading.svg" alt="">
+            <img src="/loading.svg" alt="" />
           {:else}
             Enter
           {/if}

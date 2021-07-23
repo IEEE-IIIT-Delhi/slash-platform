@@ -1,18 +1,20 @@
 <script context="module">
-  export async function preload (page, session) {
+  export async function preload(page, session) {
     if (!session.user || !session.user.admin) {
-      this.redirect(302, '/')
-      return
+      this.redirect(302, "/");
+      return;
     }
 
-    const { data } = await this.fetch('/api/get-stats').then(res => res.json())
-    return { data }
+    const { data } = await this.fetch("/api/get-stats").then((res) =>
+      res.json()
+    );
+    return { data };
   }
 </script>
 
 <script>
-  import { format } from 'timeago.js'
-  export let data
+  import { format } from "timeago.js";
+  export let data;
 </script>
 
 <svelte:head>
@@ -25,16 +27,16 @@
     <div class="gallery">
       <div class="card">
         <span class="number">{data.answerAttempts}</span>
-        <p class='label'>Answer attempts</p>
+        <p class="label">Answer attempts</p>
       </div>
 
       <div class="card">
-        <p class='label'>Teams per level</p>
+        <p class="label">Players per level</p>
         <table>
           <thead>
             <tr>
               <th>Level</th>
-              <th>Teams</th>
+              <th>Players</th>
             </tr>
           </thead>
           {#each data.playersPerLevel as count, level}
@@ -48,21 +50,21 @@
 
       <div class="card">
         <span class="number">{data.playerCount}</span>
-        <p class='label'>Teams</p>
+        <p class="label">Players</p>
       </div>
 
       <div class="card">
         <span class="number">{data.adminCount}</span>
-        <p class='label'>Admins</p>
+        <p class="label">Admins</p>
       </div>
 
       <div class="card">
         <span class="number">{data.geo.countries.length}</span>
-        <p class='label'>Countries</p>
+        <p class="label">Countries</p>
         <div class="tags-container">
           <div class="tags">
             {#each data.geo.countries as tag}
-              <span class='tag'>{tag}</span>
+              <span class="tag">{tag}</span>
             {/each}
           </div>
         </div>
@@ -70,18 +72,18 @@
 
       <div class="card">
         <span class="number">{data.geo.cities.length}</span>
-        <p class='label'>Cities</p>
+        <p class="label">Cities</p>
         <div class="tags-container">
           <div class="tags">
             {#each data.geo.cities as tag}
-              <span class='tag'>{tag}</span>
+              <span class="tag">{tag}</span>
             {/each}
           </div>
         </div>
       </div>
 
       <div class="card">
-        <p class='label'>Last 10 registrants</p>
+        <p class="label">Last 10 registrants</p>
         <table>
           {#each data.lastTenRegistrants as entry}
             <tr>
@@ -114,7 +116,7 @@
       align-items: flex-end;
 
       &:after {
-        content: '';
+        content: "";
         flex: 1;
         height: 5px;
         margin: 0 0 10px 20px;
@@ -132,7 +134,7 @@
       background: #1f2122;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, .12);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
       flex: 1;
       min-width: 250px;
       margin: 10px;

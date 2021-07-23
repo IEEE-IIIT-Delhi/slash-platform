@@ -1,15 +1,12 @@
-const sveltePreprocess = require('svelte-preprocess')
+const sveltePreprocess = require("svelte-preprocess");
 
 module.exports = {
   preprocess: sveltePreprocess({
     scss: {
-      includePaths: ['src']
+      includePaths: ["src"],
     },
     postcss: {
-      plugins: [
-        require('autoprefixer'),
-        require('cssnano')
-      ]
-    }
-  })
-}
+      plugins: [require("autoprefixer"), require("cssnano")],
+    },
+  }),
+};

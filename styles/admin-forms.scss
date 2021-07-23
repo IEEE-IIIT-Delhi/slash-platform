@@ -1,7 +1,7 @@
 form.admin {
   padding: 5px 20px;
   border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, .12);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
   min-width: 300px;
   margin: 20px;
   flex: 1;
@@ -42,7 +42,7 @@ form.admin {
       font-family: Inter, sans-serif;
       font-size: 18px;
       color: #bbb;
-      transition: all .1s linear;
+      transition: all 0.1s linear;
 
       &:focus,
       &:active {
@@ -57,7 +57,7 @@ form.admin {
     }
 
     button {
-      box-shadow: 0 10px 20px rgba(0, 0, 0, .12);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
       border: none;
       width: fit-content;
       cursor: pointer;

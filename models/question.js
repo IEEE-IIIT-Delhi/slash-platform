@@ -1,12 +1,12 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const QuestionSchema = new mongoose.Schema({
   level: {
     type: Number,
-    unique: true
+    unique: true,
   },
   question: String,
-  answer: String
-})
+  answer: String,
+});
 
-export default mongoose.model('Question', QuestionSchema)
+export default mongoose.model("Question", QuestionSchema);

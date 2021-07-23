@@ -1,16 +1,16 @@
 <script>
-  export let username
-  export let level
-  export let rank
+  export let username;
+  export let level;
+  export let rank;
 </script>
 
 <footer>
-  <h2 class='level'>Level <span>{level}</span></h2>
+  <h2 class="level">Level <span>{level}</span></h2>
   <h3><span>{username}</span></h3>
   <h3>Rank: <span>{rank}</span></h3>
 </footer>
 
-<style lang='scss'>
+<style lang="scss">
   footer {
     position: absolute;
     bottom: 0;
@@ -18,7 +18,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 -5px 10px rgba(0,0,0,0.12);
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.12);
     background: #111;
     padding: 10px 20px;
 

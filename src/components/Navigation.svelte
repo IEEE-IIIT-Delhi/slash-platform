@@ -1,31 +1,38 @@
 <script>
-  import { stores } from '@sapper/app'
-  import { slide } from 'svelte/transition'
-  import Chevron from './Chevron.svelte'
+  import { stores } from "@sapper/app";
+  import { slide } from "svelte/transition";
+  import Chevron from "./Chevron.svelte";
 
-  const { session } = stores()
-  let showMenu = false
+  const { session } = stores();
+  let showMenu = false;
 
-  const toggleMenu = () => showMenu = !showMenu
+  const toggleMenu = () => (showMenu = !showMenu);
 </script>
 
 <header>
   <nav>
     <a href="/">
-      <img src="/logo.svg" alt="Slash logo">
+      <img src="/logo.svg" alt="Slash logo" />
     </a>
 
     <!-- Desktop view -->
-    <ul class='main-list'>
+    <ul class="main-list">
       {#if $session.user}
-        <li><a href="/">{$session.user.admin ? 'Admin' : 'Play'}</a></li>
+        <li><a href="/">{$session.user.admin ? "Admin" : "Play"}</a></li>
       {/if}
 
       <li><a href="/leaderboard">Leaderboard</a></li>
-      <li><a href="https://discord.gg/eV9yQ7Na" target="_blank" rel="noopener">Discord</a></li>
+      <li>
+        <a href="https://discord.gg/eV9yQ7Na" target="_blank" rel="noopener"
+          >Discord</a
+        >
+      </li>
 
-      {#if $session.user} <li><a href="/auth/logout">Logout</a></li>
-      {:else} <li><a href="/login">Login</a></li> {/if}
+      {#if $session.user}
+        <li><a href="/auth/logout">Logout</a></li>
+      {:else}
+        <li><a href="/login">Login</a></li>
+      {/if}
     </ul>
 
     <!-- Mobile view -->
@@ -35,21 +42,34 @@
       aria-label="Toggle menu"
       on:click={toggleMenu}
     >
-      <Chevron strokeColor={'#ff3458d1'} open={showMenu}/>
+      <Chevron strokeColor={"#ff3458d1"} open={showMenu} />
     </button>
 
     {#if showMenu}
-      <ul class='hidden-list' transition:slide={{ duration: 200 }}>
+      <ul class="hidden-list" transition:slide={{ duration: 200 }}>
         {#if $session.user}
-          <li><a on:click={toggleMenu} href="/">{$session.user.admin ? 'Admin' : 'Play'}</a></li>
+          <li>
+            <a on:click={toggleMenu} href="/"
+              >{$session.user.admin ? "Admin" : "Play"}</a
+            >
+          </li>
         {/if}
 
         <li><a on:click={toggleMenu} href="/leaderboard">Leaderboard</a></li>
-        <li><a href="https://discord.gg/eV9yQ7Na" target="_blank" rel="noopener">Discord</a></li>
-        <li><a href="https://slash.win" target="_blank" rel="noopener">Home</a></li>
+        <li>
+          <a href="https://discord.gg/eV9yQ7Na" target="_blank" rel="noopener"
+            >Discord</a
+          >
+        </li>
+        <li>
+          <a href="https://slash.win" target="_blank" rel="noopener">Home</a>
+        </li>
 
-        {#if $session.user} <li><a href="/auth/logout">Logout</a></li>
-        {:else} <li><a href="/login">Login</a></li> {/if}
+        {#if $session.user}
+          <li><a href="/auth/logout">Logout</a></li>
+        {:else}
+          <li><a href="/login">Login</a></li>
+        {/if}
       </ul>
     {/if}
   </nav>
@@ -76,7 +96,7 @@
     padding: 20px;
     background: #1f2122;
     border-radius: 0 0 10px 10px;
-    box-shadow: 0 5px 10px -5px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
 
     @media (max-width: 800px) {
       border-radius: 0;

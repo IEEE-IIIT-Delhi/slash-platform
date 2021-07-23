@@ -1,26 +1,30 @@
-<script context='module'>
-  export async function preload (page, session) {
-    const { data: { config }} = await this.fetch('/api/get-config').then(res => res.json())
+<script context="module">
+  export async function preload(page, session) {
+    const {
+      data: { config },
+    } = await this.fetch("/api/get-config").then((res) => res.json());
     if (!config.showLeaderboard && !(session.user && session.user.admin)) {
-      return { leaderboard: [], config }
+      return { leaderboard: [], config };
     }
 
-    const res = await this.fetch('/api/get-leaderboard')
-    const { data: { leaderboard } } = await res.json()
-    return { leaderboard, config }
+    const res = await this.fetch("/api/get-leaderboard");
+    const {
+      data: { leaderboard },
+    } = await res.json();
+    return { leaderboard, config };
   }
 </script>
 
 <script>
-  import { MAX_LEADERBOARD_PLAYERS } from '../constants'
-  import { stores } from '@sapper/app'
+  import { MAX_LEADERBOARD_PLAYERS } from "../constants";
+  import { stores } from "@sapper/app";
 
-  export let leaderboard
-  export let config
+  export let leaderboard;
+  export let config;
 
-  const { session } = stores()
-  const { user } = $session
-  const isAdmin = user && user.admin
+  const { session } = stores();
+  const { user } = $session;
+  const isAdmin = user && user.admin;
 </script>
 
 <svelte:head>
@@ -32,15 +36,16 @@
 
   {#if config.showLeaderboard || isAdmin}
     {#if !config.ended && !isAdmin}
-      <p class='general'>The leaderboard is displaying only the top {MAX_LEADERBOARD_PLAYERS} teams.</p>
+      <p class="general">
+        The leaderboard is displaying only the top {MAX_LEADERBOARD_PLAYERS} players.
+      </p>
     {/if}
 
     <table>
       <thead>
         <tr>
           <th>Rank</th>
-          <th>Team</th>
-          <!-- <th>House</th> -->
+          <th>Player</th>
           <th>Level</th>
         </tr>
       </thead>
@@ -50,20 +55,22 @@
             <tr>
               <td>{i + 1}</td>
               <td>{entry.username}</td>
-              <!-- <td>{entry.house[0].toUpperCase() + entry.house.slice(1)}</td> -->
               <td>{entry.level}</td>
             </tr>
           {/if}
         {/each}
       </tbody>
     </table>
-
   {:else}
-    <p class='general'>The leaderboard will activate {config.started ? 'soon' : 'once Slash begins'}.</p>
-    <p class='general'>Till then, join our
+    <p class="general">
+      The leaderboard will activate {config.started
+        ? "soon"
+        : "once Slash begins"}.
+    </p>
+    <p class="general">
+      Till then, join our
       <a href="https://discord.gg/eV9yQ7Na">Discord server</a>.
     </p>
-
   {/if}
 </section>
 
@@ -80,7 +87,7 @@
       align-items: flex-end;
 
       &:after {
-        content: '';
+        content: "";
         flex: 1;
         height: 5px;
         margin: 0 0 10px 20px;
@@ -135,7 +142,8 @@
         text-align: center;
       }
 
-      th, td {
+      th,
+      td {
         white-space: nowrap;
       }
     }

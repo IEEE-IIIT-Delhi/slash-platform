@@ -12,7 +12,7 @@ section {
     align-items: flex-end;
 
     &:after {
-      content: '';
+      content: "";
       flex: 1;
       height: 5px;
       margin: 0 0 10px 20px;
@@ -34,7 +34,7 @@ section {
 form {
   padding: 5px 20px;
   border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, .12);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
   width: 100%;
   max-width: 400px;
   margin: 8vh auto 0;
@@ -81,7 +81,7 @@ form {
       font-family: Inter, sans-serif;
       font-size: 18px;
       color: #bbb;
-      transition: all .1s linear;
+      transition: all 0.1s linear;
 
       &:focus,
       &:active {

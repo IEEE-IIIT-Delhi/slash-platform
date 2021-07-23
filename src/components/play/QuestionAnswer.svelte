@@ -1,76 +1,75 @@
 <script>
-  import { fade } from 'svelte/transition'
-  export let question
+  import { fade } from "svelte/transition";
+  export let question;
 
-  const states = { STEADY: 0, LOADING: 1, WRONG: 2, RIGHT: 3 }
-  let state = states.STEADY
-  let buttonText = 'Check'
-  let answer = ''
+  const states = { STEADY: 0, LOADING: 1, WRONG: 2, RIGHT: 3 };
+  let state = states.STEADY;
+  let buttonText = "Check";
+  let answer = "";
 
-  $: answer = answer.replace(/[\s]+/g, '').toLowerCase()
+  $: answer = answer.replace(/[\s]+/g, "").toLowerCase();
   $: buttonText =
-    state === states.RIGHT ? 'Correct!' :
-    state === states.WRONG ? 'Nope!' : 'Check'
+    state === states.RIGHT
+      ? "Correct!"
+      : state === states.WRONG
+      ? "Nope!"
+      : "Check";
 
-  const wait = async ms => await new Promise(r => setTimeout(r, ms))
+  const wait = async (ms) => await new Promise((r) => setTimeout(r, ms));
 
-  async function checkAnswer (event) {
-    event.preventDefault()
+  async function checkAnswer(event) {
+    event.preventDefault();
 
     if (state === states.LOADING) {
-      return
+      return;
     }
 
-    state = states.LOADING
-    const res = await fetch('/api/check-answer', {
-      method: 'POST',
+    state = states.LOADING;
+    const res = await fetch("/api/check-answer", {
+      method: "POST",
       body: JSON.stringify({
         answer,
-        timeString: new Date().toLocaleTimeString()
+        timeString: new Date().toLocaleTimeString(),
       }),
       headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+        "Content-Type": "application/json",
+      },
+    });
 
-    const { success, reload } = await res.json()
-    state = states.STEADY
+    const { success, reload } = await res.json();
+    state = states.STEADY;
 
     if (reload) {
-      return window.location.reload()
+      return window.location.reload();
     }
 
     if (success) {
-      state = states.RIGHT
-      await wait(1000)
-      window.location.reload()
+      state = states.RIGHT;
+      await wait(1000);
+      window.location.reload();
     } else {
-      state = states.WRONG
-      await wait(1000)
-      state = states.STEADY
+      state = states.WRONG;
+      await wait(1000);
+      state = states.STEADY;
     }
   }
 </script>
 
-<p class='question-text'>{@html question}</p>
+<p class="question-text">{@html question}</p>
 
-<form
-  class="state-{state}"
-  on:submit={checkAnswer}
-  method='POST'
->
+<form class="state-{state}" on:submit={checkAnswer} method="POST">
   <div class="input-container">
     <input
-      type='text'
-      name='answer'
-      placeholder='Answer'
+      type="text"
+      name="answer"
+      placeholder="Answer"
       bind:value={answer}
       required
-    >
+    />
   </div>
   <button>
     {#if state === states.LOADING}
-      <img src="/loading.svg" alt="">
+      <img src="/loading.svg" alt="" />
     {:else}
       <span in:fade={{ duration: 200 }}>
         {buttonText}
@@ -79,7 +78,7 @@
   </button>
 </form>
 
-<style lang='scss'>
+<style lang="scss">
   p.question-text {
     font-size: 18px;
     line-height: 1.5;
@@ -132,7 +131,7 @@
       font-family: Inter, sans-serif;
       font-size: 18px;
       color: #bbb;
-      transition: all .1s linear;
+      transition: all 0.1s linear;
 
       &:focus,
       &:active {

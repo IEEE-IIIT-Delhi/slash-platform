@@ -1,10 +1,10 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const ConfigSchema = new mongoose.Schema({
   started: Boolean,
   showLeaderboard: Boolean,
   ended: Boolean,
-  startDate: Date
-})
+  startDate: Date,
+});
 
-export default mongoose.model('Config', ConfigSchema, 'config')
+export default mongoose.model("Config", ConfigSchema, "config");
