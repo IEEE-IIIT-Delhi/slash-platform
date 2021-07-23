@@ -1,22 +1,26 @@
 <script>
-  import { slide } from 'svelte/transition'
-  import Chevron from '../Chevron.svelte'
+  import { slide } from "svelte/transition";
+  import Chevron from "../Chevron.svelte";
 
-  let showMenu = false
+  let showMenu = false;
 
-  const toggleMenu = () => showMenu = !showMenu
+  const toggleMenu = () => (showMenu = !showMenu);
 </script>
 
 <header>
   <nav>
-    <a class='header' href="/">
-      <img src="/logo.svg" alt="Slash logo">
+    <a class="header" href="/">
+      <img src="/logo.svg" alt="Slash logo" />
     </a>
 
     <!-- Desktop view -->
-    <ul class='main-list'>
+    <ul class="main-list">
       <li><a href="/leaderboard">Leaderboard</a></li>
-      <li><a href="https://discord.gg/eV9yQ7Na" target="_blank" rel="noopener">Discord</a></li>
+      <li>
+        <a href="https://discord.gg/D55mYYeUny" target="_blank" rel="noopener"
+          >Discord</a
+        >
+      </li>
       <li><a href="/auth/logout">Logout</a></li>
     </ul>
 
@@ -27,13 +31,17 @@
       aria-label="Toggle menu"
       on:click={toggleMenu}
     >
-      <Chevron strokeColor={'#ff3458d1'} open={showMenu}/>
+      <Chevron strokeColor={"#ff3458d1"} open={showMenu} />
     </button>
 
     {#if showMenu}
-      <ul class='hidden-list' transition:slide={{ duration: 200 }}>
+      <ul class="hidden-list" transition:slide={{ duration: 200 }}>
         <li><a on:click={toggleMenu} href="/leaderboard">Leaderboard</a></li>
-        <li><a href="https://discord.gg/eV9yQ7Na" target="_blank" rel="noopener">Discord</a></li>
+        <li>
+          <a href="https://discord.gg/D55mYYeUny" target="_blank" rel="noopener"
+            >Discord</a
+          >
+        </li>
         <li><a href="/auth/logout">Logout</a></li>
       </ul>
     {/if}
@@ -59,7 +67,7 @@
     overflow: hidden;
     align-items: center;
     padding: 20px;
-    box-shadow: 0 5px 10px -5px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2);
 
     img {
       height: 30px;

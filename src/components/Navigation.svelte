@@ -23,7 +23,7 @@
 
       <li><a href="/leaderboard">Leaderboard</a></li>
       <li>
-        <a href="https://discord.gg/eV9yQ7Na" target="_blank" rel="noopener"
+        <a href="https://discord.gg/D55mYYeUny" target="_blank" rel="noopener"
           >Discord</a
         >
       </li>
@@ -57,7 +57,7 @@
 
         <li><a on:click={toggleMenu} href="/leaderboard">Leaderboard</a></li>
         <li>
-          <a href="https://discord.gg/eV9yQ7Na" target="_blank" rel="noopener"
+          <a href="https://discord.gg/D55mYYeUny" target="_blank" rel="noopener"
             >Discord</a
           >
         </li>
