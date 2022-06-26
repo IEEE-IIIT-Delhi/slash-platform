@@ -38,6 +38,7 @@ export default async (req, res) => {
     data: {
       win: false,
       question: req.user.admin ? question : question.question,
+      img: req.user.admin ? question : question.img
     },
   });
 };

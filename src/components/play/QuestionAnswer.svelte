@@ -1,6 +1,7 @@
 <script>
   import { fade } from "svelte/transition";
   export let question;
+  export let img;
 
   const states = { STEADY: 0, LOADING: 1, WRONG: 2, RIGHT: 3 };
   let state = states.STEADY;
@@ -55,6 +56,7 @@
   }
 </script>
 
+<img src={img} alt="">
 <p class="question-text">{@html question}</p>
 
 <form class="state-{state}" on:submit={checkAnswer} method="POST">
@@ -98,6 +100,10 @@
 
   :global(p.question-text pre) {
     overflow-x: auto;
+  }
+
+  img{
+    height: 35vh
   }
 
   form {

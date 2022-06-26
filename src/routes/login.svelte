@@ -45,7 +45,8 @@
 <main>
   <section>
     <h1>Login</h1>
-    <p>Login or <a href="/register">Register</a> to start playing.</p>
+    <p>We are looking for highly intelligent individuals. To find them, we have devised a test. There is a path of hurdles you must overcome, and it will lead you on the road to finding us. We look forward to meeting the few that will make it all the way through. Good luck.</p>
+    
     <form on:submit={login} method="POST">
       {#if response}
         <p
@@ -79,6 +80,7 @@
         </button>
       </div>
     </form>
+    <p>Login or <a href="/register">Register</a> to start playing.</p>
   </section>
 </main>
 
@@ -89,5 +91,15 @@
     flex: 1;
     display: flex;
     justify-content: center;
+  }
+  
+  form {
+  padding: 5px 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  max-width: 400px;
+  margin: 2vh auto;
+  background: #1f2122;
   }
 </style>

@@ -25,13 +25,13 @@
     }
 
     const {
-      data: { win, question },
+      data: { win, question, img },
     } = await this.fetch("/api/get-question").then((res) => res.json());
     const {
       data: { rank },
     } = await this.fetch("/api/get-player-rank").then((res) => res.json());
 
-    return { config, username, level, win, question, rank };
+    return { config, username, level, win, question, img, rank };
   }
 </script>
 
@@ -47,6 +47,7 @@
   export let win = false;
   export let rank = 0;
   export let question;
+  export let img;
 
   let innerWidth;
 
@@ -71,7 +72,7 @@
   <section id="content">
     <Nav />
 
-    <GameArea {win} {question} {rank} {config} />
+    <GameArea {win} {question} {img} {rank} {config} />
 
     {#if innerWidth <= 800}
       <Footer {username} {level} {rank} />

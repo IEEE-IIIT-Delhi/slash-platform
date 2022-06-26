@@ -45,6 +45,10 @@
           <textarea name="question" placeholder="Question text" required />
         </div>
         <div class="input-grp">
+          <label for="">Image Link (Optional)</label>
+          <textarea name="img" placeholder="Image Link" />
+        </div>
+        <div class="input-grp">
           <label for="">Answer</label>
           <input type="text" name="answer" placeholder="Answer" required />
         </div>
@@ -64,6 +68,10 @@
           <textarea name="question" placeholder="Question text" required />
         </div>
         <div class="input-grp">
+          <label for="">Image Link (Optional)</label>
+          <textarea name="img" placeholder="Image Link" required />
+        </div>
+        <div class="input-grp">
           <label for="">Answer</label>
           <input type="text" name="answer" placeholder="Answer" required />
         </div>
@@ -77,6 +85,7 @@
         displayResponseFormatter={({ question }) => [
           ["Level", question.level],
           ["Question", question.question],
+          ["Image", question.img],
         ]}
       >
         <div class="input-grp">
@@ -98,7 +107,6 @@
           ["Admin", player.admin ? "Yes" : "No"],
           ["Phantom", player.phantom ? "Yes" : "No"],
           ["Disqualified", player.disqualified ? "Yes" : "No"],
-          ["Location", `${player.geo.city}, ${player.geo.country}`],
           ["Last level on", new Date(player.lastLevelOn).toLocaleString()],
           ["Registered on", new Date(player.registrationDate).toLocaleString()],
         ]}

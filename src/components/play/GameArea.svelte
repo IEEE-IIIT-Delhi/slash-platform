@@ -4,6 +4,7 @@
 
   export let win;
   export let question;
+  export let img;
   export let rank;
   export let config;
 </script>
@@ -40,7 +41,7 @@
       </p>
     {:else}
       <h1>Question</h1>
-      <QuestionAnswer {question} />
+      <QuestionAnswer {question} {img} />
     {/if}
   </div>
 </section>

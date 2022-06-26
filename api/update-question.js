@@ -11,7 +11,7 @@ export default async (req, res) => {
     });
   }
 
-  const { level, question: questionText, answer } = req.body;
+  const { level, question: questionText, img, answer } = req.body;
   const question = await Question.findOne({ level });
 
   if (!question) {
@@ -22,6 +22,7 @@ export default async (req, res) => {
   }
 
   question.question = questionText;
+  question.img = img;
   question.answer = hash(answer.replace(/[\s]+/g, "").toLowerCase());
   await question.save();
 

@@ -6,6 +6,7 @@ const QuestionSchema = new mongoose.Schema({
     unique: true,
   },
   question: String,
+  img: String,
   answer: String,
 });
 
