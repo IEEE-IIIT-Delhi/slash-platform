@@ -53,7 +53,7 @@
         {#each leaderboard as entry, i}
           {#if entry}
             <tr>
-              <td>{i + 1}</td>
+              <td>{String(i + 1).padStart(3, '0')}</td>
               <td>{entry.username}</td>
               <td>{entry.level}</td>
             </tr>
