@@ -20,7 +20,7 @@
 </script>
 
 <svelte:head>
-  <title>Admin // Slash</title>
+  <title>Admin // {"<back\\slash>"}</title>
 </svelte:head>
 
 <main>

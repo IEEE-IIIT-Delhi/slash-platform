@@ -11,9 +11,11 @@
   <h1 class="level">Level <span>{level}</span></h1>
   <div class="bottom">
     <h2>Player: <span>{username}</span></h2>
-    <h2>Rank: <span>{rank}</span></h2>
+    <h2>Rank: <span>{rank}</span></h2> 
+    <div class="hidden">{level===8 ? "ya win" : ""}</div>
   </div>
 </aside>
+
 
 <style lang="scss">
   aside {
@@ -51,6 +53,10 @@
       span {
         font-weight: 900;
       }
+    }
+    
+    .hidden{
+      display: none;
     }
 
     .bottom {
