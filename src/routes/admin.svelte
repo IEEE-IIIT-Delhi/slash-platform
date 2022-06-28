@@ -69,7 +69,7 @@
         </div>
         <div class="input-grp">
           <label for="">Image Link (Optional)</label>
-          <textarea name="img" placeholder="Image Link" required />
+          <textarea name="img" placeholder="Image Link" />
         </div>
         <div class="input-grp">
           <label for="">Answer</label>

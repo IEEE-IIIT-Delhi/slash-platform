@@ -56,7 +56,7 @@
   }
 </script>
 
-<img src={img} alt="">
+<img class='{img ? "nice" : "hidden"}' src={img} alt="">
 <p class="question-text">{@html question}</p>
 
 <form class="state-{state}" on:submit={checkAnswer} method="POST">
@@ -104,6 +104,10 @@
 
   img{
     height: 35vh
+  }
+
+  .hidden{
+    display: none;
   }
 
   form {
