@@ -42,7 +42,7 @@
         </div>
         <div class="input-grp">
           <label for="">Question</label>
-          <textarea name="question" placeholder="Question text" required />
+          <textarea name="question" placeholder="Question text" />
         </div>
         <div class="input-grp">
           <label for="">Image Link (Optional)</label>
@@ -65,7 +65,7 @@
         </div>
         <div class="input-grp">
           <label for="">Question</label>
-          <textarea name="question" placeholder="Question text" required />
+          <textarea name="question" placeholder="Question text" />
         </div>
         <div class="input-grp">
           <label for="">Image Link (Optional)</label>
