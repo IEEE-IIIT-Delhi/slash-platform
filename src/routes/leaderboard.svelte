@@ -55,7 +55,7 @@
             <tr>
               <td>{String(i + 1).padStart(3, '0')}</td>
               <td>{entry.username}</td>
-              <td>{entry.level}</td>
+              <td>{15 - entry.level}</td>
             </tr>
           {/if}
         {/each}
