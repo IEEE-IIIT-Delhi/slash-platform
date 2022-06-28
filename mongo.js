@@ -8,8 +8,9 @@ db.config.insert({
   started: false,
   showLeaderboard: false,
   ended: false,
-  startDate: new Date(2022, 5, 28).setHours(22)
+  startDate: new Date(2022, 5, 28).setHours(17, 30)
 })
 
 //Set Admin and super admin details
 db.players.update({"username" : "superadmin"}, {$set: {"superadmin" : true,"admin": true}})
+ 
