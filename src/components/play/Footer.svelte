@@ -5,9 +5,9 @@
 </script>
 
 <footer>
-  <h2 class="level">Level <span>{level}</span></h2>
+  <h2 class="level">Level <span>{15 - level}</span></h2>
   <h3><span>{username}</span></h3>
-  <h3>Rank: <span>{rank}</span></h3>
+  <h3>Rank: <span>{String(rank).padStart(3, '0')}</span></h3>
 </footer>
 
 <style lang="scss">
