@@ -9,7 +9,7 @@
       data: { config },
     } = await this.fetch("/api/get-config").then((res) => res.json());
 
-    return { config, superadmin: session.user.superadmin };
+    return { config, superadmin: session.user.superadmin, admin: session.user.admin };
   }
 </script>
 
@@ -17,6 +17,7 @@
   import AdminForm from "../components/AdminForm.svelte";
   export let config;
   export let superadmin;
+  export let admin;
 </script>
 
 <svelte:head>
@@ -28,7 +29,7 @@
     <h1>Admin Panel</h1>
 
     <a href="/stats">View statistics</a>
-    {#if superadmin} <a href="/logs">View logs</a> {/if}
+    {#if (admin || superadmin)} <a href="/logs">View logs</a> {/if}
 
     <div class="forms">
       <AdminForm
