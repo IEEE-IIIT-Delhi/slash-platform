@@ -39,7 +39,7 @@
 </script>
 
 <svelte:head>
-  <title>Login // Slash</title>
+  <title>Login // {"<back\\slash>"}</title>
 </svelte:head>
 
 <main>

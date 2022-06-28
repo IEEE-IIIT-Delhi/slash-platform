@@ -28,7 +28,7 @@
 </script>
 
 <svelte:head>
-  <title>Leaderboard // Slash</title>
+  <title>Leaderboard // {"<back\\slash>"}</title>
 </svelte:head>
 
 <section>

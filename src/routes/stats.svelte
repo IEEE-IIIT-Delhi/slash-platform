@@ -18,7 +18,7 @@
 </script>
 
 <svelte:head>
-  <title>Stats // Slash</title>
+  <title>Stats // {"<back\\slash>"}</title>
 </svelte:head>
 
 <main>

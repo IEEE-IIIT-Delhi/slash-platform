@@ -27,7 +27,7 @@
 </script>
 
 <svelte:head>
-  <title>Logs // Slash</title>
+  <title>Logs // {"<back\\slash>"}</title>
 </svelte:head>
 
 <main>
