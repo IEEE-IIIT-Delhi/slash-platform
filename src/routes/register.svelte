@@ -40,6 +40,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Register // {"<back\\slash>"}</title>
+</svelte:head>
+
 <main>
   <section>
     <h1>Register</h1>
