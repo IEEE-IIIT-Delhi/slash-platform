@@ -8,14 +8,12 @@
   <a href="/">
     <img src="/logo.svg" alt="Slash logo" />
   </a>
-  <h1 class="level">Level <span>{15 - level}</span></h1>
+  <h1 class="level">Level <span>{level}</span></h1>
   <div class="bottom">
     <h2>Player: <span>{username}</span></h2>
-    <h2>Rank: <span>{String(rank).padStart(3, '0')}</span></h2> 
-    <div class="hidden">{level===7 ? "ya win" : ""}</div>
+    <h2>Rank: <span>{rank}</span></h2>
   </div>
 </aside>
-
 
 <style lang="scss">
   aside {
@@ -53,10 +51,6 @@
       span {
         font-weight: 900;
       }
-    }
-    
-    .hidden{
-      display: none;
     }
 
     .bottom {

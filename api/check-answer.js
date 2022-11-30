@@ -80,7 +80,7 @@ export default async (req, res) => {
     if (leaderboard.length < 24) {
       playerName = 'nobody'
     } else {
-      playerName = leaderboard[23].username.replace(/[\s]+/g, "").toLowerCase()
+      playerName = leaderboard[23].username.replace(/[\s]+/g, '').toLowerCase()
     }
     if (!(playerName === answer)) {
       return res.json({

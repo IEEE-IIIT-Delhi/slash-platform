@@ -28,7 +28,7 @@
 </script>
 
 <svelte:head>
-  <title>Leaderboard // {"<back\\slash>"}</title>
+  <title>Leaderboard // Slash</title>
 </svelte:head>
 
 <section>
@@ -53,9 +53,9 @@
         {#each leaderboard as entry, i}
           {#if entry}
             <tr>
-              <td>{String(i + 1).padStart(3, '0')}</td>
+              <td>{i + 1}</td>
               <td>{entry.username}</td>
-              <td>{15 - entry.level}</td>
+              <td>{entry.level}</td>
             </tr>
           {/if}
         {/each}

@@ -60,7 +60,7 @@
 
 <svelte:head>
   {#if config.started}
-    <title>Level {15 - level} // {"<back\\slash>"}</title>
+    <title>Level {level} // Slash</title>
   {/if}
 </svelte:head>
 
