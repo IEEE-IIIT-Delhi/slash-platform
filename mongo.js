@@ -8,7 +8,7 @@ db.config.insert({
   started: false,
   showLeaderboard: false,
   ended: false,
-  startDate: new Date(2022, 11, 2).setHours(18, 30)
+  startDate: new Date(2022, 11, 2).setHours(17, 00)
 })
 
 //Set Admin and super admin details
