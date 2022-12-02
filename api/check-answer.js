@@ -54,51 +54,61 @@ export default async (req, res) => {
     })
   }
 
-  // Exceptional level
-  if (level === 4) {
-    let playerName
+  // // Exceptional level
+  // if (level === 4) {
+  //   let playerName
 
-    const leaderboard = await Player.find(
-      {
-        admin: false,
-        phantom: false,
-        disqualified: false
-      },
-      {
-        _id: 0,
-        username: 1,
-        level: 1
-      },
-      {
-        sort: {
-          level: -1,
-          lastLevelOn: 1
-        }
-      }
-    ).cache({ key: 'leaderboard' })
+  //   const leaderboard = await Player.find(
+  //     {
+  //       admin: false,
+  //       phantom: false,
+  //       disqualified: false
+  //     },
+  //     {
+  //       _id: 0,
+  //       username: 1,
+  //       level: 1
+  //     },
+  //     {
+  //       sort: {
+  //         level: -1,
+  //         lastLevelOn: 1
+  //       }
+  //     }
+  //   ).cache({ key: 'leaderboard' })
 
-    if (leaderboard.length < 24) {
-      playerName = 'nobody'
-    } else {
-      playerName = leaderboard[23].username.replace(/[\s]+/g, '').toLowerCase()
-    }
-    if (!(playerName === answer)) {
-      return res.json({
-        success: false,
-        message: constants.ERR_WRONG_ANS
-      })
-    }
-  } else {
-    // Regular level
-    const { answer: correctAnswer } = await Question.findOne({ level })
-    const hashedAttempt = hash(answer.toLowerCase())
+  //   if (leaderboard.length < 24) {
+  //     playerName = 'nobody'
+  //   } else {
+  //     playerName = leaderboard[23].username.replace(/[\s]+/g, '').toLowerCase()
+  //   }
+  //   if (!(playerName === answer)) {
+  //     return res.json({
+  //       success: false,
+  //       message: constants.ERR_WRONG_ANS
+  //     })
+  //   }
+  // } else {
+  //   // Regular level
+  //   const { answer: correctAnswer } = await Question.findOne({ level })
+  //   const hashedAttempt = hash(answer.toLowerCase())
 
-    if (hashedAttempt !== correctAnswer) {
-      return res.json({
-        success: false,
-        message: constants.ERR_WRONG_ANS
-      })
-    }
+  //   if (hashedAttempt !== correctAnswer) {
+  //     return res.json({
+  //       success: false,
+  //       message: constants.ERR_WRONG_ANS
+  //     })
+  //   }
+  // }
+  // Regular level
+  const { answer: correctAnswer } = await Question.findOne({ level })
+  const hashedAttempt = hash(answer.toLowerCase())
+
+  if (hashedAttempt !== correctAnswer) {
+    return res.json({
+      success: false,
+      message: constants.ERR_WRONG_ANS
+    })
   }
 
   // It's correct
