@@ -17,7 +17,7 @@
       <Countdown date={config.startDate} />
       <p class="general">
         Till then, join our
-        <a href="https://discord.gg/D55mYYeUny">Discord server</a>.
+        <a href="https://discord.gg/TCxtrEeRhR">Discord server</a>.
       </p>
     {:else if win}
       <h1>Congratulations!</h1>
