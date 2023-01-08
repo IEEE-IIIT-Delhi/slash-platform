@@ -23,7 +23,7 @@
 
       <li><a href="/leaderboard">Leaderboard</a></li>
       <li>
-        <a href="https://discord.gg/D55mYYeUny" target="_blank" rel="noopener"
+        <a href="https://discord.gg/TCxtrEeRhR" target="_blank" rel="noopener"
           >Discord</a
         >
       </li>
