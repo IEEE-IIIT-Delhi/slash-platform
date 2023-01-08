@@ -12,7 +12,7 @@
 <header>
   <nav>
     <a href="/">
-      <img src="/logo.svg" alt="Slash logo" />
+      <img src="/Illiad logo.png" alt="Slash logo" />
     </a>
 
     <!-- Desktop view -->

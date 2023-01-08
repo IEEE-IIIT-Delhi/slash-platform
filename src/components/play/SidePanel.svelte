@@ -6,7 +6,7 @@
 
 <aside>
   <a href="/">
-    <img src="/logo.svg" alt="Slash logo" />
+    <img src="/Illiad logo.png" alt="Slash logo" />
   </a>
   <h1 class="level">Level <span>{level}</span></h1>
   <div class="bottom">
