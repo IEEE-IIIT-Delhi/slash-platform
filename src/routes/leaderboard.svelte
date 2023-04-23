@@ -69,7 +69,7 @@
     </p>
     <p class="general">
       Till then, join our
-      <a href="https://discord.gg/D55mYYeUny">Discord server</a>.
+      <a href="https://discord.gg/TCxtrEeRhR">Discord server</a>.
     </p>
   {/if}
 </section>

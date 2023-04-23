@@ -45,7 +45,7 @@
 <main>
   <section>
     <h1>Login</h1>
-    <p>We are looking for highly intelligent individuals. To find them, we have devised a test. There is a path of hurdles you must overcome, and it will lead you on the road to finding us. We look forward to meeting the few that will make it all the way through. Good luck.</p>
+    <p>Are you ready for a adrenaline-pumping race through the world of mysteries and enigmas? Iliad is an online hunt that takes you on a journey through the internet and beyond with fuzzling challenges, bewildering mysteries, and conundrums to be solved. Solve cryptic messages, find signs hidden in plain sight and bring out the pattern-seeker inside you to climb up the leaderboard and win.</p>
     
     <form on:submit={login} method="POST">
       {#if response}
