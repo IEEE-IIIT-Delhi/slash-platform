@@ -28,7 +28,7 @@
 </script>
 
 <svelte:head>
-  <title>Leaderboard // Slash</title>
+  <title>Leaderboard // Enigma</title>
 </svelte:head>
 
 <section>

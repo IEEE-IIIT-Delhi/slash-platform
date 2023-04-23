@@ -27,7 +27,7 @@
 </script>
 
 <svelte:head>
-  <title>Logs // Slash</title>
+  <title>Logs // Enigma</title>
 </svelte:head>
 
 <main>

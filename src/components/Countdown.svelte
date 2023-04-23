@@ -33,8 +33,8 @@
   }
 
   onMount(() => {
-    updateTimer();
-    setInterval(updateTimer, 1000);
+    // updateTimer();
+    setInterval(()=>{updateTimer();}, 1000);
   });
 </script>
 

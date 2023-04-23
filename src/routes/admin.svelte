@@ -21,7 +21,7 @@
 </script>
 
 <svelte:head>
-  <title>Admin // Slash</title>
+  <title>Admin // Enigma</title>
 </svelte:head>
 
 <main>

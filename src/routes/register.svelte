@@ -41,7 +41,7 @@
 </script>
 
 <svelte:head>
-  <title>Register // Slash</title>
+  <title>Register // Enigma</title>
 </svelte:head>
 
 <main>

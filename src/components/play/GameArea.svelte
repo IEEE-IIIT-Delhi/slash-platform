@@ -1,4 +1,5 @@
 <script>
+    import { loop_guard } from "svelte/internal";
   import Countdown from "../Countdown.svelte";
   import QuestionAnswer from "./QuestionAnswer.svelte";
 
@@ -17,7 +18,7 @@
       <Countdown date={config.startDate} />
       <p class="general">
         Till then, join our
-        <a href="https://discord.gg/D55mYYeUny">Discord server</a>.
+        <a href="https://discord.gg/pey4Gma7Ux">Discord server</a>.
       </p>
     {:else if win}
       <h1>Congratulations!</h1>
