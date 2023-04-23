@@ -18,7 +18,7 @@
 </script>
 
 <svelte:head>
-  <title>Stats // Slash</title>
+  <title>Stats // Enigma</title>
 </svelte:head>
 
 <main>

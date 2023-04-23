@@ -65,6 +65,7 @@
 </svelte:head>
 
 <main>
+  {@html '<!--level 4: marianrejewski1932@gmail.com-->'}
   {#if innerWidth > 800}
     <SidePanel {username} {level} {rank} />
   {/if}

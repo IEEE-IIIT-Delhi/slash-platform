@@ -65,7 +65,7 @@
     <p class="general">
       The leaderboard will activate {config.started
         ? "soon"
-        : "once Slash begins"}.
+        : "once Enigma begins"}.
     </p>
     <p class="general">
       Till then, join our

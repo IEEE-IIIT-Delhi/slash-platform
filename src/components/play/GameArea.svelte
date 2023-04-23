@@ -14,7 +14,7 @@
   <div class="container">
     {#if !config.started}
       <h1>Hang tight!</h1>
-      <p class="general">Slash will begin in</p>
+      <p class="general">Enigma will begin in</p>
       <Countdown date={config.startDate} />
       <p class="general">
         Till then, join our
@@ -33,7 +33,7 @@
     {:else if config.ended}
       <h1>The End!</h1>
       <p class="general">
-        Slash has come to an end! You have finished with a rank of <span
+        Enigma has come to an end! You have finished with a rank of <span
           class="rank">{rank}</span
         >.
       </p>
